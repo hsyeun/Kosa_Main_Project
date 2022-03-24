@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="LOG_HOME" value="d:/logs" />
+	
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %yellow(%-5level) [%logger] - %cyan(%msg) %n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 
+	1. log level
+	  trace < debug < info  < warn < error
+	2. 기본로거를 상속 받는다.
+	3. additivity
+	  기본값 true. false로 설정하면 해당 class만 logger가 적용됩니다.
+	-->
+    <logger name="jdbc"                level="off" />
+    <logger name="jdbc.sqlonly"        level="info" />
+    <logger name="jdbc.resultsettable" level="off" />
+    <logger name="jdbc.sqltiming"      level="off" />
+	<logger name="com.zaxxer.hikari"   level="info" /> <!-- log 상세출력 debug -->
+
+	<!-- 기본로거 -->    
+	<root value="info">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>
