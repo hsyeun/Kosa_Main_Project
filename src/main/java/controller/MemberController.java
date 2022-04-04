@@ -57,6 +57,30 @@ public class MemberController {
 
 		return "member/signup";
 	}
+	
+	/**
+	 * 회원가입-이력서 페이지
+	 * 
+	 * @return View 지정
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "resume.do")
+	public String signupResume(Model model) throws Exception {
+		String now = "";
+		
+		try {
+			log.debug("데이터베이스 연결 성공\n");
+			now = sqlSession.selectOne("Test.getTest");
+			
+		} catch (Exception e) {
+			log.debug(e.getMessage());
+			log.debug("데이터베이스 연결 실패\n");
+		}
+		
+		model.addAttribute("now", now);
+		
+		return "member/resume";
+	}
 
 	/**
 	 * 로그인 페이지
