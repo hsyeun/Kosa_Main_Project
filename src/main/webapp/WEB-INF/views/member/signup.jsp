@@ -107,7 +107,7 @@
 								<option value="16">협회 및 단체, 수리 및 기타 개인 서비스업</option>
 							</select> <label for="floatingSelect">산업 분류</label>
 						</div>
-						<a href="/demo/src/main/webapp/WEB-INF/views/member/resume.html"><button
+						<a href="resume.do"><button
 								type="submit" class="btn btn-primary py-3 w-100 mb-4">다음으로</button></a>
 						<p class="text-center mb-0">
 							이미 가입되어 있다면? <a href="signin.do">로그인</a>
