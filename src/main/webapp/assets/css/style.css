@@ -1863,3 +1863,13 @@ section {
 .dn{
   display: none;
 }
+.bpos{
+	margin-top: 50px;
+	margin-left: 480px;
+}
+.pointer{
+	cursor: pointer;
+}
+.pb100{
+	padding-bottom: 100px;
+}

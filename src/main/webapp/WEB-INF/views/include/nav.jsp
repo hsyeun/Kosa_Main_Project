@@ -23,7 +23,7 @@
 				<li><a class="nav-link scrollto active"
 					href="main.do">Home</a></li>
 				<li><a class="nav-link scrollto"
-					href="/demo/src/main/webapp/WEB-INF/views/company/com_main.html">기업</a></li>
+					href="company.do">기업</a></li>
 				<li class="dropdown"><a
 					href="/demo/src/main/webapp/WEB-INF/views/coverLetter/cover_main.html"><span>자기소개서</span>
 						<i class="bi bi-chevron-down"></i></a>
