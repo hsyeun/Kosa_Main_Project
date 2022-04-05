@@ -28,15 +28,17 @@
 					href="/demo/src/main/webapp/WEB-INF/views/coverLetter/cover_main.html"><span>자기소개서</span>
 						<i class="bi bi-chevron-down"></i></a>
 					<ul>
-						<li><a
-							href="/demo/src/main/webapp/WEB-INF/views/coverLetter/cover_main.html">자기소개서
-								작성</a></li>
-						<li><a
-							href="/demo/src/main/webapp/WEB-INF/views/coverLetter/cover_analysis.html">자기소개서
-								분석</a></li>
-					</ul></li>
-				<li><a class="nav-link scrollto"
-					href="/demo/src/main/webapp/WEB-INF/views/education/edu_main.html">교육</a></li>
+						<li>
+							<a href="/demo/src/main/webapp/WEB-INF/views/coverLetter/cover_main.html">
+								자기소개서 작성</a>
+						</li>
+						<li>
+							<a href="/demo/src/main/webapp/WEB-INF/views/coverLetter/cover_analysis.html">
+								자기소개서 분석
+							</a>
+						</li>
+					</ul>
+				</li>
 			</ul>
 			<i class="bi bi-list mobile-nav-toggle"></i>
 		</nav>
