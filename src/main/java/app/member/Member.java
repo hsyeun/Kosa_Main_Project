@@ -4,8 +4,11 @@ import lombok.Data;
 
 @Data
 public class Member {
-	String code = "";
+
+	String identification = "";
+	String password = "";
 	String name = "";
-	String price = "";
-	String maker = "";	
+	String email = "";
+	String phone = "";
+	String company_rec = "";
 }

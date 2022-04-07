@@ -48,3 +48,5 @@
 <!-- Template Main CSS File -->
 <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/member.css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

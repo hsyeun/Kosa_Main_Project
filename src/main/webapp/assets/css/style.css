@@ -56,35 +56,22 @@ h1, h2, h3, h4, h5, h6 {
 	animation: animate-preloader 1s linear infinite;
 }
 
-@
--webkit-keyframes animate-preloader { 0% {
-	transform: rotate(0deg);
+@-webkit-keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-100
-%
-{
-transform
-:
-rotate(
-360deg
-);
-}
-}
-@
-keyframes animate-preloader { 0% {
-	transform: rotate(0deg);
-}
-
-100
-%
-{
-transform
-:
-rotate(
-360deg
-);
-}
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*--------------------------------------------------------------
@@ -518,35 +505,22 @@ rotate(
 	}
 }
 
-@
--webkit-keyframes up-down { 0% {
-	transform: translateY(10px);
+@-webkit-keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
 }
 
-100
-%
-{
-transform
-:
-translateY(
--10px
-);
-}
-}
-@
-keyframes up-down { 0% {
-	transform: translateY(10px);
-}
-
-100
-%
-{
-transform
-:
-translateY(
--10px
-);
-}
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1617,35 +1591,22 @@ section {
 	background: #209dd8;
 }
 
-@
--webkit-keyframes animate-loading { 0% {
-	transform: rotate(0deg);
+@-webkit-keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-100
-%
-{
-transform
-:
-rotate(
-360deg
-);
-}
-}
-@
-keyframes animate-loading { 0% {
-	transform: rotate(0deg);
-}
-
-100
-%
-{
-transform
-:
-rotate(
-360deg
-);
-}
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*--------------------------------------------------------------

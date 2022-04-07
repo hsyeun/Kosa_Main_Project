@@ -20,8 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import app.goodsinfo.GoodsInfo;
-import app.goodsinfo.GoodsInfoService;
+import app.member.Member;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -30,9 +29,6 @@ public class MainController {
 
 	@Autowired
     SqlSession sqlSession;
-
-    @Autowired
-    private GoodsInfoService goodsInfoServiceImpl;
     
     /**
 	 * 메인 페이지
@@ -41,19 +37,21 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/main.do")
 	public String main(Model model) throws Exception {
-		String now = "";
 		
-    	try
-    	{
-    		log.debug("데이터베이스 연결 성공\n");
-    		now = sqlSession.selectOne("Test.getTest");
-    	    
-    	} catch (Exception e) {
-    		log.debug(e.getMessage());
-    		log.debug("데이터베이스 연결 실패\n");	
-    	}
-    	
-    	model.addAttribute("now", now);
+		
+//		String now = "";
+//		
+//    	try
+//    	{
+//    		log.debug("데이터베이스 연결 성공\n");
+//    		now = sqlSession.selectOne("Test.getTest");
+//    	    
+//    	} catch (Exception e) {
+//    		log.debug(e.getMessage());
+//    		log.debug("데이터베이스 연결 실패\n");	
+//    	}
+//    	
+//    	model.addAttribute("now", now);
     	
 		return "main";
 	}
@@ -63,19 +61,19 @@ public class MainController {
 	 * @return View 지정
      * @throws Exception 
 	 */
-	@RequestMapping(value = "/ajax.do")
-	@ResponseBody
-	public List<GoodsInfo> ajax(/* @PathVariable String id */) throws Exception {
-		List<GoodsInfo> result_list = null;
-		
-		try
-		{
-			result_list = goodsInfoServiceImpl.getGoodsInfoList(); 
-        }
-        catch (Exception se) {
-        	log.debug(se.getMessage());
-        }
-    	
-		return result_list;
-	}
+//	@RequestMapping(value = "/ajax.do")
+//	@ResponseBody
+//	public List<Member> ajax(/* @PathVariable String id */) throws Exception {
+//		List<Member> result_list = null;
+//		
+//		try
+//		{
+//			result_list = memberServiceImpl.getMemberList(); 
+//        }
+//        catch (Exception se) {
+//        	log.debug(se.getMessage());
+//        }
+//    	
+//		return result_list;
+//	}
 }

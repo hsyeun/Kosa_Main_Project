@@ -16,10 +16,10 @@
 @media (min-width: 450px) {
       .main-card {
         width: 96%;
-        max-width: 400px;
+        max-width: 350px;
         height: calc(100% - 32px) !important;
         border-radius: 8px !important;
-        max-height: 600px;
+        max-height: 500px;
       margin: 16px!important;
       }
     }
@@ -51,6 +51,7 @@
   position: fixed;
   /* right: 5px; */
   bottom: 60px;
+  z-index: 1000;
 }
 
 #chatbot_toggle {
