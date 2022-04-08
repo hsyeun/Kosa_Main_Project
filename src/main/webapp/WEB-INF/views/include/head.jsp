@@ -45,8 +45,14 @@
 <!-- chatbot -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/chat.css">
 
+<!-- mypage & admin-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/typicons/typicons.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css//vertical-layout-light/style.css">
+
 <!-- Template Main CSS File -->
 <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/member.css" rel="stylesheet">
 
+<!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

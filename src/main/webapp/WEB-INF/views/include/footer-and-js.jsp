@@ -47,3 +47,16 @@
 
 <!-- chatbot -->
 <script src="${pageContext.request.contextPath}/assets/js/chat.js"></script>
+
+<!-- mypage & admin-->
+<script src="${pageContext.request.contextPath}/assets/vendor/js/vendor.bundle.base.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/chart.js/Chart.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/assets/js/off-canvas.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/hoverable-collapse.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/template.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/settings.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/todolist.js"></script>
+
+<script src="${pageContext.request.contextPath}/assets/js/dashboard.js"></script>
+<script src="${pageContext.request.contextPath}/assets//js/chart.js"></script>

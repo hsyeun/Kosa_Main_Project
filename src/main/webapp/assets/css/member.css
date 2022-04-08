@@ -75,7 +75,7 @@
 
 
 /*** Layout ***/
-.sidebar {
+/* .sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -86,7 +86,7 @@
     background: var(--light);
     transition: 0.5s;
     z-index: 999;
-}
+} */
 
 .content {
     margin-left: 250px;
