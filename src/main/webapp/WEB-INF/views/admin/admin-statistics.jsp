@@ -119,7 +119,7 @@
           </div>
         </div>
         <!-- end charts -->
-        
+        </div>
 			</div>
 		</div>
 	</div>
@@ -138,30 +138,6 @@
 		<jsp:param name="" value="" />
 	</jsp:include>
 
-
-	<script>
-		$(document).ready(function() {
-
-			if ('${MSG}' == 'false') {
-				alert('아이디와 비번을 확인하세요');
-			}
-
-			$('#sbtn').click(function() {
-				if (!($('#id').val())) {
-					alert('아이디를 입력하세요');
-					$('#id').focus();
-					return;
-				}
-				if (!($('#pw').val())) {
-					alert('패스워드를 입력하세요');
-					$('#pw').focus();
-					return;
-				}
-				$('#frm').submit();
-			});
-
-		});
-	</script>
 
 </body>
 </html>
