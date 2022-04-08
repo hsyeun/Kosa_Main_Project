@@ -80,31 +80,32 @@
 							<select class="form-select" id="floatingSelect"
 								aria-label="Floating label select example">
 								<option value="1">대기업</option>
-								<option value="2">중견기업</option>
-								<option value="3">중소기업</option>
-								<option value="4">벤처기업</option>
-								<option value="5">공기업·공공기관</option>
+								<option value="2">대기업 계열·자회사</option>
+								<option value="3">중견기업</option>
+								<option value="4">중소기업</option>
+								<option value="5">벤처기업</option>
+								<option value="6">공공기관</option>
+								<option value="7">공공기관·공기업</option>
+								<option value="8">비영리단체</option>
+								<option value="9">외국계</option>
+								<option value="10">기타</option>
 							</select> <label for="floatingSelect">기업 분류</label>
 						</div>
 						<div class="form-floating mb-3">
 							<select class="form-select" id="floatingSelect"
 								aria-label="Floating label select example">
-								<option value="1">제조업</option>
-								<option value="2">전기, 가스, 증기 및 공기 조절 공급업</option>
-								<option value="3">수도, 하수 및 폐기물 처리, 원료 재생업</option>
-								<option value="4">건설업</option>
-								<option value="5">도매 및 소매업</option>
-								<option value="6">운수 및 창고업</option>
-								<option value="7">숙박 및 음식점업</option>
-								<option value="8">정보통신업</option>
-								<option value="9">부동산업</option>
-								<option value="10">전문, 과학 및 기술 서비스업</option>
-								<option value="11">사업시설 관리, 사업 지원 및 임대 서비스업</option>
-								<option value="12">공공 행정, 국방 및 사회보장 행정</option>
-								<option value="13">교육 서비스업</option>
-								<option value="14">보건업 및 사회복지 서비스업</option>
-								<option value="15">예술, 스포츠 및 여가관련 서비스업</option>
-								<option value="16">협회 및 단체, 수리 및 기타 개인 서비스업</option>
+								<option value="1">제조, 생산, 화학업</option>
+								<option value="2">미디어, 광고업 </option>
+								<option value="3">기타</option>
+								<option value="4">판매, 유통업</option>
+								<option value="5">건설업</option>
+								<option value="6">교육업</option>
+								<option value="7">서비스업</option>
+								<option value="8">IT, 정보통신업</option>
+								<option value="9">금융, 은행업</option>
+								<option value="10">기관, 협회</option>
+								<option value="11">의료, 제약업</option>
+								<option value="12">문화, 예술, 디자인업</option>
 							</select> <label for="floatingSelect">산업 분류</label>
 						</div>
 						<a href="resume.do"><button

@@ -61,32 +61,110 @@
 						<div class="form-floating mb-3">
 							<select class="form-select" id="floatingSelect"
 								aria-label="Floating label select example">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
+								<option value="1">경력 2년 이상</option>
+								<option value="2">경력 1년 이상</option>
+								<option value="3">경력 1년 미만</option>
+								<option value="4">없음</option>
 							</select> <label for="floatingSelect">경력</label>
 						</div>
-						<div class="form-floating mb-3">
+												<div class="form-floating mb-3">
 							<select class="form-select" id="floatingSelect"
 								aria-label="Floating label select example">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select> <label for="floatingSelect">자격증</label>
+								<option value="1">4.01 이상 4.5 미만</option>
+								<option value="2">3.6 이상 4.0 미만</option>
+								<option value="3">3.0 이상 3.59 미만</option>
+								<option value="4">3.0 미만</option>
+							</select> <label for="floatingSelect">학점</label>
 						</div>
 						<div class="form-floating mb-3">
 							<select class="form-select" id="floatingSelect"
 								aria-label="Floating label select example">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select> <label for="floatingSelect">경험</label>
+								<option value="1">900 이상 </option>
+								<option value="2">850 이상 900 미만</option>
+								<option value="3">700 이상 850 미만</option>
+								<option value="4">600 이상 700 미만</option>
+								<option value="5">500 이상 600 미만</option>
+								<option value="6">500 미만</option>
+								<option value="7">없음</option>
+							</select> <label for="floatingSelect">토익</label>
+						</div>
+						<div class="form-floating mb-3">
+							<select class="form-select" id="floatingSelect"
+								aria-label="Floating label select example">
+								<option value="1">Lv8</option>
+								<option value="2">Lv7</option>
+								<option value="3">Lv6</option>
+								<option value="4">Lv5</option>
+								<option value="5">Lv4</option>
+								<option value="6">Lv3</option>
+								<option value="7">없음</option>
+							</select> <label for="floatingSelect">토익스피킹</label>
+						</div>
+						<div class="form-floating mb-3">
+							<select class="form-select" id="floatingSelect"
+								aria-label="Floating label select example">
+								<option value="1">AL</option>
+								<option value="2">IH</option>
+								<option value="3">IM3</option>
+								<option value="4">IM2</option>
+								<option value="5">IM1</option>
+								<option value="6">IL</option>
+								<option value="7">NH·NM·NL</option>
+								<option value="8">없음</option>
+							</select> <label for="floatingSelect">오픽</label>
+						</div>
+						<div class="form-floating mb-3">
+							<select class="form-select" id="floatingSelect"
+								aria-label="Floating label select example">
+								<option value="1">3개 이상</option>
+								<option value="2">2개</option>
+								<option value="3">1개</option>
+								<option value="4">없음</option>
+							</select> <label for="floatingSelect">외국어(기타)</label>
+						</div>
+						<div class="form-floating mb-3">
+							<select class="form-select" id="floatingSelect"
+								aria-label="Floating label select example">
+								<option value="1">2회 이상</option>
+								<option value="2">1회</option>
+								<option value="3">없음</option>
+							</select> <label for="floatingSelect">해외경험</label>
+						</div>
+						<div class="form-floating mb-3">
+							<select class="form-select" id="floatingSelect"
+								aria-label="Floating label select example">
+								<option value="1">3회 이상</option>
+								<option value="2">2회</option>
+								<option value="3">1회</option>
+								<option value="4">없음</option>
+							</select> <label for="floatingSelect">인턴</label>
+						</div>
+						<div class="form-floating mb-3">
+							<select class="form-select" id="floatingSelect"
+								aria-label="Floating label select example">
+								<option value="1">5회 이상</option>
+								<option value="2">3회 이상 5회 미만</option>
+								<option value="3">1회 이상 3회 미만</option>
+								<option value="4">없음</option>
+							</select> <label for="floatingSelect">수상내역</label>
+						</div>
+						<div class="form-floating mb-3">
+							<select class="form-select" id="floatingSelect"
+								aria-label="Floating label select example">
+								<option value="1">5회 이상</option>
+								<option value="2">3회 이상 5회 미만</option>
+								<option value="3">1회 이상 3회 미만</option>
+								<option value="4">없음</option>
+							</select> <label for="floatingSelect">교내/사회/봉사</label>
+						</div>
+						<div class="form-floating mb-3">
+							<select class="form-select" id="floatingSelect"
+								aria-label="Floating label select example">
+								<option value="1">3개 이상</option>
+								<option value="2">2개</option>
+								<option value="3">1개</option>
+								<option value="4">없음</option>
+							</select> <label for="floatingSelect">자격증</label>
 						</div>
 						<button type="submit" class="btn btn-primary py-3 w-100 mb-4">가입완료</button>
 					</div>
