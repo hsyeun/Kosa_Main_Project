@@ -9,6 +9,7 @@
 
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -39,7 +40,6 @@ public class MemberController {
 	@Autowired
 	MemberDAO mDAO;
 	
-//	private MemberService service;
 
 	/**
 	 * 회원가입 페이지
@@ -48,22 +48,56 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "signup.do")
-	public String signup(Model model) throws Exception {
-		String now = "";
-
-		try {
-			log.debug("데이터베이스 연결 성공\n");
-			now = sqlSession.selectOne("Test.getTest");
-
-		} catch (Exception e) {
-			log.debug(e.getMessage());
-			log.debug("데이터베이스 연결 실패\n");
+	public ModelAndView signup(ModelAndView mv, RedirectView rv, HttpSession session){
+		
+		if(isLogin(session)) {
+			rv.setUrl("main.do");
+			mv.setView(rv);
+			return mv;
 		}
-
-		model.addAttribute("now", now);
-
-		return "member/signup";
+		
+		String view = "member/signup";
+		
+		mv.setViewName(view);
+		return mv;
 	}
+	
+	// 회원가입 요청처리
+	@RequestMapping(value = "signupPROC.do")
+	public ModelAndView joinProc(MemberVO mVO, ModelAndView mv, HttpSession session, RedirectView rv) {
+		if(isLogin(session)) {
+			rv.setUrl("main.do");
+			mv.setView(rv);
+			return mv;
+		}
+		
+		int cnt = mDAO.addMember(mVO);
+		
+		if(cnt == 1) {
+			session.setAttribute("SID", mVO.getIdentification());
+			rv.setUrl("main.do");
+		} else {
+			rv.setUrl("signup.do");
+		}
+		
+		mv.setView(rv);
+		return mv;
+	}
+	
+	// 아이디, 메일, 전화번호 중복검사
+//	@RequestMapping("/ukCheck.moa")
+//	@ResponseBody
+//	public HashMap<String, String> ukCheck(MemberVO mVO) {
+//		int cnt = mDAO.ukCheck(mVO);
+//		
+//		HashMap<String, String> map = new HashMap<String, String>();
+//		map.put("result", "NO");
+//		map.put("cnt", cnt+"");
+//		if(cnt != 1) {
+//			map.put("result", "OK");
+//		}		
+//		return map;
+//	}
 
 	/**
 	 * 회원가입-이력서 페이지
@@ -89,6 +123,7 @@ public class MemberController {
 		return "member/resume";
 	}
 
+	
 	/**
 	 * 로그인 페이지
 	 * 
@@ -110,6 +145,12 @@ public class MemberController {
 		return mv;
 	}
 	
+	/**
+	 * 로그인 처리
+	 * 
+	 * @return View 지정
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "signinPROC.do")      
 	public ModelAndView loginProc( MemberVO mVO, ModelAndView mv, HttpSession session, RedirectView rv) {
 		String view = "main.do";
@@ -142,101 +183,61 @@ public class MemberController {
 		return (sid == null) ? false : true;
 	}
 	
-//	public String signin(Model model) throws Exception {
-//		String now = "";
-//
-//		try {
-//			log.debug("데이터베이스 연결 성공\n");
-//			now = sqlSession.selectOne("Test.getTest");
-//
-//		} catch (Exception e) {
-//			log.debug(e.getMessage());
-//			log.debug("데이터베이스 연결 실패\n");
-//		}
-//
-//		model.addAttribute("now", now);
-//
-//		return "member/signin";
-//	}
-
+	
 	/**
-	 * 로그인처리
+	 * 로그아웃 처리
 	 * 
 	 * @return View 지정
 	 * @throws Exception
 	 */
-
-//	@RequestMapping(value = "signinCheck.do")
-//	public String signinCheck(@ModelAttribute MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception {
-////		boolean result = MemberService.signinCheck(vo, session);
-////		ModelAndView mav = new ModelAndView();
-////
-////		if (result == true) {
-////			mav.setViewName("main");
-////			mav.addObject("msg", "success");
-////
-////		} else {
-////			mav.addObject("mag", "fail");
-////			mav.setViewName("member/signin");
-////		}
-////
-////		return mav;
-//		
-//		MemberVO returnVO = service.signinCheck(vo);
-//
-//		if(returnVO != null) {
-//			session.setAttribute("id", returnVO.getIdentification());
-//			
-//			rttr.addFlashAttribute("mvo", returnVO);
-//			log.debug("로그인 성공\n");
-//			
-//			return "/main"; 
-//		} else {
-//			log.debug("로그인 실패\n");
-//			return "/member/signin";
-//		}
-//	}
-
-	/**
-	 * 로그아웃처리
-	 * 
-	 * @return View 지정
-	 * @throws Exception
-	 */
-//	@RequestMapping(value = "signout.do")
-//	public String signout(HttpSession session) throws Exception {
-//		MemberService.signout(session);
-//		ModelAndView mav = new ModelAndView();
-//
-//		mav.addObject("mag", "logout");
-//		mav.setViewName("member/signin");
-//
-//		return mav;
-//	}
-
+	@RequestMapping(value = "signout.do")
+	public ModelAndView logout(HttpSession session, ModelAndView mv, RedirectView rv) {
+		session.removeAttribute("SID");
+		rv.setUrl("main.do");
+		mv.setView(rv);
+		return mv;
+	}
+	
+	
 	/**
 	 * 아이디찾기 페이지
 	 * 
 	 * @return View 지정
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "forgotID.do")
-	public String forgotID(Model model) throws Exception {
-		String now = "";
-
-		try {
-			log.debug("데이터베이스 연결 성공\n");
-			now = sqlSession.selectOne("Test.getTest");
-
-		} catch (Exception e) {
-			log.debug(e.getMessage());
-			log.debug("데이터베이스 연결 실패\n");
+	@RequestMapping("/forgotID.do")
+	public ModelAndView forgotID(HttpSession session, ModelAndView mv, RedirectView rv) {
+		
+		if(isLogin(session)) {	
+			rv.setUrl("main.do");
+			mv.setView(rv);
+		} else {
+			String view = "member/forgot-ID";
+			mv.setViewName(view);
 		}
-
-		model.addAttribute("now", now);
-
-		return "member/forgot-ID";
+	
+		return mv;
 	}
+	
+	//아이디 찾기 처리요청
+	@RequestMapping("/forgotIDProc.moa")
+	@ResponseBody
+	public HashMap<String, String> loginFindIdProc(MemberVO mVO /* name, mail */) {
+		
+		MemberVO tVO = mDAO.forgotId(mVO);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("result", "NO");
+		if(tVO == null) {
+			return map;
+		}
+//		String tmp = MailUtil.gmailSend(tVO.getEmail());
+//		map.put("result", "OK");
+//		map.put("result1", tmp);
+//		map.put("result2", tVO.getIdentification());	
+		return map;
+	}
+	
 
 	/**
 	 * 비번찾기 페이지
@@ -245,21 +246,35 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "forgotPW.do")
-	public String forgotPW(Model model) throws Exception {
-		String now = "";
-
-		try {
-			log.debug("데이터베이스 연결 성공\n");
-			now = sqlSession.selectOne("Test.getTest");
-
-		} catch (Exception e) {
-			log.debug(e.getMessage());
-			log.debug("데이터베이스 연결 실패\n");
+	public ModelAndView forgotPW(HttpSession session, ModelAndView mv, RedirectView rv) {
+		if(isLogin(session)) {	
+			rv.setUrl("main.do");
+			mv.setView(rv);
+		} else {
+			String view = "member/forgot-PW";
+			mv.setViewName(view);
 		}
-
-		model.addAttribute("now", now);
-
-		return "member/forgot-PW";
+	
+		return mv;
 	}
+	
+	// 비밀번호 찾기 요청처리
+//	@RequestMapping(value = "forgotPWPROC.do")
+//	@ResponseBody
+//	public HashMap<String, String> loginFindPwProc(MemberVO mVO) {
+//		String email = mDAO.loginFindPw(mVO);
+//		HashMap<String, String> map = new HashMap<String, String>();
+//		map.put("result", "NO");
+//		if(email != null) {
+//		
+//			String tmp = MailUtil.gmailSend(email);
+//			mVO.setPw(tmp);
+//			mDao.editPw(mVO);
+//			map.put("result", "OK");
+//			map.put("result1", tmp);
+//		}
+//		
+//		return map;
+//	}
 
 }

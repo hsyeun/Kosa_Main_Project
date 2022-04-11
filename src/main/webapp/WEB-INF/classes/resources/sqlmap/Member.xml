@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mSQL">
 
+	<!-- 로그인 검사 -->
 	<select id="getLogin" resultType="int" parameterType="app.member.MemberVO">
+	<![CDATA[
 		SELECT
 			count(*)
 		FROM
@@ -10,19 +12,100 @@
 		WHERE
 			identification = #{identification}
 			AND password = #{password}
+	]]>
+	</select>	
+		
+	<!-- 회원추가 -->
+	<insert id="addMember" parameterType="app.member.MemberVO">
+		<selectKey keyProperty="index" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(index) + 1, 1001)
+			FROM
+				user
+		</selectKey>
+		INSERT INTO
+			user(index, identification, password, name, email, phone, sc_index, i_index)
+		VALUES(
+			#{index}, #{identification}, #{password}, #{name}, 
+			#{email}, #{phone}, #{sc_index}, #{i_index}
+		)
+	</insert>
+	
+	<!-- 내 정보 조회 -->
+	<select id="getMyInfo" resultType="app.member.MemberVO" parameterType="string">
+		SELECT
+			index, identification, password, name, email, phone, sc_index, i_index
+		FROM
+			user
+		WHERE
+			identification = #{identification}
 	</select>
 	
-<!-- 	<select id="readMember" parameterType="string" resultType="app.member.MemberVO">
-		<![CDATA[
-		  SELECT * FROM user WHERE is_show = '0' AND identification = #{identification}
-		]]>
+	<!-- 내 정보 수정 -->
+	<update id="myInfoEdit" parameterType="app.member.MemberVO">
+		UPDATE
+			user
+		<set>
+			password = #{password},
+			name = #{name},
+			email = #{email},
+			phone = #{phone},
+			sc_index = #{sc_index},
+			i_index = #{i_index}
+		</set>
+		WHERE
+			identification = #{identification}
+	</update>
+	
+	<!-- 나의 정보 삭제 -->
+	<update id="myInfoDel" parameterType="string">
+		UPDATE
+			user
+		<set>
+			is_show='1'
+		</set>
+		WHERE
+			identification = #{identification}
+	</update>
+	
+		
+	<!-- 아이디 찾기 -->
+	<select id="forgotId" resultType="app.member.MemberVO" parameterType="app.member.MemberVO">
+	<![CDATA[
+		SELECT
+			identification, email
+		FROM
+			user
+		WHERE
+			name = #{name}
+			AND email = #{email}
+			AND is_show='0'
+	]]>
 	</select>
 	
-	<select id="readMemberWithIDPW" parameterType="string" resultType="app.member.MemberVO">
-		<![CDATA[
-		  SELECT * FROM user WHERE is_show = '0' AND identification = #{identification} AND password = #{password}
-		]]>
-	</select> -->
+		
+	<!-- 비밀번호 찾기 -->
+	<select id="loginFindPw" resultType="String" parameterType="app.member.MemberVO">
+		SELECT
+			email
+		FROM
+			user
+		WHERE
+			identification = #{identification}
+			AND phone = #{phone}
+			AND is_show='0'
+	</select>
+	
+	<!-- 임시비밀번호 저장 -->
+	<update id="editPw" parameterType="app.member.MemberVO">
+		UPDATE
+			user
+		<set>
+			password = #{password}
+		</set>
+		WHERE
+			identification = #{identification}
+	</update>
 	
 </mapper>
 

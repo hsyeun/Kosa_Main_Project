@@ -16,10 +16,11 @@ public class MemberVO {
 	private String company_rec;
 	
 	
-	public MemberVO(String identification, String password) {
+	public MemberVO(String identification, String password, String email) {
 		super();
 		this.identification = identification;
 		this.password = password;
+		this.email = email;
 	}
 	
 	

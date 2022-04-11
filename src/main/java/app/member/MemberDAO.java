@@ -20,29 +20,6 @@ public class MemberDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-//	private static final String namespace = "resources.sqlmap.Member";
-	
-//	public List<Member> getList() throws Exception {
-//		
-//		List<Member> result = new ArrayList<Member>();
-//		
-//        try
-//        {
-//        	result = sqlSession.selectList("Member.getGoodsInfoList");
-//        }
-//        catch (Exception se)
-//        {
-//        	throw new Exception(se);
-//        }
-//        
-//        return result;
-//		
-//	}
-	
-	// 아이디 중복검사
-//	public int ukCheck(MemberVO mVO) {
-//		return sqlSession.selectOne("mSQL.ukCheck", mVO);
-//	}
 	
 	// 로그인 아이디 비번 검사
 	public int getLogin(MemberVO mVO) {
@@ -52,35 +29,41 @@ public class MemberDAO {
 		return sqlSession.selectOne("mSQL.getLogin", mVO);
 		
 	}
+
+	// 회원가입
+	public int addMember(MemberVO mVO) {
+		return sqlSession.insert("mSQL.addMember", mVO);
+	}
 	
-//	public MemberVO signinCheck(MemberVO vo) {
-//		String id = sqlSession.selectOne("member.signinCheck", vo);
-//		return (id == null) ? false : true;
-//	}
+	// 나의 정보보기
+	public MemberVO getMyInfo(String id) {
+		return sqlSession.selectOne("mSQL.getMyInfo", id);
+	}
 	
-//	public MemberVO viewMember(MemberVO vo) {
-//		return sqlSession.selectOne("member.viewMember", vo);
-//	}
+	// 나의 정보수정처리
+	public int myInfoEdit(MemberVO mVO) {
+		return sqlSession.update("mSQL.myInfoEdit", mVO);
+	}
+
+	// 나의정보 삭제
+	public int myInfoDel(String id) {
+		return sqlSession.update("mSQL.myInfoDel", id);
+	}
+		
+	// 아이디 찾기
+	public MemberVO forgotId(MemberVO mVO) {
+		return sqlSession.selectOne("mSQL.forgotId", mVO);
+	}
 	
-//	public void signout(HttpSession session) {
-//		
-//	}
-//	
-//	//회원 정보 조회-사용자 ID 해당하는 정보 가져오기
-//	public MemberVO readMember(String userid) throws Exception {
-//		//테스트(컨트롤러) 호출 -> 정보를 저장 -> DB로이동
-//		MemberVO vo = sqlSession.selectOne(namespace+".readMember", userid);
-//		return vo;
-//	}
-//
-//	//회원 정보 조회 - ID,PW정보에 해당하는 사용자 정보
-//	public MemberVO readMemberWithIDPW(String identification, String password) throws Exception {
-//
-//		Map<String, Object> paramMap = new HashMap<String, Object>();
-//		paramMap.put("identification", identification);
-//		paramMap.put("password", password);
-//
-//		return sqlSession.selectOne(namespace+".readMemberWithIDPW", paramMap);		
-//	}
+	// 비밀번호 찾기
+	public String loginFindPw(MemberVO mVO) {
+		return sqlSession.selectOne("mSQL.loginFindPw", mVO);
+	}
+	
+	// 비밀번호 찾기 후 비번 임시비번 저장
+	public int editPw(MemberVO mVO) {
+		return sqlSession.update("mSQL.editPw", mVO);
+	}
+	
     
 }

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <% session.setAttribute("SID", mVO.getIdentification()); %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,12 +42,12 @@
 
 						<form action="signinPROC.do" id="frm" name="frm" method="post">
 							<div class="form-floating mb-3">
-								<input type="text" name="identification" class="form-control" id="id"
-									placeholder="Id"> <label for="id">ID</label>
+								<input type="text" name="identification" class="form-control" id="identification"
+									placeholder="Id"> <label for="identification">ID</label>
 							</div>
 							<div class="form-floating mb-4">
-								<input type="password" name="password" class="form-control" id="pw"
-									placeholder="Password"> <label for="pw">Password</label>
+								<input type="password" name="password" class="form-control" id="password"
+									placeholder="Password"> <label for="password">Password</label>
 							</div>
 
 							<div
@@ -92,14 +91,14 @@
 			}
 
 			$('#sbtn').click(function() {
-				if (!($('#id').val())) {
+				if (!($('#identification').val())) {
 					alert('아이디를 입력하세요');
-					$('#id').focus();
+					$('#identification').focus();
 					return;
 				}
-				if (!($('#pw').val())) {
+				if (!($('#password').val())) {
 					alert('패스워드를 입력하세요');
-					$('#pw').focus();
+					$('#password').focus();
 					return;
 				}
 				$('#frm').submit();
