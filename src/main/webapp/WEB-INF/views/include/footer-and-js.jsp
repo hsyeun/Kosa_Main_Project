@@ -58,5 +58,5 @@
 <script src="${pageContext.request.contextPath}/assets/js/settings.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/todolist.js"></script>
 
-<script src="${pageContext.request.contextPath}/assets/js/dashboard.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/assets/js/dashboard.js"></script> --%>
 <script src="${pageContext.request.contextPath}/assets//js/chart.js"></script>
