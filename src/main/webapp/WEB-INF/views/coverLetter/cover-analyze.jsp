@@ -63,18 +63,18 @@
 					</div>
 				</div>
 
-				<section id="portfolio-details" class="portfolio-details">
-					<div class="container">
+				<section id="portfolio-details" class="contact">
+				<div id="analyze"
+					class="col-lg-9 mt-5 mt-lg-0 d-flex align-items-stretch mauto">
+					<form action="forms/contact.php" method="post" role="form"
+						class="php-email-form">
 
-						<div class="col-lg-9 mauto">
-							<div class="portfolio-info">
-								<ul>
-									<li>(결과)</li>
-								</ul>
-							</div>
+						<div class="form-group">
+							<textarea class="form-control" name="message" rows="10" required></textarea>
 						</div>
 
-					</div>
+					</form>
+				</div>
 				</section>
 			</div>
 		</div>

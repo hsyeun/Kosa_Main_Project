@@ -431,7 +431,8 @@ h1, h2, h3, h4, h5, h6 {
 	transition: 0.5s;
 	margin: 10px 0 0 0;
 	color: #fff;
-	background: #47b2e4;
+/* 	background: #47b2e4; */
+	background: #2e4469;
 }
 
 #hero .btn-get-started:hover, .btn-get-started:hover {
@@ -1580,7 +1581,8 @@ section {
 }
 
 .contact .php-email-form button[type="submit"] {
-	background: #47b2e4;
+/* 	background: #47b2e4; */
+	background: #2e4469;
 	border: 0;
 	padding: 12px 34px;
 	color: #fff;
@@ -1678,11 +1680,11 @@ section {
 }
 
 #footer .footer-newsletter form, .footer-newsletter form {
-	margin-top: 30px;
+/* 	margin-top: 30px; */
 	background: #fff;
 	padding: 6px 10px;
 	position: relative;
-	border-radius: 50px;
+/* 	border-radius: 50px; */
 	box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
 	text-align: left;
 }
@@ -1708,7 +1710,8 @@ section {
 	background: none;
 	font-size: 16px;
 	padding: 0 20px;
-	background: #47b2e4;
+/* 	background: #47b2e4; */
+	background: #2e4469;
 	color: #fff;
 	transition: 0.3s;
 	border-radius: 50px;
@@ -1914,9 +1917,9 @@ section {
 }
 
 .loading {
-	color: #47b2e4 !important;
+	color: #2e4469 !important;
 	font-family: "Jost", sans-serif;
-	font-weight: 500;
+	font-weight: 800;
 	font-size: 16px;
 	letter-spacing: 1px;
 	display: inline-block;
@@ -1936,4 +1939,12 @@ section {
 .btn-position{
 	width: 100%;
 	padding: 20px 300px;
+}
+.bradius{
+	margin-top: 30px;
+	border-radius: 50px;
+}
+
+textarea::placeholder {
+  color: #000;
 }
