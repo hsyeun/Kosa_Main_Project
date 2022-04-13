@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="JobOpening">
+	<!--해당 기업의 채용공고 조회  -->
+	<select id="getJobOpeningList" resultType="app.job_opening.JobOpening">
+		<![CDATA[
+			SELECT *
+			FROM itjob.job_opening  jot
+			JOIN itjob.company  ct
+				ON ct.index =jot.com_index 
+			WHERE jot.com_index = #{com_index} 
+			ORDER BY jot.ongoing DESC, ABS(DATE(jot.due)- CURDATE()) ASC
+		]]>
+	</select>
+ <!--  	<select id="getJobOpeningList" resultType="app.job_opening.JobOpening">
+		<![CDATA[
+		SELECT *
+		FROM itjob.job_opening  jot
+		join itjob.company  ct
+		on ct.index =jot.com_index 
+		ORDER BY ABS(DATE(jot.due)- CURDATE()) ASC, jot.com_index 
+		]]>
+	</select> -->
+	
+	<!-- 기업1:공고N 조인 -->
+<!-- 	<resultMap type="app.job_opening.JobOpening" id="jobMap"> -->
+	<resultMap type="app.companysInfo.CompanysInfo" id="jobMap"> 
+			<id column="index" property="index" />
+	 		<result column="i_index" property="i_index" />
+			<result column="name" property="name" />
+	 		<result column="headcount" property="headcount" />
+			<result column="division" property="division" />
+	 		<result column="found_date" property="found_date" />
+			<result column="capital" property="capital" />
+			<result column="sales" property="sales" />
+	 		<result column="bussiness" property="bussiness" />
+			<result column="url" property="url" />
+			<result column="address" property="address" />
+	 		<result column="ceo" property="ceo" />
+			<result column="ind_detail" property="ind_detail" />
+			<result column="logo_url" property="logo_url" />
+		<collection  javaType="app.job_opening.JobOpening" property="jobOpening">
+		<!-- <collection  javaType="app.companysInfo.CompanysInfo" ofType="app.companysInfo.CompanysInfo" property="companysInfo"> -->
+			<id column="index" property="index"/>
+			<result column="com_index" property="com_index"/>
+			<result column="career" property="career"/>
+			<result column="background" property="background"/>
+			<result column="employ" property="employ"/>
+			<result column="etc" property="etc"/>
+			<result column="due" property="due"/>
+			<result column="ongoing" property="ongoing"/>	
+			<result column="require" property="require"/>
+			<result column="title" property="title"/>
+			<result column="region" property="region"/>	
+		</collection >
+	</resultMap>
+	<!-- 전체 공고 목록 -->
+<!---#618개 총 공고수, getJobOpeningTotalList: 조인_기업공고1:N기업,정렬_채용진행,회사인덱스,공고인덱스  -->	
+	  <select id="getJobOpeningTotalList" resultType="app.job_opening.JobOpening" resultMap="jobMap">
+		<![CDATA[
+			SELECT *
+			FROM (
+				SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, 
+					ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url,
+					ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	
+					jot.`index` as jot_index, jot.com_index, jot.career, 
+					jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, 
+					jot.`require`, jot.title, jot.region
+				FROM itjob.job_opening  jot
+				LEFT JOIN itjob.company  ct
+					ON ct.`index` =jot.com_index 
+				LIMIT 18446744073709551615 ) AS result
+			ORDER BY result.ongoing DESC , result.index ASC,result.jot_index ASC
+		]]>
+	</select>
+	<!-- 진행 업데이트(오늘마감3,채용중2,상시채용1,채용마감0) -->
+<!-- 	<update id="ongoing" parameterType="int">
+		<![CDATA[
+		update itjob.job_opening  jot
+		set ongoing = CASE 
+			WHEN (DATE(jot.due)-CURDATE()) = 0 THEN  3
+			WHEN (DATE(jot.due)-CURDATE()) > 0 THEN  2
+			WHEN jot.due IS NULL THEN  1
+			WHEN (DATE(jot.due)-CURDATE()) < 0 THEN  0
+			END
+		WHERE com_index = #{com_index} 
+		]]>
+	</update> -->
+	
+	<!-- 진행전체 업데이트(오늘마감3,채용중2,상시채용1,채용마감0) -->
+	<update id="update" parameterType="int" >
+		<![CDATA[
+		update itjob.job_opening  jot
+		set ongoing = CASE 
+			WHEN (DATE(jot.due)-CURDATE()) = 0 THEN  3
+			WHEN (DATE(jot.due)-CURDATE()) > 0 THEN  2
+			WHEN jot.due IS NULL THEN  1
+			WHEN (DATE(jot.due)-CURDATE()) < 0 THEN  0
+			END
+		]]>
+	</update>
+	
+	<!-- 페이지정보를 10개씩 가져오기 -->
+	<select id="listPage" resultType="app.job_opening.JobOpening" resultMap="jobMap">
+		<![CDATA[
+			SELECT *
+			FROM (
+				SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
+				FROM itjob.job_opening  jot
+				LEFT JOIN itjob.company  ct
+					ON ct.`index` =jot.com_index
+				LIMIT 18446744073709551615 ) AS result
+			ORDER BY result.ongoing DESC , result.index ASC,result.jot_index ASC
+			LIMIT #{page}, 10 
+		]]>
+	</select>
+	
+	<!--현재:페이지 정보를 지정한 크기만큼 가져오기 -->
+ 	<select id="listPageCri" resultType="app.job_opening.JobOpening" resultMap="jobMap">
+		<![CDATA[
+			SELECT *
+			FROM (
+				SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
+				FROM itjob.job_opening  jot
+				LEFT JOIN itjob.company  ct
+					ON ct.`index` =jot.com_index
+				LIMIT 18446744073709551615 ) AS result
+			ORDER BY result.ongoing DESC , result.index ASC,result.jot_index ASC
+			LIMIT #{pageStart},#{perPageNum}
+		]]>
+	</select> 
+		<!-- 전체숫 -->	
+	<select id="pageCount_job" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*)
+			FROM itjob.job_opening  jo
+			WHERE jo.index >= 0
+		]]>
+	</select>
+	<!-- 페이지정보를 10개씩 가져오기 -->
+	<!-- <select id="listPage" resultType="app.job_opening.JobOpening" resultMap="jobMap">
+		<![CDATA[
+			SELECT *
+			FROM itjob.job_opening 
+			WHERE `index`>= 0
+			ORDER BY `index` DESC
+			LIMIT #{page},10 
+		]]>
+	</select> -->
+	
+	<!--현재:페이지 정보를 지정한 크기만큼 가져오기 -->
+ 	<!-- <select id="listPageCri" resultType="app.job_opening.JobOpening" resultMap="jobMap">
+		<![CDATA[
+			SELECT *
+			FROM itjob.job_opening 
+			WHERE `index`>= 0
+			ORDER BY `index` DESC
+			LIMIT #{pageStart},#{perPageNum}
+		]]>
+	</select>  -->
+		<!-- 전체숫 -->	
+<!-- 	<select id="pageCount_job" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*)
+			FROM itjob.job_opening 
+			WHERE `index`>= 0
+		]]>
+	</select> -->
+</mapper>

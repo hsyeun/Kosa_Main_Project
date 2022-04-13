@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CompanysInfo">
+<!--  	<select id="getCompanysInfoList" resultType="app.companysInfo.CompanysInfo">
+		<![CDATA[
+		SELECT *
+		FROM itjob.company_test ct  
+		JOIN itjob.industry ind
+		ON ct.i_index = ind.`index`
+		]]>
+	</select> -->
+	<!-- 기업목록:기업&채용 -->
+<!-- 	<resultMap type="app.companysInfo.CompanysInfo" id="joMap">
+		<id column="index" property="index" />
+ 		<result column="i_index" property="i_index" />
+		<result column="name" property="name" />
+ 		<result column="headcount" property="headcount" />
+		<result column="division" property="division" />
+ 		<result column="found_date" property="found_date" />
+		<result column="capital" property="capital" />
+		<result column="sales" property="sales" />
+ 		<result column="bussiness" property="bussiness" />
+		<result column="url" property="url" />
+		<result column="address" property="address" />
+ 		<result column="ceo" property="ceo" />
+		<result column="ind_detail" property="ind_detail" />		
+		1 : 다 관계의 경우 데이터 매핑시켜준다.ind_detail
+			association => 1 : 1 관계 
+			collection => 1 : 다 관계 (한명의 유저가 작성한 글 목록)
+			일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용
+		
+		<association javaType="app.companysInfo.JopOpening" property="jo">
+			<id column="index" property="index"/>
+			<result column="cat_index" property="cat_index"/>
+			<result column="com_index" property="com_index"/>
+			<result column="career" property="career"/>
+			<result column="background" property="background"/>
+			<result column="employ" property="employ"/>
+			<result column="etc" property="etc"/>
+			<result column="due" property="due"/>
+			<result column="require" property="require"/>
+			<result column="region" property="region"/>			
+		</association>
+	</resultMap>
+	<select id="getCompanysInfoList" resultType="app.companysInfo.CompanysInfo" resultMap="joMap">
+		<![CDATA[
+			SELECT *
+			FROM itjob.company_test ct  
+			JOIN itjob.jop_opening_test jot
+			ON ct.`index` = jot.com_index
+			ORDER BY  ct.`index` ASC
+		]]>
+	</select>  --> 
+	
+	<!-- 기업1:공고N 조인 -->
+	<resultMap type="app.companysInfo.CompanysInfo" id="companysInfoMap">
+			<id column="index" property="index" />
+	 		<result column="i_index" property="i_index" />
+			<result column="name" property="name" />
+	 		<result column="headcount" property="headcount" />
+			<result column="division" property="division" />
+	 		<result column="found_date" property="found_date" />
+			<result column="capital" property="capital" />
+			<result column="sales" property="sales" />
+	 		<result column="bussiness" property="bussiness" />
+			<result column="url" property="url" />
+			<result column="address" property="address" />
+	 		<result column="ceo" property="ceo" />
+			<result column="ind_detail" property="ind_detail" />
+			<result column="logo_url" property="logo_url" />		
+<!--04/11 <collection property="app.job_opening.JobOpening" resultMap="jobOpeningMap"> -->
+		<collection  javaType="app.job_opening.JobOpening" property="jobOpening">
+			<id column="index" property="index"/>
+			<!-- <result column="cat_index" property="cat_index"/> -->
+			<result column="com_index" property="com_index"/>
+			<result column="career" property="career"/>
+			<result column="background" property="background"/>
+			<result column="employ" property="employ"/>
+			<result column="etc" property="etc"/>
+			<result column="due" property="due"/>
+			<result column="ongoing" property="ongoing"/>	
+			<result column="require" property="require"/>
+			<result column="region" property="region"/>	
+		</collection>
+	</resultMap>
+	
+	<resultMap type="app.job_opening.JobOpening" id="jobOpening">
+			<id column="index" property="index"/>
+		<!-- 	<result column="cat_index" property="cat_index"/> -->
+			<result column="com_index" property="com_index"/>
+			<result column="career" property="career"/>
+			<result column="background" property="background"/>
+			<result column="employ" property="employ"/>
+			<result column="etc" property="etc"/>
+			<result column="due" property="due"/>
+			<result column="ongoing" property="ongoing"/>	
+			<result column="require" property="require"/>
+			<result column="region" property="region"/>	
+	</resultMap>
+	
+<!-- 04/11	<resultMap type="app.job_opening.JobOpening" id="listPageCri">
+			<id column="index" property="index"/>
+			<result column="cat_index" property="cat_index"/>
+			<result column="com_index" property="com_index"/>
+			<result column="career" property="career"/>
+			<result column="background" property="background"/>
+			<result column="employ" property="employ"/>
+			<result column="etc" property="etc"/>
+			<result column="due" property="due"/>
+			<result column="ongoing" property="ongoing"/>	
+			<result column="require" property="require"/>
+			<result column="region" property="region"/>	
+	</resultMap> -->
+<!--# 총기업수, 조인_기업1*1채용공고(가장최신), 정렬_채용진행,기업번호  -->
+	<select id="getCompanysInfoList" resultType="app.companysInfo.CompanysInfo" resultMap="companysInfoMap">
+		<![CDATA[
+			SELECT *
+			FROM (
+				SELECT ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,
+				jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.region
+				FROM itjob.company ct
+				LEFT JOIN itjob.job_opening jot
+					ON ct.`index` =jot.com_index  
+				ORDER BY jot.ongoing DESC 
+				LIMIT 18446744073709551615 ) AS result
+			GROUP BY result.index ASC 
+			ORDER BY result.ongoing DESC , result.index ASC
+		]]>
+	</select>
+	
+	<select id="getCompanysInfoListMain" resultType="app.companysInfo.CompanysInfo" resultMap="companysInfoMap">
+		<![CDATA[
+			SELECT *
+			FROM (
+				SELECT ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,
+				jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.region
+				FROM itjob.company ct
+				LEFT JOIN itjob.job_opening jot
+					ON ct.`index` =jot.com_index  
+				ORDER BY jot.ongoing DESC 
+				LIMIT 18446744073709551615 ) AS result
+			GROUP BY result.index ASC 
+			ORDER BY result.ongoing DESC , result.index ASC LIMIT 0, 4
+		]]>
+	</select>
+<!-- 4/10	<select id="getCompanysInfoList" resultType="app.companysInfo.CompanysInfo">
+		<![CDATA[
+		SELECT * 
+		FROM itjob.company_test ct, itjob.job_opening_test jot
+		WHERE ct.index = jot.com_index
+		]]>
+	</select> -->
+<!-- 	<select id="getJobOpeningList" resultType="app.job_opening.JobOpening" >
+		<![CDATA[
+		SELECT *
+		FROM itjob.job_opening_test
+		WHERE com_index = #{index}
+		]]>
+	</select> -->
+	
+<!-- 	<select id="getJobOpeningList" parameterType="int" resultType="app.jop_opening.JopOpening" >
+		<![CDATA[
+		SELECT *
+		FROM itjob.job_opening_test
+		WHERE com_index = #{com}
+		]]>
+	</select> -->
+	
+<!-- 기업1:공고N 조인 end-->
+
+
+
+
+<!-- 	<resultMap type="app.jop_opening.JopOpening" id="jopMap">
+			<id column="index" property="index"/>
+			<result column="cat_index" property="cat_index"/>
+			<result column="com_index" property="com_index"/>
+			<result column="career" property="career"/>
+			<result column="background" property="background"/>
+			<result column="employ" property="employ"/>
+			<result column="etc" property="etc"/>
+			<result column="due" property="due"/>
+			<result column="require" property="require"/>
+			<result column="region" property="region"/>			
+		1 : 다 관계의 경우 데이터 매핑시켜준다.ind_detail
+			association => 1 : 1 관계 
+			collection => 1 : 다 관계 (한명의 유저가 작성한 글 목록)
+			일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용
+		
+		<collection javaType="app.companysInfo.CompanysInfo" property="companysInfo">
+			<id column="index" property="index" />
+	 		<result column="i_index" property="i_index" />
+			<result column="name" property="name" />
+	 		<result column="headcount" property="headcount" />
+			<result column="division" property="division" />
+	 		<result column="found_date" property="found_date" />
+			<result column="capital" property="capital" />
+			<result column="sales" property="sales" />
+	 		<result column="bussiness" property="bussiness" />
+			<result column="url" property="url" />
+			<result column="address" property="address" />
+	 		<result column="ceo" property="ceo" />
+			<result column="ind_detail" property="ind_detail" />			
+		</collection>
+	</resultMap>
+	<select id="getCompanysInfoList" resultType="app.jop_opening.JopOpening" resultMap="jopMap">
+		<![CDATA[
+			SELECT *
+			FROM itjob.company_test ct  
+			JOIN itjob.jop_opening_test jot
+			ON ct.`index` = jot.com_index
+			ORDER BY ct.`index` ASC
+		]]>
+	</select>  -->
+	
+	<!-- 페이지정보를 10개씩 가져오기 -->
+	<select id="listPage" resultType="app.companysInfo.CompanysInfo" resultMap="companysInfoMap">
+		<![CDATA[
+			SELECT *
+			FROM (
+				SELECT ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,
+				jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.region
+				FROM itjob.company ct
+				LEFT JOIN itjob.job_opening jot
+					ON ct.`index` =jot.com_index  
+				ORDER BY jot.ongoing DESC 
+				LIMIT 18446744073709551615 ) AS result
+			GROUP BY result.index ASC 
+			ORDER BY result.ongoing DESC , result.index ASC
+			LIMIT #{page},10 
+		]]>
+	</select>
+	
+	
+	
+	<!--현재:페이지 정보를 지정한 크기만큼 가져오기 -->
+ 	<select id="listPageCri" resultType="app.companysInfo.CompanysInfo" resultMap="companysInfoMap">
+		<![CDATA[
+			SELECT *
+			FROM (
+				SELECT ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,
+				jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.region
+				FROM itjob.company ct
+				LEFT JOIN itjob.job_opening jot
+					ON ct.`index` =jot.com_index  
+				ORDER BY jot.ongoing DESC 
+				LIMIT 18446744073709551615 ) AS result
+			GROUP BY result.index ASC 
+			ORDER BY result.ongoing DESC , result.index ASC
+			LIMIT #{pageStart},#{perPageNum}
+		]]>
+	</select>  
+	<!-- 페이지정보를 10개씩 가져오기 -->
+<!-- 04/10	<select id="listPage" resultType="app.companysInfo.CompanysInfo">
+		<![CDATA[
+			SELECT *
+			FROM itjob.company_test
+			WHERE `index`>= 0
+			ORDER BY `index` DESC
+			LIMIT #{page},10 
+		]]>
+	</select> -->
+	
+	<!--현재:페이지 정보를 지정한 크기만큼 가져오기 -->
+ <!--04/10 	<select id="listPageCri" resultType="app.companysInfo.CompanysInfo">
+		<![CDATA[
+			SELECT *
+			FROM itjob.company_test
+			WHERE `index`>= 0
+			ORDER BY `index` DESC
+			LIMIT #{pageStart},#{perPageNum}
+		]]>
+	</select>  --> 
+<!-- 	<select id="listPageCri" resultType="app.companysInfo.CompanysInfo">
+		<![CDATA[
+		SELECT *
+		FROM itjob.company_test ct  
+		LEFT JOIN itjob.job_opening_test jot
+			ON ct.`index` =jot.com_index 
+		WHERE ct.`index`>= 0
+		ORDER BY ct.`index` DESC
+		LIMIT #{pageStart},#{perPageNum}
+		]]>
+	</select> --> 
+	<!-- 전체숫 -->	
+	<select id="pageCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*)
+			FROM itjob.company
+			WHERE `index`>= 0
+		]]>
+	</select>
+	
+		
+<!-- 	<select id="getCompanysInfoContent" resultType="app.companysInfo.CompanysInfo">
+		<![CDATA[
+		  select 'index', i_index, name, headcount, division, found_date, capital, sales, bussiness, url, address, ceo, ind_detail
+		  from itjob.company_test
+		  where 'index'=#{index}
+		]]>
+	</select> -->
+	
+<!-- 	<select id="getCompanysInfoContent" resultType="app.companysInfo.CompanysInfo">
+		<![CDATA[
+		  	SELECT *
+			FROM itjob.company_test
+			WHERE `index`= #{index}
+		]]>
+	</select>  -->
+	
+	<!-- 회사 상세페이지: 기업&산업&스펙 -->
+	<resultMap type="app.companysInfo.CompanysInfo" id="industryMap">
+		<id column="index" property="index" />
+ 		<result column="i_index" property="i_index" />
+		<result column="name" property="name" />
+ 		<result column="headcount" property="headcount" />
+		<result column="division" property="division" />
+ 		<result column="found_date" property="found_date" />
+		<result column="capital" property="capital" />
+		<result column="sales" property="sales" />
+ 		<result column="bussiness" property="bussiness" />
+		<result column="url" property="url" />
+		<result column="address" property="address" />
+ 		<result column="ceo" property="ceo" />
+		<result column="ind_detail" property="ind_detail" />
+		<result column="logo_url" property="logo_url" />		
+		<!-- 1 : 다 관계의 경우 데이터 매핑시켜준다.ind_detail
+			association => 1 : 1 관계 
+			collection => 1 : 다 관계 (한명의 유저가 작성한 글 목록)
+			일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용
+		-->
+		<association javaType="app.industry.Industry" property="industry">
+			<id column="index" property="index"/>
+			<result column="title" property="title"/>
+		</association>
+
+ 		<association javaType="app.spec.Spec" property="spec">
+			<id column="index" property="index"/>
+			<result column="com_index" property="com_index"/>
+			<result column="grade_rate" property="grade_rate"/>
+			<result column="grade" property="grade"/>
+			<result column="toeic_rate" property="toeic_rate"/>
+			<result column="toeic" property="toeic"/>
+			<result column="toeic_speak_rate" property="toeic_speak_rate"/>
+			<result column="toeic_speak" property="toeic_speak"/>
+			<result column="opic_grade" property="opic_grade"/>
+			<result column="opic_rate" property="opic_rate"/>
+			<result column="etc" property="etc"/>
+			<result column="etc_rate" property="etc_rate"/>
+			<result column="overseas_exp" property="overseas_exp"/>
+			<result column="overseas_exp_rate" property="overseas_exp_rate"/>
+			<result column="intern" property="intern"/>
+			<result column="intern_rate" property="intern_rate"/>
+			<result column="prize" property="prize"/>
+			<result column="prize_rate" property="prize_rate"/>
+			<result column="volunteer" property="volunteer"/>
+			<result column="volunteer_rate" property="volunteer_rate"/>
+			<result column="certificate" property="certificate"/>
+			<result column="certificate_rate" property="certificate_rate"/>
+		</association> 
+	</resultMap>
+	<!-- 회사 상세페이지: 기업&산업&스펙 -->
+ 	<select id="getCompanysInfoContent" resultType="app.companysInfo.CompanysInfo" resultMap="industryMap">
+		<![CDATA[
+		SELECT ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,
+				ind.index,ind.title,
+				cs.index as spec_index, cs.com_index, cs.grade_rate, cs.grade, cs.toeic_rate, cs.toeic, cs.toeic_speak_rate, cs.toeic_speak, cs.opic_rate, cs.opic_grade, cs.etc_rate, cs.etc, cs.overseas_exp_rate, cs.overseas_exp, cs.intern_rate, cs.intern, cs.prize_rate, cs.prize, cs.volunteer_rate, cs.volunteer, cs.certificate_rate, cs.certificate		
+		FROM itjob.company ct  
+		JOIN itjob.industry ind
+			ON ct.i_index = ind.index
+		LEFT JOIN itjob.company_spec cs
+			ON cs.com_index = ct.index 
+		WHERE ct.`index`= #{index}
+		]]>
+	</select> 	
+<!--  	<select id="getCompanysInfoContent" resultType="app.companysInfo.CompanysInfo" resultMap="industryMap">
+		<![CDATA[
+		SELECT *
+		FROM itjob.company_test ct  
+		JOIN itjob.industry ind
+		ON ct.i_index = ind.`index`
+		WHERE ct.`index`= #{index}
+		]]>
+	</select>  --> 
+<!-- 	<select id="getCompanysInfoContent" resultType="app.companysInfo.CompanysInfo" resultMap="industryMap">
+		<![CDATA[
+		SELECT *
+		FROM itjob.company_test ct  
+		JOIN itjob.industry ind
+			ON ct.i_index = ind.`index`
+		JOIN itjob.jop_opening_test jot
+			ON ct.`index` =jot.com_index 
+		WHERE ct.index = #{index}
+		]]>
+	</select>  -->
+	
+ 	<!--해당 기업의 채용공고 리스트 :jobOpening.xml -->
+ <!--  	<select id="getJobOpeningList" resultType="app.job_opening.JobOpening" resultMap="jobOpeningMap">
+		<![CDATA[
+		SELECT *
+		FROM itjob.company_test ct  
+		JOIN itjob.job_opening_test jot
+			ON ct.`index`=jot.com_index 
+		WHERE ct.'index' = #{index}
+		]]>
+	</select>  --> 
+	
+<!-- 	<insert id="insertCompanysInfo" parameterType="app.companyInfo.CompanysInfo">
+		<![CDATA[
+		  insert into company (index,i_index,name,headcoount,division,found_date,capital,sales,bussiness,url,address,ceo,ind_detail ) values (
+		  	#{index}, #{i_index}, #{name}, #{maker}
+		  )
+		]]>
+	</insert>
+	
+	<update id="updateGoodsInfo" parameterType="app.companyInfo.CompanysInfo">
+		<![CDATA[
+		  update goodsinfo set name=#{name}, price=#{price}, maker=#{maker}
+		   where code=#{code}
+		]]>
+	</update>	
+
+	<delete id="deleteGoodsInfo" parameterType="string">
+		<![CDATA[
+		  delete from goodsinfo where code=#{code}
+		]]>
+	</delete>	 -->
+	
+
+</mapper>
