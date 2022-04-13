@@ -171,27 +171,13 @@
 	         $('#phone').focus();
 	         return false;
 	      }
+	      if($('input:checkbox:checked').length == 0){
+    	  	  alert('최소 하나의 관심사를 선택해주세요.');
+	          $('#mallSelect').focus();
+	    	  return false;
+	      }
 	      $('#frm').submit();
-	
 	})
-	
-	/* 키워드 분류 */
-/* 	var malls = false;
-
-	function update_selected() {
-	  $("#mallSelect").val(0);
-	  $("#mallSelect").find("option[value!=0]").detach();
-
-	  $("#mallSelect").append(malls.filter(".mall" + $(this).val()));
-	}
-
-	$(function() {
-	  malls = $("#mallSelect").find("option[value!=0]");
-	  malls.detach();
-
-	  $("#productSelect").change(update_selected);
-	  $("#productSelect").trigger("change");
-	}); */
 });
 </script>
 
@@ -303,18 +289,15 @@
 							   <option value="${bcate.index}">${bcate.category}</option>
 						</c:forEach>
 							</select>
-							   <label for="i_index">관심 키워드 대분류</label>
+							   <label for="i_index">관심 키워드</label>
 							</div>
 												
 						
 							<div class="form-floating mb-5">
-							<select id="mallSelect" class="form-select" aria-label="Floating label select example">
-						<%-- <c:forEach var="scate" items="${SMALL}">
-							   <option value="${scate.index}" class="mall${scate.mc_index}">${scate.category}</option>
-						</c:forEach> --%>
-
-							</select>
-							<label for="i_index">관심 키워드 소분류</label>
+							<!-- <select id="mallSelect" class="form-select" aria-label="Floating label select example">
+							</select> -->
+							<div id="mallSelect" style=" height: 120px;position:relative;overflow: auto;">
+							</div>
 							</div>						
 						
 						</form>

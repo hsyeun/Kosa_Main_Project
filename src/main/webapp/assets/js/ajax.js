@@ -15,18 +15,17 @@ $(document).ready(function() {
 		//        async: false,
 		contentType: "application/json; charset=utf-8",
 		success: function(data) {
-			var inHTML = "";
+			var inHTML = "<ul style='list-style:none;'>";
 
 			for (var i = 0; i < data.SMALL.length; i++) {
 
-				inHTML += '<option value="' + data.SMALL[i].index + '">' + data.SMALL[i].category + '</option>';
+				//inHTML += '<option value="' + data.SMALL[i].index + '">' + data.SMALL[i].category + '</option>';
+				inHTML += "<li><input type='checkbox' name = 'chkbox' id='" + data.SMALL[i].index + "' value='" + data.SMALL[i].category + "'> "+data.SMALL[i].category+"</li>";
 			}
+			var inHTML = "<ul style='list-style:none;'>";
 
 			$('#mallSelect').empty().append(inHTML);
 		}
-/*		error: function(xtr, status, error) {
-			alert(xtr + ":" + status + ":" + error);
-		}*/
 	});
 
 });
@@ -49,19 +48,18 @@ $('#productSelect').on('change', function() {
 		//        async: false,
 		contentType: "application/json; charset=utf-8",
 		success: function(data) {
-			var inHTML = "";
+			var inHTML = "<ul style='list-style:none;'>";
 
 			for (var i = 0; i < data.SMALL.length; i++) {
 
-				inHTML += '<option value="' + data.SMALL[i].index + '">' + data.SMALL[i].category + '</option>';
+				//inHTML += '<option value="' + data.SMALL[i].index + '">' + data.SMALL[i].category + '</option>';
+				inHTML += "<li><input type='checkbox' name = 'chkbox' id='" + data.SMALL[i].index + "' value='" + data.SMALL[i].category + "'> "+data.SMALL[i].category+"</li>";
 			}
+			inHTML += "</ul>"
 
 			$('#mallSelect').empty().append(inHTML);
 
 		}
-/*		error: function(xtr, status, error) {
-			alert(xtr + ":" + status + ":" + error);
-		}*/
 	});
 
 });
