@@ -32,7 +32,28 @@ public class MemberDAO {
 
 	// 회원가입
 	public int addMember(MemberVO mVO) {
+		
 		return sqlSession.insert("mSQL.addMember", mVO);
+	}
+	
+	// 회원가입 - 기업 분류
+	public List company() {
+		return sqlSession.selectList("mSQL.company");
+	}
+	
+	// 회원가입 - 산업 분류
+	public List industry() {
+		return sqlSession.selectList("mSQL.industry");
+	}
+	
+	// 회원가입 - 카테고리 대분류
+	public List bigCate() {
+		return sqlSession.selectList("mSQL.bigCate");
+	}
+	
+	// 회원가입 - 카테고리 소분류
+	public List<CategoryVO> smallCate(int index) {
+		return sqlSession.selectList("mSQL.smallCate",index);
 	}
 	
 	// 나의 정보보기
@@ -64,6 +85,18 @@ public class MemberDAO {
 	public int editPw(MemberVO mVO) {
 		return sqlSession.update("mSQL.editPw", mVO);
 	}
+	
+	// 아이디 체크
+	public int ukCheck(MemberVO mVO) {
+		return sqlSession.selectOne("mSQL.ukCheck", mVO);
+	}
+	
+	// 스펙 저장
+	public int addResume(ResumeVO rVO) {
+		
+		return sqlSession.insert("mSQL.addResume", rVO);
+	}
+	
 	
     
 }

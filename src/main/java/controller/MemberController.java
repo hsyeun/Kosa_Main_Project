@@ -11,7 +11,9 @@ package controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +32,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import app.member.MemberDAO;
 import app.member.MemberVO;
+import app.member.ResumeVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -49,33 +54,62 @@ public class MemberController {
 	 */
 	@RequestMapping(value = "signup.do")
 	public ModelAndView signup(ModelAndView mv, RedirectView rv, HttpSession session){
-		
-		if(isLogin(session)) {
+		//log.debug(cate);
+		if(isLogin(session)) {	
 			rv.setUrl("main.do");
 			mv.setView(rv);
 			return mv;
 		}
 		
-		String view = "member/signup";
+		List industry = mDAO.industry();
+		List bcate = mDAO.bigCate();
+		List com_cate = mDAO.company();
+		//List scate = mDAO.smallCate();
 		
+		mv.addObject("IND", industry);
+		mv.addObject("BIG", bcate);
+		mv.addObject("COM", com_cate);
+		//mv.addObject("SMALL", scate);
+		
+		String view = "member/signup";
+		System.out.println(123);
 		mv.setViewName(view);
 		return mv;
 	}
 	
+	
+	@PostMapping(value = "signup.do")
+	@ResponseBody
+	public Map<String,List> test(@RequestBody Map<String,String> params){
+		Map<String,List> result = new HashMap<String, List>();
+		
+		//System.out.println(params.get("cate"));
+		
+		int cate = Integer.parseInt(params.get("cate"));
+		List scate = mDAO.smallCate(cate);
+		
+		result.put("SMALL", scate);
+		
+		return result;
+	}
+	
 	// 회원가입 요청처리
 	@RequestMapping(value = "signupPROC.do")
-	public ModelAndView joinProc(MemberVO mVO, ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView joinProc(@ModelAttribute MemberVO mVO, ModelAndView mv, HttpSession session, RedirectView rv) {
+		System.out.println(session.getAttribute("SID"));
+		
 		if(isLogin(session)) {
-			rv.setUrl("main.do");
+			rv.setUrl("resume.do");
 			mv.setView(rv);
 			return mv;
 		}
-		
+		log.debug(mVO.toString());
 		int cnt = mDAO.addMember(mVO);
-		
+		System.out.println(cnt);
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getIdentification());
-			rv.setUrl("main.do");
+			
+			rv.setUrl("resume.do");
 		} else {
 			rv.setUrl("signup.do");
 		}
@@ -84,20 +118,6 @@ public class MemberController {
 		return mv;
 	}
 	
-	// 아이디, 메일, 전화번호 중복검사
-//	@RequestMapping("/ukCheck.moa")
-//	@ResponseBody
-//	public HashMap<String, String> ukCheck(MemberVO mVO) {
-//		int cnt = mDAO.ukCheck(mVO);
-//		
-//		HashMap<String, String> map = new HashMap<String, String>();
-//		map.put("result", "NO");
-//		map.put("cnt", cnt+"");
-//		if(cnt != 1) {
-//			map.put("result", "OK");
-//		}		
-//		return map;
-//	}
 
 	/**
 	 * 회원가입-이력서 페이지
@@ -106,9 +126,11 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "resume.do")
-	public String signupResume(Model model) throws Exception {
-		String now = "";
-
+	public ModelAndView signupResume(ModelAndView mv) throws Exception {
+		
+		mv.setViewName("/member/resume");
+	
+/*
 		try {
 			log.debug("데이터베이스 연결 성공\n");
 			now = sqlSession.selectOne("Test.getTest");
@@ -119,8 +141,30 @@ public class MemberController {
 		}
 
 		model.addAttribute("now", now);
+*/
+		return mv;
+	}
+	@RequestMapping(value = "resumePROC.do")
+	public ModelAndView insertResume(@ModelAttribute ResumeVO rVO,ModelAndView mv,RedirectView rv) throws Exception {
+		
+		int cnt = mDAO.addResume(rVO);
+		System.out.println(cnt);
+		rv.setUrl("signin.do");
+		mv.setView(rv);
+		
+/*
+		try {
+			log.debug("데이터베이스 연결 성공\n");
+			now = sqlSession.selectOne("Test.getTest");
 
-		return "member/resume";
+		} catch (Exception e) {
+			log.debug(e.getMessage());
+			log.debug("데이터베이스 연결 실패\n");
+		}
+
+		model.addAttribute("now", now);
+*/
+		return mv;
 	}
 
 	
@@ -152,16 +196,19 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "signinPROC.do")      
-	public ModelAndView loginProc( MemberVO mVO, ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView loginProc( MemberVO mVO, ModelAndView mv, HttpSession session, RedirectView rv,HttpServletRequest request) {
 		String view = "main.do";
+		
+		//session.setAttribute("SID", mVO.getIdentification());
 		if(!isLogin(session)) {
+			
 //			session.invalidate();
 			
 //			log.debug(mVO.toString());
 			
 			int cnt = mDAO.getLogin(mVO) ;
-			
 			if(cnt == 1) {
+				session = request.getSession();
 				session.setAttribute("SID", mVO.getIdentification());
 			} else {
 				mv.addObject("MSG", "false");
@@ -179,7 +226,6 @@ public class MemberController {
 	// 로그인 검사
 	public boolean isLogin(HttpSession session) {
 		String sid = (String) session.getAttribute("SID");
-		
 		return (sid == null) ? false : true;
 	}
 	

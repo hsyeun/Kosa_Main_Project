@@ -17,24 +17,81 @@
 		
 	<!-- 회원추가 -->
 	<insert id="addMember" parameterType="app.member.MemberVO">
-		<selectKey keyProperty="index" resultType="int" order="BEFORE">
-			SELECT
-				NVL(MAX(index) + 1, 1001)
-			FROM
-				user
-		</selectKey>
+
 		INSERT INTO
-			user(index, identification, password, name, email, phone, sc_index, i_index)
+			user( identification, password, name, email, phone, sc_index, i_index)
 		VALUES(
-			#{index}, #{identification}, #{password}, #{name}, 
+			#{identification}, #{password}, #{name}, 
 			#{email}, #{phone}, #{sc_index}, #{i_index}
 		)
 	</insert>
+		
+	<!-- 기업 분류 -->
+	<select id="company" resultType="app.member.CategoryVO">
+		SELECT
+			*
+		FROM
+			com_category
+			--
+	</select>
+		
+	<!-- 산업 분류 -->
+	<select id="industry" resultType="app.member.CategoryVO">
+		SELECT
+			*
+		FROM
+			industry
+	</select>
+		
+	<!-- 카테고리 대분류 -->
+	<select id="bigCate" resultType="app.member.CategoryVO">
+		SELECT
+			*
+		FROM
+			main_category
+	</select>
+		
+	<!-- 카테고리 소분류 -->
+	<select id="smallCate" resultType="app.member.CategoryVO" parameterType="int">
+		SELECT
+			s.index, s.category, s.mc_index
+		FROM
+			main_category m, sub_category s
+		WHERE
+			m.index = mc_index
+			AND  mc_index = #{m.index}
+	</select>
+		
+	<!-- 이력서(스펙) 데이터 추가 -->
+	<insert id="addResume" parameterType="app.member.ResumeVO">
+		INSERT INTO
+			user_spec( grade, toeic, toeic_speak, opic_grade, 
+					  etc, overseas_exp, intern, prize, volunteer, 
+					  certificate, education, career)
+		VALUES(
+			#{grade}, #{toeic}, #{toeic_speak}, #{opic_grade},
+			#{etc}, #{overseas_exp}, #{intern}, #{prize}, #{volunteer},
+			#{certificate}, #{education}, #{career}
+		)
+	</insert>
+		
+	<!-- 회원계정에 이력서(스펙) 추가 -->
+	<update id="addUserResume" parameterType="app.member.MemberVO">
+		update user
+		set spec_index = #{spec_index}
+		where identification = #{identification}
+	</update>
+	
+	<!-- 회원계정에 이력서(스펙) 추가 -->
+	<select id="getSpecIndex" parameterType="app.member.MemberVO">
+		select index
+		from user_spec
+	</select>
 	
 	<!-- 내 정보 조회 -->
 	<select id="getMyInfo" resultType="app.member.MemberVO" parameterType="string">
 		SELECT
-			index, identification, password, name, email, phone, sc_index, i_index
+			identification, password, name, email, phone, sc_index, i_index
 		FROM
 			user
 		WHERE
@@ -47,7 +104,6 @@
 			user
 		<set>
 			password = #{password},
-			name = #{name},
 			email = #{email},
 			phone = #{phone},
 			sc_index = #{sc_index},
