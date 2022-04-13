@@ -40,7 +40,7 @@
 							<h3>로그인</h3>
 						</div>
 
-						<form action="loginPROC.do" id="frm" name="frm" method="post">
+						<form action="signinPROC.do" id="frm" name="frm" method="post">
 							<div class="form-floating mb-3">
 								<input type="text" name="identification" class="form-control" id="identification"
 									placeholder="Id"> <label for="identification">ID</label>
