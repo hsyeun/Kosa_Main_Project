@@ -13,7 +13,9 @@ public class MemberVO {
 	private String email;
 	private String phone;
 	private int is_show;
-	private String company_rec;
+	//수정
+	private int company_rec=-1;
+	private int jobopening_rec=-1;
 	private int cl_index;
 	private int q_index;
 	private int skill_index;

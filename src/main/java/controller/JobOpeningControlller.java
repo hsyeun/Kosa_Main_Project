@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import app.job_opening.Criteria;
 import app.job_opening.Page;
+import app.job_opening.SearchCriteria;
 import app.job_opening.JobOpening;
 import app.job_opening.JobOpeningService;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +35,7 @@ public class JobOpeningControlller {
 //    채용 공고 리스트
  // http://localhost:8080/jobOpening.do
  	@RequestMapping(value = "jobOpening.do", method = RequestMethod.GET)
- 	public String jobOpening(@ModelAttribute("cri") Criteria cri,Model model) throws Exception {
+ 	public String jobOpening(@ModelAttribute("cri") SearchCriteria cri,Model model) throws Exception {
  		log.info(cri.toString());
  		//전체 기업 리스트 가져오기
  		List<JobOpening> result_list = null;
@@ -61,8 +62,11 @@ public class JobOpeningControlller {
  		//model.addAttribute("result_list", JobOpeningServiceImpl.getJobOpeningList(index)); 
  		
  		model.addAttribute("pageMaker", pageMaker);  // 게시판 하단의 페이징 관련, 이전페이지, 페이지 링크 , 다음 페이지
+ 		//추가
+		model.addAttribute("totalCount", jobOpeningServiceImpl.listCount(cri)); 
+		
  		log.info(cri.toString());
- 		//return "jobOpening/com-main";
+ 	
 
  		return "jobOpening/jobOpening_main";
 

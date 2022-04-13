@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Repository
 public class SpecDAO {
-	//xml 실행. 실제 데이터에 접근&조작하는 클래스
+
 	@Autowired
     SqlSession sqlSession;
 	

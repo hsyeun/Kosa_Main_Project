@@ -3,12 +3,13 @@ package app.companysInfo;
 import java.util.List;
 
 public interface CompanysInfoService {
-//dao호출하여 db데이터 조회
+
 	//목록: 기본
 	public List<CompanysInfo> getCompanysInfoList() throws Exception;
-	
+
 	public CompanysInfo getCompanysInfoContent(int index) throws Exception;
-	
+	//추천기업
+	public CompanysInfo getRecCompany(int index) throws Exception;
 	//목록 :페이징 처리
 	public List<CompanysInfo> listCri(Criteria cri) throws Exception;
 
@@ -17,13 +18,15 @@ public interface CompanysInfoService {
 	
 	//채용 공고 리스트
 	public List<CompanysInfo> getJobOpeningList() throws Exception;
+	
 	public List<CompanysInfo> getCompanysInfoListMain() throws Exception;
 	
+    // 목록 : 페이징 + 검색
+    public List<CompanysInfo> list(SearchCriteria criteria) throws Exception;
 
-//	public void insertGoodsInfo(GoodsInfo vo) throws Exception;
-//
-//	public void deleteGoodsInfo(String code) throws Exception;
-//	
-//	public void updateGoodsInfo(GoodsInfo vo) throws Exception;
+    // 목록 : 전체 갯수 or 검색된 갯수
+    public int listCount(SearchCriteria criteria) throws Exception;
+
+
 
 }

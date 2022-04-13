@@ -1,4 +1,13 @@
 package app.job_opening;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import app.job_opening.SearchCriteria;
+
 //실제 페이징 하단 담당_이전,다음,페이버번호
 public class Page {
 	 private int totalCount; // 회사 전체 갯수
@@ -63,6 +72,47 @@ public class Page {
 		 next = endPage * criteria.getPerPageNum() >= totalCount ? false : true;
 		 System.out.println("페이징처리정보 계산");
 	 }
+	 
+	//추가 
+	// 쿼리작성을 위한 메서드
+	 public String makeQuery(int page) {
+
+		 UriComponents uriComponents = UriComponentsBuilder.newInstance()
+		                .queryParam("page", page)
+		                .queryParam("perPageNum", criteria.getPerPageNum())
+		                .build();
+
+		        return uriComponents.toUriString();
+	}
+
+	// 검색 처리를 위한 메서드
+	 public String makeSearch(int page) {
+
+		 UriComponents uriComponents = UriComponentsBuilder.newInstance()
+		                .queryParam("page", page)
+		                .queryParam("perPageNum", criteria.getPerPageNum())
+		                .queryParam("searchType", ((SearchCriteria) criteria).getSearchType())
+		                .queryParam("keyword", encoding(((SearchCriteria) criteria).getKeyword()))
+		                .build();
+
+		        return uriComponents.toUriString();
+		    }
+
+		    private String encoding(String keyword) {
+
+		        if (keyword == null || keyword.trim().length() == 0) {
+		            return "";
+		        }
+
+		        try {
+		            return URLEncoder.encode(keyword, "UTF-8");
+		        } catch (UnsupportedEncodingException e) {
+		            return "";
+		        }
+
+		    }
+		 
+
 	 
 
 }

@@ -4,12 +4,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import app.job_opening.JobOpening;
+import app.job_opening.SearchCriteria;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class JobOpeningServiceImpl implements JobOpeningService {
-//데이터베이스 받아서 모델로 만듬	
+
 	@Autowired
 	private JobOpeningDAO jobOpeningDAO;
 	
@@ -56,15 +60,16 @@ public class JobOpeningServiceImpl implements JobOpeningService {
 		
 	}
 
-//	@Override
-//	public void update(JobOpening vo) throws Exception {
-//		// TODO Auto-generated method stub
-//		jobOpeningDAO.update(vo);
-//	}
+	@Override
+	public List<JobOpening> list(SearchCriteria criteria) throws Exception {
+		// TODO Auto-generated method stub
+		 return jobOpeningDAO.list(criteria);
+	}
 
-//	@Override
-//	public int getProgress(int index) throws Exception {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
+	@Override
+	public int listCount(SearchCriteria criteria) throws Exception {
+		// TODO Auto-generated method stub
+		return jobOpeningDAO.listCount(criteria);
+	}
+
 }

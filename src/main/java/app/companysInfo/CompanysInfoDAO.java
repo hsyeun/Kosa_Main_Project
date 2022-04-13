@@ -14,21 +14,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Repository
 public class CompanysInfoDAO {
-//mapper(xml)를 실행해주는 클래스. 데이터에 접근하는 클래스    	
+ 	
 	@Autowired
     SqlSession sqlSession;
-	//mapper
+
 	//    private static final String NAMESPACE = "com.doubles.ex03.mapper.BoardMapper";
 	//private static final String NAMESPACE = "app.companysInfo.CompanysInfo";
-
+	
 	 // 회사 목록 보기
 	public List<CompanysInfo> getList() throws Exception {
 		
 		List<CompanysInfo> result = new ArrayList<CompanysInfo>();
 		
-        try {
+        try
+        {
         	result = sqlSession.selectList("CompanysInfo.getCompanysInfoList");
-        } catch (Exception se) {
+        }
+        catch (Exception se)
+        {
         	throw new Exception(se);
         }
         
@@ -49,6 +52,21 @@ public class CompanysInfoDAO {
 	public List<CompanysInfo> getJobOpeningList() throws Exception {
         return this.sqlSession.selectList("CompanysInfo.getJobOpeningList");
 	}
+	
+	//추천 기업 
+	public CompanysInfo getRecCompany(int index) throws Exception {
+		CompanysInfo companysInfo = null;
+		try
+        {
+        	companysInfo = sqlSession.selectOne("CompanysInfo.getRecCompany",index);
+        }
+        catch (Exception se)
+        {
+        	throw new Exception(se);
+        }
+        
+        return companysInfo;
+	}
     // 회사 상세내용 불러오기
 	public CompanysInfo getContent(int index) throws Exception {
 
@@ -65,6 +83,22 @@ public class CompanysInfoDAO {
         return companysInfo;
 		
 	}
+	// 추천 기업 내용
+	public CompanysInfo getRec(int index) throws Exception {
+
+		CompanysInfo companysInfo = null;
+        try
+        {
+        	companysInfo = sqlSession.selectOne("CompanysInfo.getCompanysInfoContent",index);
+        }
+        catch (Exception se)
+        {
+        	throw new Exception(se);
+        }
+        
+        return companysInfo;
+	}
+		
 	
 	//페이징
 	public List<CompanysInfo> listPage(int page) throws Exception {
@@ -90,42 +124,15 @@ public class CompanysInfoDAO {
 		return sqlSession.selectOne("pageCount",cri);
 		//return sqlSession.selectOne(NAMESPACE+".pageCount");
 	}
-	
+	 // 목록 : 페이징 + 검색
+    public List<CompanysInfo> list(SearchCriteria criteria) throws Exception {
+    	return sqlSession.selectList("CompanysInfo.listPaging", criteria);
+	}
 
-//
-//	public void insert(CompanysInfo vo) throws Exception {
-//   
-//		try
-//		{	
-//        	sqlSession.insert("CompanysInfo.insertCompanysInfo", vo);
-//	    }
-//	    catch (Exception se)
-//	    {
-//        	throw new Exception(se);
-//	    }
-//		
-//	}
-//
-//	public void delete(String code) throws Exception {
-//		try
-//		{
-//        	sqlSession.delete("GoodsInfo.deleteGoodsInfo", code);
-//	    }
-//	    catch (Exception se)
-//	    {
-//        	throw new Exception(se);
-//	    }		
-//	}
-//
-//	public void update(CompanysInfo vo) throws Exception {
-//		try
-//		{
-//        	sqlSession.update("GoodsInfo.updateGoodsInfo", vo);
-//	    }
-//	    catch (Exception se)
-//	    {
-//        	throw new Exception(se);
-//	    }	
-//	}
+    // 목록 : 전체 갯수 or 검색된 갯수
+    public int listCount(SearchCriteria criteria) throws Exception {
+    	 return sqlSession.selectOne("CompanysInfo.listCount", criteria);
+	}
+	
     
 }

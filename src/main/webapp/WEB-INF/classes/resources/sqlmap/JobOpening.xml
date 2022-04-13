@@ -5,23 +5,13 @@
 	<select id="getJobOpeningList" resultType="app.job_opening.JobOpening">
 		<![CDATA[
 			SELECT *
-			FROM itjob.job_opening  jot
-			JOIN itjob.company  ct
+			FROM itjob.job_opening_test jot
+			JOIN itjob.company_test ct
 				ON ct.index =jot.com_index 
 			WHERE jot.com_index = #{com_index} 
 			ORDER BY jot.ongoing DESC, ABS(DATE(jot.due)- CURDATE()) ASC
 		]]>
 	</select>
- <!--  	<select id="getJobOpeningList" resultType="app.job_opening.JobOpening">
-		<![CDATA[
-		SELECT *
-		FROM itjob.job_opening  jot
-		join itjob.company  ct
-		on ct.index =jot.com_index 
-		ORDER BY ABS(DATE(jot.due)- CURDATE()) ASC, jot.com_index 
-		]]>
-	</select> -->
-	
 	<!-- 기업1:공고N 조인 -->
 <!-- 	<resultMap type="app.job_opening.JobOpening" id="jobMap"> -->
 	<resultMap type="app.companysInfo.CompanysInfo" id="jobMap"> 
@@ -40,7 +30,6 @@
 			<result column="ind_detail" property="ind_detail" />
 			<result column="logo_url" property="logo_url" />
 		<collection  javaType="app.job_opening.JobOpening" property="jobOpening">
-		<!-- <collection  javaType="app.companysInfo.CompanysInfo" ofType="app.companysInfo.CompanysInfo" property="companysInfo"> -->
 			<id column="index" property="index"/>
 			<result column="com_index" property="com_index"/>
 			<result column="career" property="career"/>
@@ -66,8 +55,8 @@
 					jot.`index` as jot_index, jot.com_index, jot.career, 
 					jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, 
 					jot.`require`, jot.title, jot.region
-				FROM itjob.job_opening  jot
-				LEFT JOIN itjob.company  ct
+				FROM itjob.job_opening_test jot
+				LEFT JOIN itjob.company_test ct
 					ON ct.`index` =jot.com_index 
 				LIMIT 18446744073709551615 ) AS result
 			ORDER BY result.ongoing DESC , result.index ASC,result.jot_index ASC
@@ -90,7 +79,7 @@
 	<!-- 진행전체 업데이트(오늘마감3,채용중2,상시채용1,채용마감0) -->
 	<update id="update" parameterType="int" >
 		<![CDATA[
-		update itjob.job_opening  jot
+		update itjob.job_opening jot
 		set ongoing = CASE 
 			WHEN (DATE(jot.due)-CURDATE()) = 0 THEN  3
 			WHEN (DATE(jot.due)-CURDATE()) > 0 THEN  2
@@ -106,10 +95,13 @@
 			SELECT *
 			FROM (
 				SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
-				FROM itjob.job_opening  jot
-				LEFT JOIN itjob.company  ct
+				FROM itjob.job_opening_test jot
+				LEFT JOIN itjob.company_test ct
 					ON ct.`index` =jot.com_index
 				LIMIT 18446744073709551615 ) AS result
+		]]>	
+			<include refid="search"></include>	
+		<![CDATA[
 			ORDER BY result.ongoing DESC , result.index ASC,result.jot_index ASC
 			LIMIT #{page}, 10 
 		]]>
@@ -121,10 +113,13 @@
 			SELECT *
 			FROM (
 				SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
-				FROM itjob.job_opening  jot
-				LEFT JOIN itjob.company  ct
+				FROM itjob.job_opening_test jot
+				LEFT JOIN itjob.company_test ct
 					ON ct.`index` =jot.com_index
 				LIMIT 18446744073709551615 ) AS result
+		]]>	
+			<include refid="search"></include>	
+		<![CDATA[	
 			ORDER BY result.ongoing DESC , result.index ASC,result.jot_index ASC
 			LIMIT #{pageStart},#{perPageNum}
 		]]>
@@ -133,37 +128,43 @@
 	<select id="pageCount_job" resultType="int">
 		<![CDATA[
 			SELECT COUNT(*)
-			FROM itjob.job_opening  jo
-			WHERE jo.index >= 0
+			FROM itjob.job_opening_test jot
+			WHERE jot.index >= 0
 		]]>
 	</select>
-	<!-- 페이지정보를 10개씩 가져오기 -->
-	<!-- <select id="listPage" resultType="app.job_opening.JobOpening" resultMap="jobMap">
-		<![CDATA[
-			SELECT *
-			FROM itjob.job_opening 
-			WHERE `index`>= 0
-			ORDER BY `index` DESC
-			LIMIT #{page},10 
-		]]>
-	</select> -->
 	
-	<!--현재:페이지 정보를 지정한 크기만큼 가져오기 -->
- 	<!-- <select id="listPageCri" resultType="app.job_opening.JobOpening" resultMap="jobMap">
-		<![CDATA[
-			SELECT *
-			FROM itjob.job_opening 
-			WHERE `index`>= 0
-			ORDER BY `index` DESC
-			LIMIT #{pageStart},#{perPageNum}
+	<!--게시글 전체숫자 or 검색된 게시글의 숫자-->
+	<select id="listCount" resultType="int">
+        <![CDATA[
+			SELECT count(*)
+			FROM (
+				SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
+				FROM itjob.job_opening_test jot
+				LEFT JOIN itjob.company_test ct
+					ON ct.`index` =jot.com_index
+				LIMIT 18446744073709551615 ) AS result
+				
 		]]>
-	</select>  -->
-		<!-- 전체숫 -->	
-<!-- 	<select id="pageCount_job" resultType="int">
-		<![CDATA[
-			SELECT COUNT(*)
-			FROM itjob.job_opening 
-			WHERE `index`>= 0
-		]]>
-	</select> -->
+         <include refid="search"/>
+    </select> 
+	 <!--검색옵션 SQL-->
+    <sql id="search">
+        <if test="searchType != null">
+            <if test="searchType == 'c'.toString()">
+                WHERE result.name LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType == 'd'.toString()">
+                WHERE result.division LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType == 'i'.toString()">
+                WHERE result.ind_detail LIKE CONCAT('%', #{keyword}, '%')
+            </if> 
+            <if test="searchType == 't'.toString()">
+                WHERE result.title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType == 'r'.toString()">
+                WHERE result.require LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </if>
+    </sql>
 </mapper>

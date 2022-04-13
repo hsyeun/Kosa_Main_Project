@@ -2,20 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Spec">
 	<!--해당 기업의 채용공고 조회  -->
-  	<!-- <select id="getSpecList" resultType="app.spec.Spec">
-		<![CDATA[
-		SELECT *
-		FROM itjob.company_spec  
-		WHERE com_index = #{com_index}
-		]]>
-	</select> -->
-	
-	<!--해당 기업의 채용공고 조회  -->
 	<select id="getSpecList" resultType="app.spec.Spec">
 		<![CDATA[
 			SELECT *
-			FROM itjob.company_spec  cs
-			JOIN itjob.company  ct
+			FROM itjob.company_spec_test  cs
+			JOIN itjob.company_test  ct
 				ON ct.index =cs.com_index 
 			WHERE cs.com_index = #{com_index} 
 		]]>

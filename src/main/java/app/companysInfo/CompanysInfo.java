@@ -45,25 +45,11 @@ public class CompanysInfo{
 	public void setSpec(Spec spec) {		
 		this.spec = spec;
 	}
-//	private JobOpening jobOpening;
-//	public JobOpening getJobOpening() {		
-//		return jobOpening;
-//	}
-//	public void setJobOpening(JobOpening jobOpening) {		
-//		this.jobOpening = jobOpening;jobOpening
-//	}
+
 	//기업의 채용 공고 목록	
 	@OneToMany(mappedBy="company")
 	@JoinColumn(name="com_index")
 	private JobOpening jobOpening;
-//	private List<JobOpening> jobOpening;
-//
-//	public List<JobOpening> getJobOpening() {		
-//		return jobOpening;
-//	}
-//	public void setJobOpening(List<JobOpening> jobOpening) {		
-//		this.jobOpening = jobOpening;
-//	}
 	
 	public CompanysInfo() {}
 
@@ -84,7 +70,6 @@ public class CompanysInfo{
 		this.ceo = ceo;
 		this.ind_detail = ind_detail;
 	}
-	
 
 	
 }

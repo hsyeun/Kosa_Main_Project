@@ -5,10 +5,12 @@ $(function() {
    */
   'use strict';
   var data = {
-    labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
+    //labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
+    labels:['학점','토익','토익스피킹','OPIC','외국어(기타)','해외경험','인턴','수상내역','교내/사회/봉사','자격증'],
     datasets: [{
       label: '# of Votes',
-      data: [10, 19, 3, 5, 2, 3],
+      //data: [10, 19, 3, 5, 2, 3],
+      data:['${specList.grade_rate }','${specList.toeic_rate}','${specList.toeic_speak_rate}','${specList.opic_rate}','${specList.etc_rate}','${specList.overseas_exp_rate}','${specList.intern_rate}','${specList.prize_rate}','${specList.volunteer_rate}','${specList.certification_rate}'],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',

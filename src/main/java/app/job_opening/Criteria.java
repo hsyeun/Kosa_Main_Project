@@ -1,5 +1,5 @@
 package app.job_opening;
-//기업 목록 페이징 전용
+//공고 목록 페이징 전용
 public class Criteria {
 	 private int page;// 보여줄 페이지 번호.현재 페이지
 	 private int perPageNum; // 페이지 당 보여줄 목록 갯수

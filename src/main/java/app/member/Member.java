@@ -10,5 +10,7 @@ public class Member {
 	String name = "";
 	String email = "";
 	String phone = "";
-	String company_rec = "";
+	//추가
+	int company_rec=-1;
+	int jobopening_rec=-1;
 }

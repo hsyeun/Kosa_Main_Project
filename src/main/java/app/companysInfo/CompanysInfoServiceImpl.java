@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class CompanysInfoServiceImpl implements CompanysInfoService {
-//dao 호출하여 DB Data조회
+
 	@Autowired
 	private CompanysInfoDAO companysInfoDAO;
 	//목록: 기본
@@ -24,6 +24,13 @@ public class CompanysInfoServiceImpl implements CompanysInfoService {
 	@Override
 	public CompanysInfo getCompanysInfoContent(int index) throws Exception {
 		CompanysInfo vo = companysInfoDAO.getContent(index);
+		return vo;
+	}
+	//추천 기업
+	@Override
+	public CompanysInfo getRecCompany(int index) throws Exception {
+		// TODO Auto-generated method stub
+		CompanysInfo vo = companysInfoDAO.getRec(index);
 		return vo;
 	}
 
@@ -44,25 +51,26 @@ public class CompanysInfoServiceImpl implements CompanysInfoService {
 		// TODO Auto-generated method stub
 		return this.companysInfoDAO.getJobOpeningList();
 	}
-
+	
 	@Override
 	public List<CompanysInfo> getCompanysInfoListMain() throws Exception {
 		return companysInfoDAO.getCompanysInfoListMain();
 	}
 
-//	@Override
-//	public void insertGoodsInfo(GoodsInfo vo) throws Exception {
-//		goodsInfoDAO.insert(vo);
-//	}
-//
-//	@Override
-//	public void deleteGoodsInfo(String code) throws Exception {
-//		goodsInfoDAO.delete(code);
-//	}
-//
-//	@Override
-//	public void updateGoodsInfo(GoodsInfo vo) throws Exception {
-//		goodsInfoDAO.update(vo);
-//	}
+
+	@Override
+	public List<CompanysInfo> list(SearchCriteria criteria) throws Exception {
+		// TODO Auto-generated method stub
+		 return companysInfoDAO.list(criteria);
+		
+	}
+
+	@Override
+	public int listCount(SearchCriteria criteria) throws Exception {
+		// TODO Auto-generated method stub
+		return companysInfoDAO.listCount(criteria);
+	}
+
+
 
 }
