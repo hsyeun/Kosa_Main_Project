@@ -28,34 +28,20 @@
 			<ul class="main_nav">
 				<li><a class="nav-link scrollto active"
 					href="main.do">Home</a></li>
-				<li class="dropdown">
-				<a href="company.do"><span>기업</span>
-						<i class="bi bi-chevron-down"></i></a>
-					<ul>
-						<li>
-							<a href="company.do">
-								기업 정보</a>
-						</li>
-						<li>
-							<a href="jobOpening.do">
-								채용 정보
-							</a>
-						</li>
-					</ul>
-				</li>
+				<li><a class="nav-link scrollto"
+					href="company.do">기업</a></li>
 				<li class="dropdown"><a
-					href="coverAnalyze.do"><span>자기소개서</span>
+					href="coverWrite.do"><span>자기소개서</span>
 						<i class="bi bi-chevron-down"></i></a>
 					<ul>
-						<li>
-						<a href="coverAnalyze.do">
-								자기소개서 예시
-							</a>
-							
-						</li>
 						<li>
 							<a href="coverWrite.do">
 								자기소개서 작성</a>
+						</li>
+						<li>
+							<a href="coverAnalyze.do">
+								자기소개서 분석
+							</a>
 						</li>
 					</ul>
 				</li>
@@ -66,27 +52,3 @@
 
 	</div>
 </header>
-
-<script>
-	$(document).ready(function(){
-/* 		if('${SID}'){
-			$('.navShow').children().eq(0).css('display', 'none');
-			$('.navShow').children().eq(1).css('display', 'none');
-			$('.navShow').children().eq(4).css('display', 'none');
-			
-		} else if('!${SID}') {
-			$('.navShow').children().eq(2).css('display', 'none');
-			$('.navShow').children().eq(3).css('display', 'none');
-			$('.navShow').children().eq(4).css('display', 'none');
-		} */
-		
-<%-- 		switch('<%=active%>'){
-		case 'Join' : $('.navShow').children().eq(0).addClass().children().addClass('w3-text-light-grey'); break;
-		case 'Login' : $('.navShow').children().eq(1).addClass().children().addClass('w3-text-light-grey'); break;
-		case 'Logout' : $('.navShow').children().eq(2).addClass().children().addClass('w3-text-light-grey'); break;
-		case 'MyPage' : $('.navShow').children().eq(3).addClass().children().addClass('w3-text-light-grey'); break;
-		case 'Admin' : $('.navShow').children().eq(4).addClass().children().addClass('w3-text-light-grey'); break;
-		} --%>
-	});
-	
-</script>

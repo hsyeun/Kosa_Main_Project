@@ -38,7 +38,7 @@
 								<i class="typcn typcn-device-desktop menu-icon"></i> <span
 								class="menu-title">Member</span>
 						</a></li>
-						<!-- <li class="nav-item">
+						<li class="nav-item">
 							<a class="nav-link" href="admin-statistics.do"> 
 								<i class="typcn typcn-chart-pie-outline menu-icon"></i> 
 								<span class="menu-title">Statistics</span>
@@ -49,7 +49,7 @@
 								<i class="typcn typcn-compass menu-icon"></i> 
 								<span class="menu-title">Log</span>
 							</a>
-						</li> -->
+						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="admin-query.do"> 
 								<i class="typcn typcn-document-text menu-icon"></i> 
@@ -77,22 +77,107 @@
 											<thead>
 												<tr>
 													<th class="ml-5">Number</th>
-													<th>Query</th>
-													<th>Answer</th>
-													<th>Category</th>
+													<th>Id</th>
+													<th>Join Date</th>
+													<th>Last Access Date</th>
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach items="${query}" var="que">
-													<tr>
-														<td>${que.index}</td>
-														<td>${que.query}</td>
-														<td>${que.answer}</td>
-														<td>${que.category}</td>
-														
-													</tr>
-												</c:forEach>
-												
+												<tr>
+													<td>#D1</td>
+													<td>abc123</td>
+													<td>03 Jan 2019</td>
+													<td>03 Jan 2019</td>
+													<td>
+														<div class="d-flex align-items-center">
+															<button type="button"
+																class="btn btn-success btn-sm btn-icon-text mr-3">
+																Edit <i class="typcn typcn-edit btn-icon-append"></i>
+															</button>
+															<button type="button"
+																class="btn btn-danger btn-sm btn-icon-text">
+																Delete <i
+																	class="typcn typcn-delete-outline btn-icon-append"></i>
+															</button>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>#D2</td>
+													<td>abc123</td>
+													<td>03 Jan 2019</td>
+													<td>03 Jan 2019</td>
+													<td>
+														<div class="d-flex align-items-center">
+															<button type="button"
+																class="btn btn-success btn-sm btn-icon-text mr-3">
+																Edit <i class="typcn typcn-edit btn-icon-append"></i>
+															</button>
+															<button type="button"
+																class="btn btn-danger btn-sm btn-icon-text">
+																Delete <i
+																	class="typcn typcn-delete-outline btn-icon-append"></i>
+															</button>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>#D3</td>
+													<td>abc123</td>
+													<td>03 Jan 2019</td>
+													<td>03 Jan 2019</td>
+													<td>
+														<div class="d-flex align-items-center">
+															<button type="button"
+																class="btn btn-success btn-sm btn-icon-text mr-3">
+																Edit <i class="typcn typcn-edit btn-icon-append"></i>
+															</button>
+															<button type="button"
+																class="btn btn-danger btn-sm btn-icon-text">
+																Delete <i
+																	class="typcn typcn-delete-outline btn-icon-append"></i>
+															</button>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>#D4</td>
+													<td>abc123</td>
+													<td>03 Jan 2019</td>
+													<td>03 Jan 2019</td>
+													<td>
+														<div class="d-flex align-items-center">
+															<button type="button"
+																class="btn btn-success btn-sm btn-icon-text mr-3">
+																Edit <i class="typcn typcn-edit btn-icon-append"></i>
+															</button>
+															<button type="button"
+																class="btn btn-danger btn-sm btn-icon-text">
+																Delete <i
+																	class="typcn typcn-delete-outline btn-icon-append"></i>
+															</button>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>#D5</td>
+													<td>abc123</td>
+													<td>03 Jan 2019</td>
+													<td>03 Jan 2019</td>
+													<td>
+														<div class="d-flex align-items-center">
+															<button type="button"
+																class="btn btn-success btn-sm btn-icon-text mr-3">
+																Edit <i class="typcn typcn-edit btn-icon-append"></i>
+															</button>
+															<button type="button"
+																class="btn btn-danger btn-sm btn-icon-text">
+																Delete <i
+																	class="typcn typcn-delete-outline btn-icon-append"></i>
+															</button>
+														</div>
+													</td>
+												</tr>
 											</tbody>
 										</table>
 									</div>

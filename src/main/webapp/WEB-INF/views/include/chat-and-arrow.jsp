@@ -28,22 +28,12 @@
 		<span>Chatbot</span>
 
 	</div>
-	<div class="chat-area" id="message-box">
-	<div class='chat-message-info' id='first_msg_section'>
-	<span style='flex-grow:1'></span>
-		<h5 class='firts_msg'>IT 직무 취업을 원하십니까?</h5>
-		<h5 class='firts_msg'>우선, 아래 버튼 중 원하시는 메뉴를 선택해주세요.</h5>
-		
-		<button id='btn_consult' onclick='consultClick()'>상담</button>
-		<button id='btn_info' onclick='infoClick()'>기업 문의</button>
-	</div>
-	
-	</div>
+	<div class="chat-area" id="message-box"></div>
 	<div class="line"></div>
 	<div class="input-div">
 		<input class="input-message" name="message" type="text" id="message"
-			placeholder="Type your message ..." disabled='disabled'/>
-		<button class="input-send" id='send' onclick='send()')>
+			placeholder="Type your message ..." />
+		<button class="input-send" onclick="send()">
 			<svg style="width: 24px; height: 24px">
             <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
           </svg>

@@ -1948,22 +1948,3 @@ section {
 textarea::placeholder {
   color: #000;
 }
-
-.sentence, .predict_q {
-	color: #37517e;
-	font-weight: bold;
-}
-
-#cover_save{
-/* 	background: #47b2e4; */
-	background: #2e4469;
-	border: 0;
-	padding: 12px 34px;
-	color: #fff;
-	transition: 0.4s;
-	border-radius: 50px;
-}
-
-#cover_save:hover {
-	background: #209dd8;
-}
