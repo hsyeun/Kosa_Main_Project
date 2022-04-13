@@ -28,20 +28,34 @@
 			<ul class="main_nav">
 				<li><a class="nav-link scrollto active"
 					href="main.do">Home</a></li>
-				<li><a class="nav-link scrollto"
-					href="company.do">기업</a></li>
-				<li class="dropdown"><a
-					href="coverWrite.do"><span>자기소개서</span>
+				<li class="dropdown">
+				<a href="company.do"><span>기업</span>
 						<i class="bi bi-chevron-down"></i></a>
 					<ul>
 						<li>
-							<a href="coverWrite.do">
-								자기소개서 작성</a>
+							<a href="company.do">
+								기업 정보</a>
 						</li>
 						<li>
-							<a href="coverAnalyze.do">
-								자기소개서 분석
+							<a href="jobOpening.do">
+								채용 정보
 							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown"><a
+					href="coverAnalyze.do"><span>자기소개서</span>
+						<i class="bi bi-chevron-down"></i></a>
+					<ul>
+						<li>
+						<a href="coverAnalyze.do">
+								자기소개서 예시
+							</a>
+							
+						</li>
+						<li>
+							<a href="coverWrite.do">
+								자기소개서 작성</a>
 						</li>
 					</ul>
 				</li>

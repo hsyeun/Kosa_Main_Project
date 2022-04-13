@@ -24,7 +24,7 @@
 						<h4>AI 자기소개서</h4>
 						<p>키워드를 입력하시면 AI가 문장을 완성해드립니다.</p>
 						<form action="" method="post" class="bradius">
-							<input type="text" id="keyword" name="keyword"
+							<input type="text" id="keyword" name="keyword" placeholder="EX) 팀워크",
 								style="width: calc(100% - 100px);">
 							<button id="search" type="button">Search</button>
 						</form>
@@ -50,10 +50,13 @@
 							class="col-lg-9 mt-5 mt-lg-0 d-flex align-items-stretch mauto">
 							<form action="forms/contact.php" method="post" role="form"
 								class="php-email-form">
+								<ul id="sentence-ul">
+								</ul>
+								
 
-								<div class="form-group">
+								<div class="form-group" id="result_hide">
 									<textarea class="form-control" name="message" rows="10" 
-									placeholder="검색 결과가 나타납니다." style="text-align: center;"
+									placeholder="생성 결과가 나타납니다." style="text-align: center;"
 										required></textarea>
 								</div>
 
@@ -76,7 +79,7 @@
 				</div>
 
 				<div class="col-lg-9 mt-5 mt-lg-0 d-flex align-items-stretch mauto">
-					<form action="forms/contact.php" method="post" role="form"
+					<form role="form"
 						class="php-email-form">
 
 						<div class="form-group">
@@ -89,7 +92,7 @@
 							<div class="sent-message">success</div>
 						</div>
 						<div class="text-center">
-							<button type="submit">저장하기</button>
+							<button type="button" id="cover_save">저장하기</button>
 						</div>
 
 					</form>
@@ -112,6 +115,8 @@
 	</jsp:include>
 
 	<script type="text/javascript">
+	var user_id="${user_id}";
+	
 		$(document).ready(function() {
 			$('.pointer').click(function() {
 				location.href = "comDetail.do";
@@ -131,6 +136,8 @@
 										}, // 전송할 데이터 
 										dataType : 'text', // xml, json, script, html 
 										success : function(jqXHR) {
+											const myNode = document.getElementById("result_hide");
+											myNode.innerHTML =''
 											console.log(jqXHR.length)
 											console.log(jqXHR.split("."))
 											let sentences = jqXHR.replaceAll(
@@ -138,33 +145,56 @@
 											for (let i = 0; i < sentences.length - 1; i++) {
 												$("#sentence-ul")
 														.append(
-																'<li><a href="#" id="sentence'
+																'<li><a href="#write" id="sentence'
 																		+ i
 																		+ '" class="sentence" onclick="sentenceClicked(this)">'
 																		+ sentences[i]
 																		+ '.</a></li>');
 											}
 										}, // 요청 완료 시 
-										error : function(XHTMLHttpRequest,
-												textStatus, errorThrown) {
-											console.log(XHTMLHttpRequest)
-											console.log(textStatus)
-											console.log(errorThrown)
+										error : function(XHTMLHttpRequest,textStatus, errorThrown) {
+											console.log(XHTMLHttpRequest);
+											console.log(textStatus);
+											console.log(errorThrown);
 											//	console.log('error')
 										}, // 요청 실패. 
 									});
 						});
 
-		//$('.sentence').click(function(e){
-		//console.log($('#sentence').text())
-		//	console.log(e);
-		//$("#write").append($('#sentence').text());
-		//});
 
 		function sentenceClicked(e) {
 			//console.log($(e).text());
 			$("#write").append($(e).text() + " ");
 		}
+		
+		$('#cover_save')
+		.click(
+				function() {
+					
+					$
+							.ajax({
+								url : 'http://127.0.0.1:5000/save_cover', // 요청 할 주소
+								async : true, // false 일 경우 동기 요청으로 변경 
+								type : 'POST', // GET, PUT 
+								data : {
+									'id' : user_id,
+									'query' : $('#write').val()
+								}, // 전송할 데이터 
+								dataType : 'text', // xml, json, script, html 
+								success : function(jqXHR) {
+									console.log(jqXHR)
+									window.location.href = 'http://localhost:8081/Kosa_Main_Project/coverWrite.do';
+									},
+								
+								error : function(XHTMLHttpRequest, textStatus, errorThrown) {
+
+									
+									//	console.log('error')
+								}, // 요청 실패. 
+							});
+				});
+		
+		
 	</script>
 </body>
 </html>
