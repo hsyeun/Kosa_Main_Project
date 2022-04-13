@@ -6,16 +6,21 @@
 	<div class="container d-flex align-items-center">
 
 		<h1 class="logo me-auto">
-			<a href="main.do">IT's JOB</a>
+			<a href="main.jsp">IT's JOB</a>
 		</h1>
-
+<% String s = (String) session.getAttribute("SID");%>
 		<nav id="navbar" class="navbar nav1">
 			<ul class="user_data navShow">
+				<% if (s == null){%>
 				<li><a class="nav-link" href="signup.do">Join</a></li>
 				<li><a class="nav-link" href="signin.do">Login</a></li>
+				<%} else if (s == "admin"){ %>
+				<li><a class="nav-link" href="admin.do">Admin</a></li>
+				<%} else{ %>
+				<li style="color:white"><%= s %> 님 환영합니다!</li>
 				<li><a class="nav-link" href="signout.do">Logout</a></li>
 				<li><a class="nav-link" href="mypage.do">MyPage</a></li>
-				<li><a class="nav-link" href="admin.do">Admin</a></li>
+				<%} %>
 			</ul>
 		</nav>
 

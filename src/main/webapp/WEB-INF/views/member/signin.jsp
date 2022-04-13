@@ -40,7 +40,7 @@
 							<h3>로그인</h3>
 						</div>
 
-						<form action="signinPROC.do" id="frm" name="frm" method="post">
+						<form action="loginPROC.do" id="frm" name="frm" method="post">
 							<div class="form-floating mb-3">
 								<input type="text" name="identification" class="form-control" id="identification"
 									placeholder="Id"> <label for="identification">ID</label>
@@ -94,12 +94,12 @@
 				if (!($('#identification').val())) {
 					alert('아이디를 입력하세요');
 					$('#identification').focus();
-					return;
+					return false;
 				}
 				if (!($('#password').val())) {
 					alert('패스워드를 입력하세요');
 					$('#password').focus();
-					return;
+					return false;
 				}
 				$('#frm').submit();
 			});
