@@ -21,5 +21,20 @@ public class AdminDAO {
 	SqlSessionTemplate sqlSession;
 	
 	
-    
+	public List<MemberVO> getUsers() {
+			return sqlSession.selectList("aSQL.getUsers");
+	}
+	
+	public List<AdminVO> getQuery() {
+		return sqlSession.selectList("aSQL.getQuery");
+}	
+			
+	public void deleteUser(String identification) {
+		sqlSession.delete("aSQL.deleteUser", identification);
+	}
+
+	
+	
+	
+	
 }

@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import app.admin.AdminDAO;
+import app.member.MemberVO;
 //import app.member.MemberService;
 //import app.member.MemberVO;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +44,9 @@ public class AdminController {
 	@Autowired
 	SqlSession sqlSession;
 
+	@Autowired
+	AdminDAO dao;
+
 	/**
 	 * 어드민페이지 메인 - 멤버 리스트
 	 * 
@@ -50,14 +55,29 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "admin.do")
 	public ModelAndView Admin() throws Exception {
-		
+
 		ModelAndView mav = new ModelAndView();
-		
-		
+		mav.addObject("users", dao.getUsers());
+
 		mav.setViewName("admin/admin");
 		return mav;
 	}
+
+	@RequestMapping(value = "remove.do", method = RequestMethod.GET) // POST방식으로 데이터 전송
+	public ModelAndView removePOST(HttpServletRequest req) throws Exception {
+		System.out.println("in");
+		String uID = req.getParameter("uID");
+		dao.deleteUser(uID);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/admin");
+		return mav; // 삭제가 완료된 후, 목록페이지로 리턴
+	}
 	
+	
+	
+	
+
 	/**
 	 * 어드민페이지 - 통계
 	 * 
@@ -66,13 +86,13 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "admin-statistics.do")
 	public ModelAndView Statistics() throws Exception {
-		
+
 		ModelAndView mav = new ModelAndView();
-		
+
 		mav.setViewName("admin/admin-statistics");
 		return mav;
 	}
-	
+
 	/**
 	 * 어드민페이지 - 로그
 	 * 
@@ -81,13 +101,13 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "admin-log.do")
 	public ModelAndView Log() throws Exception {
-		
+
 		ModelAndView mav = new ModelAndView();
-		
+
 		mav.setViewName("admin/admin-log");
 		return mav;
 	}
-	
+
 	/**
 	 * 어드민페이지 - 쿼리
 	 * 
@@ -96,12 +116,12 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "admin-query.do")
 	public ModelAndView Query() throws Exception {
-		
+
 		ModelAndView mav = new ModelAndView();
-		
+		mav.addObject("query", dao.getQuery());
+
 		mav.setViewName("admin/admin-query");
 		return mav;
 	}
 
-	
 }

@@ -145,11 +145,12 @@
   color: black;
   border-radius: 8px 8px 2px 8px;
   background-color: lavender;
+  font-size: 0.75em;
 }
 
-.chat-message-received {
+.chat-message-info {
   background-color: white;
-  margin: 8px 64px 8px 16px;
+  margin: 8px 8px 8px 16px;
   padding: 8px 16px;
   animation-name: fadeIn;
   animation-iteration-count: 1;
@@ -158,7 +159,99 @@
   color: black;
   border-radius: 8px 8px 8px 2px;
   background-color: lavender;
+  font-size: 0.75em;
 }
+
+.chat-message-received {
+  background-color: white;
+  margin: 8px 8px 8px 16px;
+  padding: 8px 16px;
+  animation-name: fadeIn;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 100ms;
+  color: black;
+  border-radius: 8px 8px 8px 2px;
+  background-color: lavender;
+  font-size: 0.75em;
+  width: 80%;
+}
+
+.robot_img{
+	margin: 10px 0 0 0;
+}
+
+#btn_consult, .btn_other {
+	font-family: "Jost", sans-serif;
+	font-weight: 280;
+	font-size: 8px;
+	letter-spacing: 1px;
+	display: inline-block;
+	padding: 10px 28px 11px 28px;
+	border-radius: 50px;
+	transition: 0.5s;
+	margin: 10px 0 0 25px;
+	color: #fff;
+	background:#2e4469;
+}
+
+ .btn_other {
+	font-family: "Jost", sans-serif;
+	font-weight: 280;
+	font-size: 8px;
+	letter-spacing: 1px;
+	display: inline-block;
+	padding: 10px 28px 11px 28px;
+	border-radius: 50px;
+	transition: 0.5s;
+	margin: 0 0 0 25px;
+	color: #fff;
+	background: #2e4469;
+}
+
+#btn_info {
+	font-family: "Jost", sans-serif;
+	font-weight: 140;
+	font-size: 4px;
+	letter-spacing: 1px;
+	display: inline-block;
+	padding: 10px 28px 11px 28px;
+	border-radius: 50px;
+	transition: 0.5s;
+	margin: 10px 0 0 20px;
+	color: #fff;
+	background: #2e4469;
+}
+
+.btn_restart {
+	font-family: "Jost", sans-serif;
+	font-weight: 140;
+	font-size: 4px;
+	letter-spacing: 1px;
+	display: inline-block;
+	padding: 10px 28px 11px 28px;
+	border-radius: 50px;
+	transition: 0.5s;
+	margin: 10px 0 0 20px;
+	color: #fff;
+	background: #2e4469;
+}
+
+.chat-restart {
+  margin : 0px auto;
+}
+
+
+
+
+.firts_msg, .guide_msg{
+	font-size: 1rem;
+}
+.guide_msg{
+	font-size: 0.75rem;
+	margin: 0 0 0 0;
+}
+
 
 @keyframes fadeIn {
   from {

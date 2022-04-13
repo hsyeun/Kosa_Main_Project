@@ -78,106 +78,33 @@
 												<tr>
 													<th class="ml-5">Number</th>
 													<th>Id</th>
-													<th>Join Date</th>
-													<th>Last Access Date</th>
+													<th>Name</th>
+													<th>Recommend</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>#D1</td>
-													<td>abc123</td>
-													<td>03 Jan 2019</td>
-													<td>03 Jan 2019</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D2</td>
-													<td>abc123</td>
-													<td>03 Jan 2019</td>
-													<td>03 Jan 2019</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D3</td>
-													<td>abc123</td>
-													<td>03 Jan 2019</td>
-													<td>03 Jan 2019</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D4</td>
-													<td>abc123</td>
-													<td>03 Jan 2019</td>
-													<td>03 Jan 2019</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D5</td>
-													<td>abc123</td>
-													<td>03 Jan 2019</td>
-													<td>03 Jan 2019</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
+												<c:forEach items="${users}" var="user">
+													<tr>
+														<td>${user.index}</td>
+														<td>${user.identification}</td>
+														<td>${user.name}</td>
+														<td>${user.company_rec}</td>
+														<td>
+															<div class="d-flex align-items-center">
+																<!-- <button type="button"
+																	class="btn btn-success btn-sm btn-icon-text mr-3">
+																	Edit <i class="typcn typcn-edit btn-icon-append"></i>
+																</button> -->
+																<button type="button"
+																	class="btn btn-danger btn-sm btn-icon-text" onclick="location.href='remove.do?uID=${user.identification}'">
+																	Delete <i
+																		class="typcn typcn-delete-outline btn-icon-append"></i>
+																</button>
+															</div>
+														</td>
+													</tr>
+												</c:forEach>
+												
 											</tbody>
 										</table>
 									</div>
@@ -213,6 +140,10 @@
 	<jsp:include page="../include/footer-and-js.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
+
+<script>
+
+</script>
 
 
 </body>

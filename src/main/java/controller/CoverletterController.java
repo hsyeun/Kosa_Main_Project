@@ -49,19 +49,19 @@ public class CoverletterController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "coverWrite.do")
-	public ModelAndView Write() throws Exception {
+	public ModelAndView Write(HttpSession session) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
-		
-		
-		mav.setViewName("coverLetter/cover-write");   // jsp파일 이름
+		if(session.getAttribute("SID") != null) {
+			mav.setViewName("coverLetter/cover-write");   // jsp파일 이름
+			mav.addObject("user_id", session.getAttribute("SID"));
+		} else {
+			mav.setViewName("member/signin");
+		}
 		return mav;
 	}
 
 		
-		
-	
-	
 	/**
 	 * 자소서 분석 페이지
 	 * 
