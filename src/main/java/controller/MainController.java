@@ -37,9 +37,9 @@ public class MainController {
     SqlSession sqlSession;
 
 	@RequestMapping(value = "main.do")    
-	public ModelAndView main(HttpSession session) {
-		log.debug("main 세션id : " + (String) session.getAttribute("SID"));
-		return null;
+	public String main(Model model) {
+
+		return "main";
 	}
 	
     
