@@ -5,8 +5,8 @@
 	<select id="getJobOpeningList" resultType="app.job_opening.JobOpening">
 		<![CDATA[
 			SELECT *
-			FROM itjob.job_opening_test jot
-			JOIN itjob.company_test ct
+			FROM itjob.job_opening jot
+			JOIN itjob.company ct
 				ON ct.index =jot.com_index 
 			WHERE jot.com_index = #{com_index} 
 			ORDER BY jot.ongoing DESC, ABS(DATE(jot.due)- CURDATE()) ASC
@@ -55,8 +55,8 @@
 					jot.`index` as jot_index, jot.com_index, jot.career, 
 					jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, 
 					jot.`require`, jot.title, jot.region
-				FROM itjob.job_opening_test jot
-				LEFT JOIN itjob.company_test ct
+				FROM itjob.job_opening jot
+				LEFT JOIN itjob.company ct
 					ON ct.`index` =jot.com_index 
 				LIMIT 18446744073709551615 ) AS result
 			ORDER BY result.ongoing DESC , result.index ASC,result.jot_index ASC
@@ -95,8 +95,8 @@
 			SELECT *
 			FROM (
 				SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
-				FROM itjob.job_opening_test jot
-				LEFT JOIN itjob.company_test ct
+				FROM itjob.job_opening jot
+				LEFT JOIN itjob.company ct
 					ON ct.`index` =jot.com_index
 				LIMIT 18446744073709551615 ) AS result
 		]]>	
@@ -113,8 +113,8 @@
 			SELECT *
 			FROM (
 				SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
-				FROM itjob.job_opening_test jot
-				LEFT JOIN itjob.company_test ct
+				FROM itjob.job_opening jot
+				LEFT JOIN itjob.company ct
 					ON ct.`index` =jot.com_index
 				LIMIT 18446744073709551615 ) AS result
 		]]>	
@@ -128,7 +128,7 @@
 	<select id="pageCount_job" resultType="int">
 		<![CDATA[
 			SELECT COUNT(*)
-			FROM itjob.job_opening_test jot
+			FROM itjob.job_opening jot
 			WHERE jot.index >= 0
 		]]>
 	</select>
@@ -139,8 +139,8 @@
 			SELECT count(*)
 			FROM (
 				SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
-				FROM itjob.job_opening_test jot
-				LEFT JOIN itjob.company_test ct
+				FROM itjob.job_opening jot
+				LEFT JOIN itjob.company ct
 					ON ct.`index` =jot.com_index
 				LIMIT 18446744073709551615 ) AS result
 				
