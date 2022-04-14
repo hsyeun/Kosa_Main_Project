@@ -36,18 +36,7 @@
 							class="d-flex align-items-center justify-content-between">
 							<h3 class="mb-5">이력서</h3>
 						</div>
-						<!-- <h6>필수정보를 입력해주세요.</h6> -->
-<!-- 						<div class="mb-3">
-							<div class="photo"></div>
-							<label for="formFileSm" class="form-label">사진을 업로드해주세요.</label>
-							<input class="form-control form-control-sm" id="formFileSm"
-								type="file">
-						</div> -->
-
-						<!-- <div class="form-floating mb-2 clearfix">
-							<input type="text" class="form-control" id="floatingInput"
-								placeholder="address"> <label for="floatingPassword">주소</label>
-						</div> -->
+						
 						<form method="post" action="resumePROC.do"> 
 						<div class="form-floating mb-3">
 							<select class="form-select" id="floatingSelect" name="education"

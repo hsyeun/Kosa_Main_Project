@@ -6,6 +6,50 @@
 <jsp:include page="../include/head.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
+
+<script>
+	$(document).ready(function() {
+	
+		$('#ibtn').click(function(){
+			var sname = $('#name').val();
+			var smail = $('#email').val();
+			
+			if(!sname){
+				alert('이름을 입력하세요');
+				return;
+			}
+			if(!smail){
+				alert('이메일 주소를 입력하세요');
+				return;
+			}
+			
+			$.ajax({
+				url : 'forgotIDPROC.do',
+				type : 'post',
+				dataType : 'json',
+				data : {
+					name : sname,
+					email : smail			
+				},
+				success : function(data) {
+					
+					if(data.result =='NO'){
+						alert('일치하는 회원정보가 없습니다');
+					} else{
+						alert('고객님의 아이디는 '+ {data.id} +'입니다.');
+						
+					}
+				},
+				error : function() {
+					alert('### 통신에러.###');
+				}
+		});
+
+		});
+	
+});
+</script>
+
 </head>
 <body>
 
@@ -37,13 +81,16 @@
                             </a> -->
                             <h3>아이디 찾기</h3>
                         </div>
+                        
+                        <form action="forgotIDPROC.do" id="frm" name="frm" method="post">
+                        
                         <div class="form-floating mb-3">
-                            <input type="id" class="form-control" id="floatingInput" placeholder="Name">
-                            <label for="floatingInput">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                            <label for="name">Name</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                            <label for="email">Email Address</label>
                         </div>
                         <button type="submit" class="btn btn-primary py-3 w-100 mb-4">검색하기</button>
                         <div class="d-flex align-items-center justify-content-between mb-4">
@@ -51,6 +98,9 @@
                             <a href="signin.do">로그인</a>
                             <a href="signup.do">회원가입</a>
                         </div>
+                        
+                        </form>
+                        
                     </div>
                 </div>
             </div>

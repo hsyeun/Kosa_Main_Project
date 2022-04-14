@@ -251,7 +251,7 @@ public class MemberController {
 	 * @return View 지정
 	 * @throws Exception
 	 */
-	@RequestMapping("/forgotID.do")
+	@RequestMapping(value = "forgotID.do")
 	public ModelAndView forgotID(HttpSession session, ModelAndView mv, RedirectView rv) {
 		
 		if(isLogin(session)) {	
@@ -266,17 +266,20 @@ public class MemberController {
 	}
 	
 	//아이디 찾기 처리요청
-	@RequestMapping("/forgotIDProc.moa")
+	@RequestMapping(value = "forgotIDPROC.do")
 	@ResponseBody
 	public HashMap<String, String> loginFindIdProc(MemberVO mVO /* name, mail */) {
+		
 		
 		MemberVO tVO = mDAO.forgotId(mVO);
 		
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("result", "NO");
-		if(tVO == null) {
-			return map;
+		if (tVO == null) {
+			map.put("result", "NO");
 		}
+		
+		map.put("id", tVO.getIdentification());
+		
 //		String tmp = MailUtil.gmailSend(tVO.getEmail());
 //		map.put("result", "OK");
 //		map.put("result1", tmp);

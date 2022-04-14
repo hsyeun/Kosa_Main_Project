@@ -127,16 +127,14 @@
 		
 	<!-- 아이디 찾기 -->
 	<select id="forgotId" resultType="app.member.MemberVO" parameterType="app.member.MemberVO">
-	<![CDATA[
 		SELECT
-			identification, email
+			identification
 		FROM
 			user
 		WHERE
 			name = #{name}
 			AND email = #{email}
 			AND is_show='0'
-	]]>
 	</select>
 	
 		
