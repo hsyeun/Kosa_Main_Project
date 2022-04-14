@@ -5,8 +5,8 @@
 	<select id="getSpecList" resultType="app.spec.Spec">
 		<![CDATA[
 			SELECT *
-			FROM itjob.company_spec_test  cs
-			JOIN itjob.company_test  ct
+			FROM itjob.company_spec  cs
+			JOIN itjob.company  ct
 				ON ct.index =cs.com_index 
 			WHERE cs.com_index = #{com_index} 
 		]]>
