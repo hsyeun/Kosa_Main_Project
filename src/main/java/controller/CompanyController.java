@@ -11,6 +11,8 @@ package controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ import app.companysInfo.SearchCriteria;
 import app.job_opening.JobOpening;
 import app.job_opening.JobOpeningService;
 import app.job_opening.JobOpeningServiceImpl;
+import app.member.MemberDAO;
+import app.member.MemberVO;
 import app.spec.Spec;
 import app.spec.SpecService;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +48,8 @@ public class CompanyController {
     private JobOpeningService JobOpeningServiceImpl;
     @Autowired
     private SpecService SpecServiceImpl;	
+	@Autowired
+	MemberDAO mDAO;
 	/**
 	 * 회사 리스트 페이지
 	 * 
@@ -53,16 +59,38 @@ public class CompanyController {
 	//회사목록보기(PageMaker객체 사용) + 검색(page.java수정)
 	// http://localhost:8080/company.do
 	@RequestMapping(value = "company.do", method = RequestMethod.GET)
-	public String company(@ModelAttribute("cri") SearchCriteria cri,Model model) throws Exception {
+	public String company(@ModelAttribute("cri") SearchCriteria cri,Model model,HttpSession session) throws Exception {
 		log.info(cri.toString());
+
 		//전체 기업 리스트 가져오기
 		List<CompanysInfo> result_list = null;
 		List<JobOpening> job_list = null;
-		//List<CompanysInfo> rec = null;
+		//해당기업 채용 리스트 가져오기
+		List<JobOpening> recCompany_list = null;
 		
-		//CompanysInfo rec = new CompanysInfo();
-		//rec = companysInfoServiceImpl.getRecCompany();//sid 로그인 세션
-		
+		//로그인확인
+		if(session.getAttribute("SID") != null) {
+			//model.setViewName("coverLetter/cover-write");   // jsp파일 이름
+			//model.addAttribute("user_id", session.getAttribute("SID"));
+			String id = (String) session.getAttribute("SID"); 
+			MemberVO mVO = mDAO.getMyInfo(id);
+			model.addAttribute("DATA", mVO);
+			
+			CompanysInfo rec = new CompanysInfo();
+			int rec_index = mVO.getCompany_rec();
+			rec = companysInfoServiceImpl.getCompanysInfoContent(rec_index);
+			
+			CompanysInfo rec2 = new CompanysInfo();
+			int rec_index2 = mVO.getCompany_rec2();
+			rec2 = companysInfoServiceImpl.getCompanysInfoContent(rec_index2);
+
+			model.addAttribute("rec_company",rec);  // 게시판의 글 리스트
+			model.addAttribute("rec_company2",rec2);
+			log.info("로그인 확인");
+//			model.addAttribute("msg", id +"님의 추천기업:)");
+//			model.addAttribute("url", "company.do");
+				 
+		} 
 		//채용 공고 진행 업데이트
 		try {
 			log.debug("데이터베이스 연결 성공\n");

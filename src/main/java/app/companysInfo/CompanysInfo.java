@@ -47,10 +47,18 @@ public class CompanysInfo{
 	}
 
 	//기업의 채용 공고 목록	
-	@OneToMany(mappedBy="company")
-	@JoinColumn(name="com_index")
+//	@OneToMany(mappedBy="company")
+//	@JoinColumn(name="com_index")
+	//수정
 	private JobOpening jobOpening;
 	
+	public JobOpening getCompanysInfo() {		
+		return jobOpening;
+	}
+	public void setJobOpening(JobOpening jobOpening) {		
+		this.jobOpening = jobOpening;
+	}
+		
 	public CompanysInfo() {}
 
 	public CompanysInfo(int index, int i_index, String name, int headcount, String division, String found_date,
@@ -70,6 +78,24 @@ public class CompanysInfo{
 		this.ceo = ceo;
 		this.ind_detail = ind_detail;
 	}
-
 	
+	public CompanysInfo(int index, int i_index, String name, int headcount, String division, String found_date,
+			String capital, String sales, String bussiness, String url, String address, String ceo, String ind_detail,JobOpening jobOpening) {
+		super();
+		this.index = index;
+		this.i_index = i_index;
+		this.name = name;
+		this.headcount = headcount;
+		this.division = division;
+		this.found_date = found_date;
+		this.capital = capital;
+		this.sales = sales;
+		this.bussiness = bussiness;
+		this.url = url;
+		this.address = address;
+		this.ceo = ceo;
+		this.ind_detail = ind_detail;
+		this.jobOpening = jobOpening;
+	}
+
 }

@@ -91,7 +91,7 @@
 	<!-- 내 정보 조회 -->
 	<select id="getMyInfo" resultType="app.member.MemberVO" parameterType="string">
 		SELECT
-			identification, password, name, email, phone, sc_index, i_index
+			identification, password, name, email, phone, sc_index, i_index, company_rec,company_rec2, jobopening_rec, jobopening_rec2
 		FROM
 			user
 		WHERE

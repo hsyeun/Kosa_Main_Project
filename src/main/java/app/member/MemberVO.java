@@ -16,6 +16,8 @@ public class MemberVO {
 	//수정
 	private int company_rec=-1;
 	private int jobopening_rec=-1;
+	private int company_rec2=-1;
+	private int jobopening_rec2=-1;
 	private int cl_index;
 	private int q_index;
 	private int skill_index;

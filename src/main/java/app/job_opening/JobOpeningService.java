@@ -20,13 +20,21 @@ public interface JobOpeningService {
 
 	public void update(List<JobOpening> result_list);
 
-	//public void ongoingTotal();
+
 	
 	// 목록 : 페이징 + 검색
     public List<JobOpening> list(SearchCriteria criteria) throws Exception;
 
     // 목록 : 전체 갯수 or 검색된 갯수
     public int listCount(SearchCriteria cri) throws Exception;
+
+   
+	//public void ongoing(int rec_index);
+    public void update_rec(int rec_index);
+    //추천 공고
+	public JobOpening getJobOpeningContent(int rec_index) throws Exception;
+
+//	public List<JobOpening> getJobOpeningTotal() throws Exception;
 
 
 }

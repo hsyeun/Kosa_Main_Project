@@ -13,4 +13,6 @@ public class Member {
 	//추가
 	int company_rec=-1;
 	int jobopening_rec=-1;
+	int company_rec2=-1;
+	int jobopening_rec2=-1;
 }
