@@ -1,7 +1,7 @@
+
 $(document).ready(function() {
 
 	var cate = $('#productSelect option:selected').val();
-
 	var postdata = {
 		'cate': cate
 	};
@@ -9,25 +9,20 @@ $(document).ready(function() {
 	$.ajax({
 		type: 'POST',
 		url: 'signup.do',
-		/*data: postdata,*/
 		data: JSON.stringify(postdata),
 		dataType: 'JSON',
-		//        async: false,
 		contentType: "application/json; charset=utf-8",
 		success: function(data) {
-			var inHTML = "<ul style='list-style:none;'>";
+			var inHTML = "<ul style='list-style:none;'>"
 
 			for (var i = 0; i < data.SMALL.length; i++) {
-
 				//inHTML += '<option value="' + data.SMALL[i].index + '">' + data.SMALL[i].category + '</option>';
 				inHTML += "<li><input type='checkbox' name = 'chkbox' id='" + data.SMALL[i].index + "' value='" + data.SMALL[i].category + "'> "+data.SMALL[i].category+"</li>";
 			}
-			var inHTML = "<ul style='list-style:none;'>";
-
+			inHTML += "</ul>";
 			$('#mallSelect').empty().append(inHTML);
 		}
 	});
-
 });
 
 $('#productSelect').on('change', function() {
@@ -51,7 +46,6 @@ $('#productSelect').on('change', function() {
 			var inHTML = "<ul style='list-style:none;'>";
 
 			for (var i = 0; i < data.SMALL.length; i++) {
-
 				//inHTML += '<option value="' + data.SMALL[i].index + '">' + data.SMALL[i].category + '</option>';
 				inHTML += "<li><input type='checkbox' name = 'chkbox' id='" + data.SMALL[i].index + "' value='" + data.SMALL[i].category + "'> "+data.SMALL[i].category+"</li>";
 			}
