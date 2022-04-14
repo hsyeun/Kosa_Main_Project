@@ -9,6 +9,9 @@
 
 package controller;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +75,6 @@ public class MemberController {
 		//mv.addObject("SMALL", scate);
 		
 		String view = "member/signup";
-		System.out.println(123);
 		mv.setViewName(view);
 		return mv;
 	}
@@ -94,29 +96,50 @@ public class MemberController {
 	}
 	
 	// 회원가입 요청처리
-	@RequestMapping(value = "signupPROC.do")
-	public ModelAndView joinProc(@ModelAttribute MemberVO mVO, ModelAndView mv, HttpSession session, RedirectView rv) {
-		System.out.println(session.getAttribute("SID"));
-		
-		if(isLogin(session)) {
-			rv.setUrl("resume.do");
+		@RequestMapping(value = "signupPROC.do")
+		public ModelAndView joinProc(@ModelAttribute MemberVO mVO, ModelAndView mv, HttpSession session, RedirectView rv,HttpServletRequest request) {
+			System.out.println(session.getAttribute("SID"));
+			String[] chklist = request.getParameterValues("chkbox");
+			String clist = "";
+			String clist2 = "";
+			for(String val:chklist){
+				clist += val+",";
+				clist2 += "1" + ",";
+			}
+			clist = clist.substring(0,clist.length()-1);
+			clist2 = clist2.substring(0,clist2.length()-1);
+			String sql = "INSERT INTO user_skill (identification," + clist + ") VALUES ('" + mVO.getIdentification() +"'," + clist2 + ")";
+			System.out.println(sql);
+			Connection con;
+			try {
+				Class.forName("org.mariadb.jdbc.Driver");
+				con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/itjob","root","1234");
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.executeUpdate();
+				con.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			if(isLogin(session)) {
+				rv.setUrl("resume.do");
+				mv.setView(rv);
+				return mv;
+			}
+			log.debug(mVO.toString());
+			int cnt = mDAO.addMember(mVO);
+			System.out.println(cnt);
+			if(cnt == 1) {
+				session.setAttribute("SID", mVO.getIdentification());
+				System.out.println(session.getAttribute("SID"));
+				rv.setUrl("resume.do");
+			} else {
+				rv.setUrl("signup.do");
+			}
+			
 			mv.setView(rv);
 			return mv;
 		}
-		log.debug(mVO.toString());
-		int cnt = mDAO.addMember(mVO);
-		System.out.println(cnt);
-		if(cnt == 1) {
-			session.setAttribute("SID", mVO.getIdentification());
-			
-			rv.setUrl("resume.do");
-		} else {
-			rv.setUrl("signup.do");
-		}
-		
-		mv.setView(rv);
-		return mv;
-	}
 	
 
 	/**
@@ -130,18 +153,6 @@ public class MemberController {
 		
 		mv.setViewName("/member/resume");
 	
-/*
-		try {
-			log.debug("데이터베이스 연결 성공\n");
-			now = sqlSession.selectOne("Test.getTest");
-
-		} catch (Exception e) {
-			log.debug(e.getMessage());
-			log.debug("데이터베이스 연결 실패\n");
-		}
-
-		model.addAttribute("now", now);
-*/
 		return mv;
 	}
 	@RequestMapping(value = "resumePROC.do")
@@ -151,19 +162,6 @@ public class MemberController {
 		System.out.println(cnt);
 		rv.setUrl("signin.do");
 		mv.setView(rv);
-		
-/*
-		try {
-			log.debug("데이터베이스 연결 성공\n");
-			now = sqlSession.selectOne("Test.getTest");
-
-		} catch (Exception e) {
-			log.debug(e.getMessage());
-			log.debug("데이터베이스 연결 실패\n");
-		}
-
-		model.addAttribute("now", now);
-*/
 		return mv;
 	}
 

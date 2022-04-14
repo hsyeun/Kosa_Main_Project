@@ -65,11 +65,11 @@
 	<!-- 이력서(스펙) 데이터 추가 -->
 	<insert id="addResume" parameterType="app.member.ResumeVO">
 		INSERT INTO
-			user_spec( grade, toeic, toeic_speak, opic_grade, 
+			user_spec( identification, grade, toeic, toeic_speak, opic_grade, 
 					  etc, overseas_exp, intern, prize, volunteer, 
 					  certificate, education, career)
 		VALUES(
-			#{grade}, #{toeic}, #{toeic_speak}, #{opic_grade},
+			#{identification}, #{grade}, #{toeic}, #{toeic_speak}, #{opic_grade},
 			#{etc}, #{overseas_exp}, #{intern}, #{prize}, #{volunteer},
 			#{certificate}, #{education}, #{career}
 		)

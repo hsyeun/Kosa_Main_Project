@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class ResumeVO {
 	private int index;
+	private String identification;
 	private double grade;
 	private double toeic;
 	private String toeic_speak;

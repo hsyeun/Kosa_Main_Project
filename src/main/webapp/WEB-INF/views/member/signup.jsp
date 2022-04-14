@@ -9,6 +9,16 @@
 </jsp:include>
 
 <script>
+	$("input:checkbox[name='chkbox']").on('change',function(){
+		if($(this).is(":checked")){
+			$(this).prop("checked",true);
+			$('#multiPoint').text('chcked')
+		}
+		else{
+			$(this).prop("checked",false);
+			$('#multiPoint').text('unchcked')
+		}
+	})
 	$(document).ready(function() {
 		function ck(){
 			
@@ -297,6 +307,8 @@
 							<!-- <select id="mallSelect" class="form-select" aria-label="Floating label select example">
 							</select> -->
 							<div id="mallSelect" style=" height: 120px;position:relative;overflow: auto;">
+							</div>
+							<div id="multiPrint">
 							</div>
 							</div>						
 						

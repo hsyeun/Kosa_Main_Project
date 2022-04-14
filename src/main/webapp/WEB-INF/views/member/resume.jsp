@@ -38,6 +38,10 @@
 						</div>
 						
 						<form method="post" action="resumePROC.do"> 
+						<div style="display:none;">
+							<% String s = (String) session.getAttribute("SID");%>
+							<input type="text" name="identification" value =<%= s %> readonly/>
+						</div>
 						<div class="form-floating mb-3">
 							<select class="form-select" id="floatingSelect" name="education"
 								aria-label="Floating label select example">
