@@ -22,11 +22,9 @@ public class JobOpening{
 	private String title="";
 	private String region="";
 	private int ongoing=-1;//날짜 비교(오늘마감3,채용중2,상시채용1,채용마감0)
-//	@Transient
-//	private int process;//날짜 비교(오늘마감3,채용중2,상시채용1,채용마감0)
-//	
-	@ManyToOne
-	@JoinColumn(name="com_index",insertable=false, updatable=false)
+
+//	@ManyToOne
+//	@JoinColumn(name="com_index",insertable=false, updatable=false)
 	private CompanysInfo company;
 	
 	public CompanysInfo getCompanysInfo() {		

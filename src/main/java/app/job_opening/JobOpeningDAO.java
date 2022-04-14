@@ -8,8 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import app.job_opening.JobOpening;
-import app.job_opening.SearchCriteria;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -39,6 +37,13 @@ public class JobOpeningDAO {
 	}	
 	
 	 // 해당 기업의 공고 목록 보기
+//	public JobOpening getList(int index) throws Exception {
+//		
+//		JobOpening vo = jobOpeningDAO.getRec(index);
+//	
+//        return vo;
+//		
+//	}
 	public List<JobOpening> getList(int index) throws Exception {
 		
 		List<JobOpening> result = new ArrayList<JobOpening>();
@@ -59,6 +64,12 @@ public class JobOpeningDAO {
 //		// TODO Auto-generated method stub
 //		sqlSession.update("JobOpening.ongoing", index);
 //	}
+	//추천기업
+	public void update_rec(int rec_index) {
+		// TODO Auto-generated method stub
+		sqlSession.update("JobOpening.update_rec", rec_index);
+		//return sqlSession.update("JobOpening.update_rec", rec_index);
+	}
 	
 	//업데이트
 	public void update(List<JobOpening> result_list) {
@@ -93,13 +104,47 @@ public class JobOpeningDAO {
 
 	 // 목록 : 페이징 + 검색
     public List<JobOpening> list(SearchCriteria criteria) throws Exception {
+    	System.out.println("job_DAO: 목록페이징 검색 호출");
     	return sqlSession.selectList("JobOpening.listPaging", criteria);
 	}
 
     // 목록 : 전체 갯수 or 검색된 갯수
     public int listCount(SearchCriteria criteria) throws Exception {
+    	System.out.println("job_DAO: 갯 호출");
     	 return sqlSession.selectOne("JobOpening.listCount", criteria);
 	}
+
+	public JobOpening getContent(int rec_index) throws Exception {
+		// TODO Auto-generated method stub
+		JobOpening jobOpening = null;
+        try
+        {
+        	jobOpening = sqlSession.selectOne("JobOpening.getJobOpeningContent",rec_index);
+        }
+        catch (Exception se)
+        {
+        	throw new Exception(se);
+        }
+        
+        return jobOpening;
+	}
+
+
+//	public JobOpening getContent(int index) {
+//		// TODO Auto-generated method stub
+//		JobOpening companysInfo = null;
+//        try
+//        {
+//        	companysInfo = sqlSession.selectOne("CompanysInfo.getCompanysInfoContent",index);
+//        }
+//        catch (Exception se)
+//        {
+//        	throw new Exception(se);
+//        }
+//        
+//        return companysInfo;
+//	}
+
 
 
 }

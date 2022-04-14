@@ -40,6 +40,56 @@ value="${pageContext.request.contextPath}" />
 				<div class="section-title"></div>
 
 				<div class="row">
+				 <c:if test="${pageMaker.cri.page == 1 and empty pageMaker.cri.searchType and empty pageMaker.cri.keyword and (!empty rec_company || !empty rec_company2)}">
+					<!-- 추천 기업 -->
+					<div class="col-lg-6 mt-4 pointer">
+						<div class="member d-flex align-items-start" data-aos="zoom-in"
+							data-aos-delay="100">
+							<div class="pic">
+								<!-- <img src="/demo/src/main/webapp/resources/img/team/team-1.jpg"
+									class="img-fluid" alt=""> -->
+								<img src="${rec_company.logo_url }"
+									class="img-fluid" alt=""> 
+							</div>
+							<div class="member-info">
+								<h4><a class = "move" href="${path}/comDetail.do?index=${rec_company.index}">${rec_company.name }</a></h4>
+								<span>${rec_company.division }</span>
+								<%-- <p>${item.index}</p> --%>
+								<p>${rec_company.ind_detail }</p>
+								<div class="social">
+									<a href=""><i class="">추천기업</i></a> 
+										
+								</div>
+			
+							</div>
+						</div>
+					</div>
+					<!-- 추천 기업2 -->
+					<div class="col-lg-6 mt-4 pointer">
+						<div class="member d-flex align-items-start" data-aos="zoom-in"
+							data-aos-delay="100">
+							<div class="pic">
+								<!-- <img src="/demo/src/main/webapp/resources/img/team/team-1.jpg"
+									class="img-fluid" alt=""> -->
+								<img src="${rec_company2.logo_url }"
+									class="img-fluid" alt=""> 
+							</div>
+							<div class="member-info">
+								<h4><a class = "move" href="${path}/comDetail.do?index=${rec_company2.index}">${rec_company2.name }</a></h4>
+								<span>${rec_company2.division }</span>
+								<%-- <p>${item.index}</p> --%>
+								<p>${rec_company2.ind_detail }</p>
+								<div class="social">
+									<a href=""><i class="">추천기업</i></a> 
+								
+
+								</div>
+			
+							</div>
+						</div>
+					</div>
+                  </c:if>
+				<!-- 기업 전체 리스트-->
 					<c:forEach var="item" items="${result_list}">
 					<div class="col-lg-6 mt-4 pointer">
 						<div class="member d-flex align-items-start" data-aos="zoom-in"
@@ -59,11 +109,11 @@ value="${pageContext.request.contextPath}" />
 									
 										<c:set var = "progress" scope = "session" value = "${item.jobOpening.ongoing }"/>
 										<c:choose> 
-											<c:when test="${progress == 3}"><p>[오늘마감]</p></c:when>
-											<c:when test="${progress == 2}"><p>[채용중]</p> </c:when>
-											<c:when test="${progress == 1}"><p>[상시채용]</p></c:when>
-											<c:when test="${progress == 0}"><p>[채용마감]</p></c:when>
-											<c:when test="${progress == -1}"><p>[공고없음]</p></c:when>
+											<c:when test="${progress == 3}"><a href=""><i class="">오늘마감</i></a> </c:when>
+											<c:when test="${progress == 2}"><a href=""><i class="">채용중</i></a> </c:when>
+											<c:when test="${progress == 1}"><a href=""><i class="">상시채용</i></a> </c:when>
+											<c:when test="${progress == 0}"><a href=""><i class="">채용마감</i></a> </c:when>
+											<c:when test="${progress == -1}"><a href=""><i class="">공고없음</i></a> </c:when>
 										</c:choose> 
 								
 									<!--   <a href=""> <i class="ri-linkedin-box-fill"></i></a> -->

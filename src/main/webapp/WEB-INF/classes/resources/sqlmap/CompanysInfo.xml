@@ -18,7 +18,7 @@
 			<result column="ind_detail" property="ind_detail" />
 			<result column="logo_url" property="logo_url" />
 <!--04/11 <collection property="app.job_opening.JobOpening" resultMap="jobOpeningMap"> -->
-		<collection  javaType="app.job_opening.JobOpening" property="jobOpening">
+		<association  javaType="app.job_opening.JobOpening" property="jobOpening">
 			<id column="index" property="index"/>
 			<result column="com_index" property="com_index"/>
 			<result column="career" property="career"/>
@@ -30,8 +30,18 @@
 			<result column="require" property="require"/>
 			<result column="title" property="title"/>
 			<result column="region" property="region"/>
-		</collection>
+		</association>
 	</resultMap>
+	
+	<select id="getJobOpeningContent" resultType="app.job_opening.JobOpening" resultMap='companysInfoMap'>
+		<![CDATA[
+			SELECT *
+			FROM itjob.job_opening jot
+			JOIN itjob.company ct
+				ON ct.index =jot.com_index 
+			WHERE jot.index = #{rec_index} 
+		]]>
+	</select>
 
 	<resultMap type="app.job_opening.JobOpening" id="jobOpening">
 			<id column="index" property="index"/>
