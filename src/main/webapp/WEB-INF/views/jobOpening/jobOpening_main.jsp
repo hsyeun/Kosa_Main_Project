@@ -40,7 +40,7 @@ value="${pageContext.request.contextPath}" />
 				<div class="section-title"></div>
 
 				<div class="row">
-				<c:if test="${pageMaker.cri.page == 1  and empty pageMaker.cri.searchType and empty pageMaker.cri.keyword }">
+				<c:if test="${pageMaker.cri.page == 1  and empty pageMaker.cri.searchType and empty pageMaker.cri.keyword and (!empty rec_jobOpening || !empty rec_jobOpening2)}">
 					<!-- 추천 공고 -->
 					<div class="col-lg-6 mt-4 pointer">
 						<div class="member d-flex align-items-start" data-aos="zoom-in"
