@@ -97,6 +97,9 @@ public class MemberDAO {
 		return sqlSession.insert("mSQL.addResume", rVO);
 	}
 	
+	// 자소서 조회
+	public List<MemberVO> getCovers(MemberVO mVO) {
+		return sqlSession.selectList("mSQL.getCovers", mVO);
+}
 	
-    
 }

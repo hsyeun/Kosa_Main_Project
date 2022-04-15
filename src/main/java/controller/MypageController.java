@@ -135,9 +135,14 @@ public class MypageController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "mypage-coverletter.do")
-	public ModelAndView Coverletter() throws Exception {
+	public ModelAndView Coverletter(@ModelAttribute MemberVO mVO /* name, pw, tel, email, gen, birth */
+			,ModelAndView mv, RedirectView rv, HttpSession session) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
+		String id = (String) session.getAttribute("SID");
+		mVO.setIdentification(id);
+		
+		mav.addObject("covers", mDAO.getCovers(mVO));
 		
 		
 		mav.setViewName("mypage/mypage-coverletter");

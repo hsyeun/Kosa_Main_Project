@@ -161,5 +161,30 @@
 			identification = #{identification}
 	</update>
 	
+	<!-- 자소서 조회 -->
+	<select id="getCovers" resultType="app.member.CoverVO" parameterType="app.member.MemberVO">
+		SELECT
+			uct.u_index, uct.content, ut.`index`, ut.identification
+		FROM
+			user_cover_letter uct
+		LEFT JOIN
+			user ut
+		ON 
+			uct.u_index = ut.`index`
+		WHERE
+			ut.identification = #{identification}
+	</select>
+	
+	<!-- 자소서 제거 -->
+	<delete id="deleteCover" parameterType="app.member.MemberVO">
+		Delete
+		FROM
+			user_cover_letter
+		WHERE
+			identification = #{identification}
+	</delete>
+	
+	
+	
 </mapper>
 

@@ -56,8 +56,6 @@ value="${pageContext.request.contextPath}" />
 				</section>
 
 				<div class="section-title"></div>
-
-				<div class="row">
 				
 				<div class="row">
 					<c:forEach var="item" items="${result_list}" begin="0" end="3">

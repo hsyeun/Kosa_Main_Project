@@ -73,95 +73,30 @@
 											<thead>
 												<tr>
 													<th class="ml-5">Number</th>
-													<th>Title</th>
+													<th>Content</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>#D1</td>
-													<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D2</td>
-													<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D3</td>
-													<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D4</td>
-													<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D5</td>
-													<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
+												<c:forEach items="${covers}" var="cover" varStatus="status">
+													<tr>
+														<td>${status.index+1}</td>
+														<td>${cover.content}</td>
+														<td>
+															<div class="d-flex align-items-center">
+																<!-- <button type="button"
+																	class="btn btn-success btn-sm btn-icon-text mr-3">
+																	Edit <i class="typcn typcn-edit btn-icon-append"></i>
+																</button> -->
+																<button type="button"
+																	class="btn btn-danger btn-sm btn-icon-text" onclick="location.href='remove.do?uID=${user.identification}'">
+																	Delete <i
+																		class="typcn typcn-delete-outline btn-icon-append"></i>
+																</button>
+															</div>
+														</td>
+													</tr>
+												</c:forEach>
+												
 											</tbody>
 										</table>
 									</div>
