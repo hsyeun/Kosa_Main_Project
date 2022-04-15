@@ -38,12 +38,12 @@
 								<i class="typcn typcn-device-desktop menu-icon"></i> <span
 								class="menu-title">회원 관리</span>
 						</a></li>
-						<li class="nav-item">
+<!-- 						<li class="nav-item">
 							<a class="nav-link" href="admin-statistics.do"> 
 								<i class="typcn typcn-chart-pie-outline menu-icon"></i> 
 								<span class="menu-title">통계</span>
 							</a>
-						</li>
+						</li> -->
 <!-- 						<li class="nav-item">
 							<a class="nav-link" href="admin-log.do"> 
 								<i class="typcn typcn-compass menu-icon"></i> 
