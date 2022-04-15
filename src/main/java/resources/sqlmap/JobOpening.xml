@@ -186,19 +186,19 @@
 	<!-- 페이지정보를 10개씩 가져오기 -->
 	<select id="listPage" resultType="app.job_opening.JobOpening" resultMap="jobMap">
 		<![CDATA[
-			SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, 
-					ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url,
-					ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	
-					jot.`index` as jot_index, jot.com_index, jot.career, 
-					jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, 
-					jot.`require`, jot.title, jot.region
-			FROM itjob.job_opening jot
-			LEFT JOIN itjob.company ct
-					ON ct.`index` =jot.com_index 
+		SELECT *
+		FROM (
+			SELECT ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,
+						jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
+			FROM itjob.company ct
+			LEFT JOIN itjob.job_opening jot
+				ON ct.`index` =jot.com_index 
+			ORDER BY jot.ongoing DESC 
+			LIMIT 18446744073709551615 ) AS result	
 		]]>	
 			<include refid="search"></include>	
 		<![CDATA[
-			ORDER BY jot.ongoing DESC , ct.index ASC, jot_index ASC
+			ORDER BY result.ongoing DESC , result.index ASC, result.jot_index ASC
 			LIMIT #{page}, 10 
 		]]>
 	</select>
@@ -206,19 +206,19 @@
 	<!--현재:페이지 정보를 지정한 크기만큼 가져오기 -->
  	<select id="listPageCri" resultType="app.job_opening.JobOpening" resultMap="jobMap">
 		<![CDATA[
-			SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, 
-					ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url,
-					ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	
-					jot.`index` as jot_index, jot.com_index, jot.career, 
-					jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, 
-					jot.`require`, jot.title, jot.region
-			FROM itjob.job_opening jot
-			LEFT JOIN itjob.company ct
-					ON ct.`index` =jot.com_index 
+		SELECT *
+		FROM (
+			SELECT ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,
+						jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
+			FROM itjob.company ct
+			LEFT JOIN itjob.job_opening jot
+				ON ct.`index` =jot.com_index 
+			ORDER BY jot.ongoing DESC 
+			LIMIT 18446744073709551615 ) AS result	
 		]]>	
 			<include refid="search"></include>	
 		<![CDATA[	
-			ORDER BY jot.ongoing DESC , ct.index ASC, jot_index ASC
+			ORDER BY result.ongoing DESC , result.index ASC, result.jot_index ASC
 			LIMIT #{pageStart},#{perPageNum}
 		]]>
 	</select> 
@@ -234,14 +234,15 @@
 	<!--게시글 전체숫자 or 검색된 게시글의 숫자-->
 	<select id="listCount" resultType="int">
         <![CDATA[
-			SELECT count(*)
-			FROM (
-				SELECT  ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,	jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
-				FROM itjob.job_opening jot
-				LEFT JOIN itjob.company ct
-					ON ct.`index` =jot.com_index
-				LIMIT 18446744073709551615 ) AS result
-				
+		SELECT count(*)
+		FROM (
+			SELECT ct.`index`,ct.i_index, ct.name, ct.headcount, ct.division, ct.found_date, ct.capital, ct.sales, ct.bussiness,ct.url, ct.address, ct.ceo, ct.ind_detail,ct.logo_url,
+						jot.`index` as jot_index, jot.com_index, jot.career, jot.background, jot.employ, jot.etc, jot.due, jot.ongoing, jot.`require`, jot.title, jot.region
+			FROM itjob.company ct
+			LEFT JOIN itjob.job_opening jot
+				ON ct.`index` =jot.com_index 
+			ORDER BY jot.ongoing DESC 
+			LIMIT 18446744073709551615 ) AS result	
 		]]>
          <include refid="search"/>
     </select> 
