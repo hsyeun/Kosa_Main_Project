@@ -22,28 +22,59 @@ value="${pageContext.request.contextPath}" />
 	<main id="main">
 
 		<!-- ======= Team Section ======= -->
-		<section id="team" class="team section-bg">
+		<section id="team" class="team section-bg sec-pt">
 			<div class="container" data-aos="fade-up">
-				<section id="breadcrumbs" class="breadcrumbs">
-					<div class="container">
 
-						<ol>
-							<li><a href="${path}/main.do">Home</a></li>
-							<li><a href="${path}/jobOpening.do">JobOpening</a></li>
-						</ol>
-						<h2>채용공고 목록</h2>
-
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
+						<div class="section-title">
+							<h2>채용 정보</h2>
+						</div>
 					</div>
-				</section>
+				</div>
 				<!-- End Breadcrumbs -->
-
-				<div class="section-title"></div>
+				
+                <%--검색 처리 영역--%>
+                <div class="box-footer">
+                    <div class="form-group col-sm-2">
+                        <select class="form-control box-line" name="searchType" id="searchType">
+                            <option value="n" <c:out value="${cri.searchType == null ? 'selected' : ''}"/>>:::::: 선택 ::::::</option>
+                            <option value="c" <c:out value="${cri.searchType eq 'c' ? 'selected' : ''}"/>>회사명</option>
+                            <option value="d" <c:out value="${cri.searchType eq 'd' ? 'selected' : ''}"/>>기업 구분</option>
+                            <option value="i" <c:out value="${cri.searchType eq 'i' ? 'selected' : ''}"/>>산업 분야</option>
+                            <option value="t" <c:out value="${cri.searchType eq 't' ? 'selected' : ''}"/>>채용 공고</option>
+                            <option value="r" <c:out value="${cri.searchType eq 'r' ? 'selected' : ''}"/>>채용 분야</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control box-line" name="keyword" id="keywordInput" value="${cri.keyword}" placeholder="검색어를 입력해주세요.">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary btn-flat" id="searchBtn">
+                                    <i class="fa fa-search"></i> 검색하기
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+<%--                     <div class="form-group col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="keyword" id="keywordInput" value="${cri.keyword}" placeholder="검색어">
+                             <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary btn-flat" id="searchBtn">
+                                    <i class="fa fa-search"></i> 검색
+                                </button>
+                            </span>
+                            
+                        </div>
+                    </div> --%>
+                </div>
 
 				<div class="row">
 				<c:if test="${pageMaker.cri.page == 1  and empty pageMaker.cri.searchType and empty pageMaker.cri.keyword and (!empty rec_jobOpening || !empty rec_jobOpening2)}">
 					<!-- 추천 공고 -->
 					<div class="col-lg-6 mt-4 pointer">
-						<div class="member d-flex align-items-start" data-aos="zoom-in"
+						<div class="member d-flex align-items-start box-line" data-aos="zoom-in"
 								data-aos-delay="100">
 							<div class="pic">
 									<img src="${rec_jobOpening.company.logo_url }" class="img-fluid" alt="">
@@ -65,7 +96,7 @@ value="${pageContext.request.contextPath}" />
 						</div>
 					<!-- 추천 공고2 -->
 					<div class="col-lg-6 mt-4 pointer">
-						<div class="member d-flex align-items-start" data-aos="zoom-in"
+						<div class="member d-flex align-items-start box-line" data-aos="zoom-in"
 								data-aos-delay="100">
 							<div class="pic">
 									<img src="${rec_jobOpening2.company.logo_url }" class="img-fluid" alt="">
@@ -88,7 +119,7 @@ value="${pageContext.request.contextPath}" />
 				<!-- 전체 공고  -->
 					<c:forEach var="item" items="${result_total}">
 						<div class="col-lg-6 pointer mt-4">
-							<div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100" style="height: 100%;">
+							<div class="member d-flex align-items-start box-line" data-aos="zoom-in" data-aos-delay="100" style="height: 100%;">
 								<div class="pic">
 									<img src="${item.company.logo_url }" class="img-fluid" alt="">
 								</div>
@@ -116,8 +147,40 @@ value="${pageContext.request.contextPath}" />
 					</c:forEach>
 				</div>
  				<%--페이징 처리 영역--%>
+						<div class="btn-position">
+							<div class="btn-group" role="group" aria-label="Basic example" style="margin: 0 auto;">
+                                <c:if test="${pageMaker.prev}">
+                                    <li>
+                                        <a href="${path}/jobOpening.do?page=${pageMaker.startPage - 1}">
+                                         	<button type="button" class="btn btn-primary p-btn">
+                                         		<i class="bi bi-caret-left-fill"></i>
+                                         	</button>
+                                        </a>
+                                    </li>
+                                </c:if>
+							
+                                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                                    <li <c:out value="${pageMaker.cri.page == idx? 'class=active':''}"/>>
+                                         <a href="${path}/jobOpening.do${pageMaker.makeSearch(idx)}">
+                                         	<button type="button" class="btn btn-primary p-btn">${idx}</button>
+                                       	</a>
+                                    </li>
+                                </c:forEach>
+                                
+                                <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+                                    <li>
+                                        <a href="${path}/jobOpening.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">
+                             	            <button type="button" class="btn btn-primary p-btn" >
+                                         		<i class="bi bi-caret-right-fill"></i>
+                                         	</button>
+                                        </a>
+                                    </li>
+                                </c:if>
+							</div>
+						</div>
+						
                         <!-- <div class="text-center"> -->
-                        <div class="btn-group me-2 bpos" role="group" aria-label="First group">
+<%--                         <div class="btn-group me-2 bpos" role="group" aria-label="First group">
                             <ul class="pagination">
                             <!-- 이전  -->
                                 <c:if test="${pageMaker.prev}">
@@ -128,7 +191,7 @@ value="${pageContext.request.contextPath}" />
                                 <!-- 페이지블럭 -->
                                 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
                                     <li <c:out value="${pageMaker.cri.page == idx? 'class=active':''}"/>>
-                                       <%--  <a href="${path}/jobOpening.do?page=${idx}">${idx}</a> --%>
+                                        <a href="${path}/jobOpening.do?page=${idx}">${idx}</a>
                                    		<a href="${path}/jobOpening.do${pageMaker.makeSearch(idx)}">${idx}</a>
                                     </li>
                                     </li>
@@ -137,38 +200,11 @@ value="${pageContext.request.contextPath}" />
                                 <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
                                     <li>
                                     <a href="${path}/jobOpening.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">[다음]</a>
-                                        <%-- <a href="${path}/jobOpening.do?page=${pageMaker.endPage + 1}">[다음]</a> --%>
+                                        <a href="${path}/jobOpening.do?page=${pageMaker.endPage + 1}">[다음]</a>
                                     </li>
                                 </c:if>
                             </ul>
-                        </div>
-                      <%--검색 처리 영역--%>
-	                    <div class="box-footer">
-	                        <div class="form-group col-sm-2">
-	                            <select class="form-control" name="searchType" id="searchType">
-	                                <option value="n" <c:out value="${cri.searchType == null ? 'selected' : ''}"/>>:::::: 선택 ::::::</option>
-	                                <option value="c" <c:out value="${cri.searchType eq 'c' ? 'selected' : ''}"/>>회사명</option>
-	                                <option value="d" <c:out value="${cri.searchType eq 'd' ? 'selected' : ''}"/>>기업 구분</option>
-	                                <option value="i" <c:out value="${cri.searchType eq 'i' ? 'selected' : ''}"/>>산업 분야</option>
-	                                <option value="t" <c:out value="${cri.searchType eq 't' ? 'selected' : ''}"/>>채용 공고</option>
-	                                <option value="r" <c:out value="${cri.searchType eq 'r' ? 'selected' : ''}"/>>채용 분야</option>
-	                            </select>
-	                        </div>
-	                        <div class="form-group col-sm-10">
-	                            <div class="input-group">
-	                                <input type="text" class="form-control" name="keyword" id="keywordInput" value="${cri.keyword}" placeholder="검색어">
-	                                 <span class="input-group-btn">
-	                                    <button type="button" class="btn btn-primary btn-flat" id="searchBtn">
-	                                        <i class="fa fa-search"></i> 검색
-	                                    </button>
-	                                </span>
-	                                
-	                            </div>
-	                        </div>
-	                    </div>
-                        
-                        
-                        
+                        </div>     --%>                    
                         
 			</div>
 		</section>

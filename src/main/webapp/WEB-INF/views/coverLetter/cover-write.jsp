@@ -17,16 +17,18 @@
 
 	<main id="main">
 
-		<div class="footer-newsletter pt150">
-			<div class="container">
+		<div class="footer-newsletter sec-pt">
+			<div class="container" data-aos="fade-up">
 				<div class="row justify-content-center">
 					<div class="col-lg-6">
-						<h4>AI 자기소개서</h4>
-						<p>키워드를 입력하시면 AI가 문장을 완성해드립니다.</p>
+						<div class="section-title">
+							<h2>AI 자기소개서</h2>
+							<p>키워드를 입력하시면 AI가 문장을 완성해드립니다.</p>
+						</div>
 						<form action="" method="post" class="bradius">
-							<input type="text" id="keyword" name="keyword" placeholder="EX) 팀워크",
+							<input type="text" id="keyword" name="keyword" placeholder="예) 팀워크"
 								style="width: calc(100% - 100px);">
-							<button id="search" type="button">Search</button>
+							<button id="search" type="button">검색하기</button>
 						</form>
 					</div>
 				</div>

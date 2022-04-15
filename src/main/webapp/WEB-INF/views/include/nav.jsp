@@ -3,14 +3,14 @@
 <% String active = request.getParameter("active"); %>
 	
 <header id="header" class="fixed-top ">
-	<div class="container d-flex align-items-center">
+	<div class="container d-flex position-r">
 
 		<h1 class="logo me-auto">
 			<a href="main.do">IT's JOB</a>
 		</h1>
 <% String s = (String) session.getAttribute("SID");%>
 <% String s2 = "admin"; %>
-		<nav id="navbar" class="navbar nav1">
+		<nav id="navbar" class="navbar nav1 navpos">
 			<ul class="user_data navShow">
 				<% if (s == null){%>
 				<li><a class="nav-link" href="signup.do">Join</a></li>
@@ -19,7 +19,7 @@
 				<li><a class="nav-link" href="signout.do">Logout</a></li>
 				<li><a class="nav-link" href="admin.do">Admin</a></li>
 				<%} else{ %>
-				<li style="color:white"><%= s %> 님 환영합니다!</li>
+				<li class="welcome" style="color:white"><%= s %> 님 환영합니다!</li>
 				<li><a class="nav-link" href="signout.do">Logout</a></li>
 				<li><a class="nav-link" href="mypage.do">MyPage</a></li>
 				<%} %>
@@ -29,10 +29,10 @@
 		<nav id="navbar" class="navbar nav2">
 			<ul class="main_nav">
 				<li><a class="nav-link scrollto active"
-					href="main.do">Home</a></li>
+					href="main.do">홈</a></li>
 				<li class="dropdown">
 				<a href="company.do"><span>기업</span>
-						<i class="bi bi-chevron-down"></i></a>
+						<i class="bi bi-caret-down-fill"></i></a>
 					<ul>
 						<li>
 							<a href="company.do">
@@ -47,7 +47,7 @@
 				</li>
 				<li class="dropdown"><a
 					href="coverAnalyze.do"><span>자기소개서</span>
-						<i class="bi bi-chevron-down"></i></a>
+						<i class="bi bi-caret-down-fill"></i></a>
 					<ul>
 						<li>
 						<a href="coverAnalyze.do">

@@ -9,7 +9,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-	font-family: "Open Sans", sans-serif;
+/* 	font-family: "Open Sans", sans-serif; */
 	color: #444444;
 }
 
@@ -113,7 +113,8 @@ h1, h2, h3, h4, h5, h6 {
 #header {
 	transition: all 0.5s;
 	z-index: 997;
-	padding: 30px 0;
+	height: 100px;
+/* 	padding: 30px 0; */
 	background: #2e4469;
 /* 	background: rgba(40, 58, 90, 0.9); */
 }
@@ -126,7 +127,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 30px;
 	margin: 0;
 	padding: 0;
-	line-height: 1;
+	line-height: 100px;
 	font-weight: 500;
 	letter-spacing: 2px;
 	text-transform: uppercase;
@@ -149,19 +150,19 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
 	padding: 0;
 }
-
+/* 
 .nav1 {
-	position: absolute;
-	top: 0;
-	right: 8.2%;
-}
+	letter-spacing: 1.1px;
+} */
 
 .nav2 {
 	/* width: 600px; */
 	position: absolute;
-	bottom: 10px;
+	bottom: 8px;
 	right: 50%;
-	margin-right: -300px;
+	margin-right: -227px;
+	font-family: 'Noto Sans KR', sans-serif;
+	letter-spacing: 1.5px;
 }
 
 .navbar ul {
@@ -173,7 +174,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar ul.user_data a {
-	font-size: 12px;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.navbar ul.user_data .welcome {
+	font-size: 14px;
+	font-weight: 300;
+	font-family: 'Noto Sans KR', sans-serif;
+	letter-spacing: 1.2px;
 }
 
 .navbar li {
@@ -185,15 +194,20 @@ h1, h2, h3, h4, h5, h6 {
 	align-items: center;
 	justify-content: space-between;
 	padding: 10px 0 10px 30px;
-	font-size: 15px;
+	font-size: 16px;
 	font-weight: 500;
 	color: #fff;
 	white-space: nowrap;
 	transition: 0.3s;
 }
 
+.f_nav a{
+	padding: 10px 0 0 30px!important;
+}
+
 .main_nav a {
 	padding: 0 50px;
+	font-weight: 400;
 }
 
 .navbar a i, .navbar a:focus i {
@@ -223,12 +237,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar .dropdown ul {
+	width: 160px;
 	display: block;
 	position: absolute;
 	left: 14px;
-	top: calc(100% + 30px);
+/* 	top: calc(100% + 30px); */
+	letter-spacing: 1px;
+	top: 37px!important;
 	margin: 0;
-	padding: 10px 0;
+	padding: 10px;
 	z-index: 99;
 	opacity: 0;
 	visibility: hidden;
@@ -239,15 +256,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar .dropdown ul li {
-	min-width: 200px;
+	min-width: 160px;
+	text-align: center;
 }
 
 .navbar .dropdown ul a {
 	padding: 10px 20px;
 	font-size: 14px;
+/* 		font-weight: 600; */
 	text-transform: none;
 	font-weight: 500;
-	color: #0c3c53;
+/* 	color: #0c3c53; */
+	color: #8f8f8f;
 }
 
 .navbar .dropdown ul a i {
@@ -261,7 +281,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar .dropdown:hover>ul {
 	opacity: 1;
-	top: 100%;
+/* 	top: 100%; */
 	visibility: visible;
 }
 
@@ -529,7 +549,7 @@ h1, h2, h3, h4, h5, h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-	padding: 60px 0;
+	padding: 70px 0;
 	overflow: hidden;
 }
 
@@ -538,8 +558,9 @@ section {
 }
 
 .section-title {
+	font-family: 'Noto Sans KR', sans-serif;
 	text-align: center;
-	padding-bottom: 30px;
+	padding-bottom: 40px;
 }
 
 .section-title h2 {
@@ -576,6 +597,8 @@ section {
 
 .section-title p {
 	margin-bottom: 0;
+	color: #8f8f8f;
+	letter-spacing: 1.1px;
 }
 
 /*--------------------------------------------------------------
@@ -1049,8 +1072,13 @@ section {
 	padding-top: 40px;
 }
 
+.portfolio-details .imgpos {
+	padding: 100px 25px;
+}
+
 .portfolio-details .portfolio-details-slider img {
-	width: 100%;
+	width: 80%;
+	
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination {
@@ -1075,6 +1103,7 @@ section {
 .portfolio-details .portfolio-info {
 	padding: 20px;
 	box-shadow: 0px 0 30px rgba(55, 81, 126, 0.08);
+	border: 1px solid #ddd;
 }
 
 .portfolio-details .portfolio-info h3 {
@@ -1089,6 +1118,23 @@ section {
 	list-style: none;
 	padding: 0;
 	font-size: 15px;
+}
+
+.portfolio-details .portfolio-info:after {
+	content: "";
+	display: block;
+	clear: both;	
+}
+
+.portfolio-details .portfolio-info .cinfo1 {
+	width: 350px;
+	float: left;
+}
+
+.portfolio-details .portfolio-info .cinfo2 {
+	width: 350px;
+	margin-left: 30px;
+	float: left;
 }
 
 .portfolio-details .portfolio-info ul li+li {
@@ -1124,10 +1170,12 @@ section {
 .team .member .pic {
 	overflow: hidden;
 	width: 180px;
-	border-radius: 50%;
+	padding: 30px 0;
+/* 	border-radius: 50%; */
 }
 
-.team .member .pic img {
+
+.team .member .pic img, .team .member .com-logo img {
 	transition: ease-in-out 0.3s;
 }
 
@@ -1137,6 +1185,7 @@ section {
 
 .team .member .member-info {
 	padding-left: 30px;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .team .member h4 {
@@ -1144,6 +1193,7 @@ section {
 	margin-bottom: 5px;
 	font-size: 20px;
 	color: #37517e;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .team .member span {
@@ -1204,6 +1254,30 @@ section {
 
 .team .member .social a+a {
 	margin-left: 8px;
+}
+
+.team .member .social .c-red {
+	color: red;
+}
+
+.team .member .social .c-green {
+	color: green;
+}
+
+.team .member .social .c-blue {
+	color: blue;
+}
+
+.team .member .social .c-yellow {
+	color: yellow;
+}
+
+.team .member .social .c-black {
+	color: black;
+}
+
+.team .member .social .c-red {
+	color: red;
 }
 
 /*--------------------------------------------------------------
@@ -1708,7 +1782,8 @@ section {
 	bottom: 0;
 	border: 0;
 	background: none;
-	font-size: 16px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 14px;
 	padding: 0 20px;
 /* 	background: #47b2e4; */
 	background: #2e4469;
@@ -1819,23 +1894,102 @@ section {
 }
 
 #footer .footer-bottom {
-	padding-top: 30px;
-	padding-bottom: 30px;
-	color: #fff;
+	padding: 15px 0;
+/* 	color: #fff; */
+	color: rgb(175, 175, 175);
 }
 
-#footer .copyright {
+#footer .f_logo{
 	float: left;
 }
 
+#footer .f_logo a{
+	font-size: 25px;
+	color: rgb(175, 175, 175);
+    text-transform: uppercase;
+}
+
+#footer .f_info{
+	float: left;
+	padding: 0 200px;
+}
+
+#footer .f_info>div>ul>li:first-child a{
+	font-weight: bold!important;
+	color: #47b2e4;
+}
+
+#footer .f_info>div>ul>li:nth-child(3) a, 
+#footer .f_info>div>ul>li:nth-child(5) a{
+	color: #fff;
+}
+
+#footer .f_info>div>ul>li a{
+	color: rgb(175, 175, 175);
+}
+
+#footer .copyright {
+/* 	line-height: 44px; */
+	margin-left: 30px;
+	margin-top: 5px;
+	font-size: 13px;
+}
+#footer .copyright a{
+	font-family: "Jost", sans-serif;
+    text-transform: uppercase;
+}
+
 #footer .credits {
+/* 	width: 200px; */
 	float: right;
 	padding-left: .5rem;
 	font-size: 13px;
+	margin-top: 5px;
+/* 	width: 150px; */
+}
+
+#footer .credits>div{
+	height: 80px;	
+	float: left;
+}
+
+#footer .credits p{
+	float: left;
+	line-height: 44px;
+/* 	display: inline;
+	position: absolute;
+	bottom: 0; */
+}
+
+#footer .credits p.kr{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 13px;
+	font-weight: 100;
 }
 
 #footer .credits a {
 	transition: 0.3s;
+	float: left;
+	margin-left: 15px;
+}
+#footer .credits a.github{
+	margin-top: 3px;
+	margin-left: 15px;
+}
+
+#footer .credits i {
+	font-size: 25px;
+	color: #fff;
+}
+
+#footer .credits .goyong img{
+	width: 26px;
+	margin-top: 7px;
+}
+
+#footer .credits .kosa img{
+	width: 60px;
+	margin-top: 7px;
 }
 
 @media ( max-width : 768px) {
@@ -1853,20 +2007,54 @@ section {
 }
 
 /* -------------------------------------------------------------------- */
+#sidebar .nav .nav-item span{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 .pt80 {
 	padding: 80px 0;
 }
 
-.pt150 {
-	padding-top: 150px;
+.sec-pt {
+	padding-top: 180px;
+}
+
+.sec-pt2 {
+	padding-top: 80px;
 }
 
 .bred {
 	border: 1px solid red;
 	box-sizing: border-box;
-	
-
 }
+.b-white {
+	background: #fff;
+}
+
+.history{
+	position: relative;
+}
+
+.history a {
+	font-size : 48px;
+	position: absolute;
+	right:0;
+}
+
+.position-r{
+	position: relative;
+}
+.navpos{
+	margin-left: auto!important;
+	padding-bottom: 50px;
+/* 	position: absolute;
+	top:0; */
+}
+.bmt{
+	margin-top: 40px!important;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 /* ---회원가입 경고문---- */
 .fs-p {
 	font-size: 10px;
@@ -1910,8 +2098,20 @@ section {
 	cursor: pointer;
 }
 
+.box-line {
+    border: 1px solid #ddd!important;
+}
+
+textarea, #name, #identification, #password, #rePassword, #email, #phone {
+    border: 1px solid #ddd!important;
+}
+
 .pb100 {
 	padding-bottom: 100px;
+}
+
+.mt40 {
+	margin-top: 40px;
 }
 
 .mauto {
@@ -1940,15 +2140,34 @@ section {
 }
 .btn-position{
 	width: 100%;
-	padding: 20px 300px;
+	padding: 60px 200px;
 }
-.bradius{
-	margin-top: 30px;
-	border-radius: 50px;
+.btn-position .btn-group li{
+	list-style:none;
 }
 
-textarea::placeholder {
-  color: #000;
+.btn-position .btn-group li .p-btn:active {
+    background-color: #4869a1 !important;
+    border-color: #4869a1 !important;
+}
+
+.bradius{
+	border-radius: 50px;
+	border: 1px solid #ddd;
+	box-sizing: border-box!important;
+}
+
+.bradius #search:hover {
+	background: #209dd8;
+}
+.grey{
+	background: #f3f5fa;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #8f8f8f;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
 }
 
 .sentence, .predict_q {
@@ -1968,4 +2187,19 @@ textarea::placeholder {
 
 #cover_save:hover {
 	background: #209dd8;
+}
+
+
+/* ----- 기업정보 검색창 ----- */
+
+.box-footer:after {
+	content:"";
+	display: block;
+	clear: both;
+}
+.box-footer>div {
+	float: left;
+}
+.box-footer>div:first-child{
+	margin-left: 200px;
 }

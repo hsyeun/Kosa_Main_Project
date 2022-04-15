@@ -32,28 +32,28 @@
 
 				<!-- partial -->
 				<!-- partial:partials/_sidebar.html -->
-				<nav class="sidebar sidebar-offcanvas" id="sidebar">
+				<nav class="sidebar sidebar-offcanvas box-line" id="sidebar">
 					<ul class="nav">
 						<li class="nav-item"><a class="nav-link" href="admin.do">
 								<i class="typcn typcn-device-desktop menu-icon"></i> <span
-								class="menu-title">Member</span>
+								class="menu-title">회원 관리</span>
 						</a></li>
 						<li class="nav-item">
 							<a class="nav-link" href="admin-statistics.do"> 
 								<i class="typcn typcn-chart-pie-outline menu-icon"></i> 
-								<span class="menu-title">Statistics</span>
+								<span class="menu-title">통계</span>
 							</a>
 						</li>
-						<li class="nav-item">
+<!-- 						<li class="nav-item">
 							<a class="nav-link" href="admin-log.do"> 
 								<i class="typcn typcn-compass menu-icon"></i> 
 								<span class="menu-title">Log</span>
 							</a>
-						</li>
+						</li> -->
 						<li class="nav-item">
 							<a class="nav-link" href="admin-query.do"> 
 								<i class="typcn typcn-document-text menu-icon"></i> 
-								<span class="menu-title">Query</span>
+								<span class="menu-title">챗봇 관리</span>
 							</a>
 						</li>
 					</ul>

@@ -36,22 +36,26 @@
 					<ul class="nav">
 						<li class="nav-item"><a class="nav-link" href="mypage.do">
 								<i class="typcn typcn-user-add-outline menu-icon"></i> <span
-								class="menu-title">Edit Profile</span>
+								class="menu-title">프로필 수정</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="mypage-resume.do"> <i
-								class="typcn typcn-mortar-board menu-icon"></i> <span
-								class="menu-title">Resume</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="mypage-coverletter.do"> <i
-								class="typcn typcn-document-text menu-icon"></i> <span
-								class="menu-title">Cover Letter</span>
-						</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="mypage-delete.do"> <i
-								class="typcn typcn-device-desktop menu-icon"></i> <span
-								class="menu-title">Delete Account</span>
-						</a></li>
+						<li class="nav-item">
+							<a class="nav-link" href="mypage-resume.do"> 
+								<i class="typcn typcn-mortar-board menu-icon"></i> 
+								<span class="menu-title">이력서 관리</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="mypage-coverletter.do"> 
+								<i class="typcn typcn-document-text menu-icon"></i> 
+								<span class="menu-title">자기소개서 관리</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="mypage-delete.do"> 
+								<i class="typcn typcn-device-desktop menu-icon"></i> 
+								<span class="menu-title">회원 탈퇴</span>
+							</a>
+						</li>
 					</ul>
 				</nav>
 				<!-- partial -->

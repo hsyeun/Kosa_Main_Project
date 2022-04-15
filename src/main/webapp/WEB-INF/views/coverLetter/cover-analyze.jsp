@@ -18,7 +18,7 @@
 	<main id="main">
 
 		<!-- 분석 -->
-		<section id="contact" class="contact  pt150">
+		<section id="contact" class="contact sec-pt grey">
 			<div class="container" data-aos="fade-up">
 
 				<div class="section-title">
@@ -30,42 +30,53 @@
 				
 
 				<div id="analyze"
-					class="col-lg-9 mt-5 mt-lg-0 d-flex align-items-stretch mauto">
+					class="col-lg-9 d-flex align-items-stretch mauto">
 					<form action="forms/contact.php" method="post" role="form"
 						class="php-email-form">
 
 						<div class="form-group">
-							<textarea class="form-control" rows="1" id="coverEx" placeholder="EX) 장단점을 말해보세요" required></textarea>
+							<textarea class="form-control box-line" rows="1" id="coverEx" placeholder="예) 장단점을 말해보세요" required></textarea>
 						</div>
 
 					</form>
 				</div>
 				
-				<div class="container">
-					<div
-						class="col-lg-12 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1 btn"
-						data-aos="fade-up" data-aos-delay="200">
-						<div class="d-flex justify-content-center right">
-<!-- 							<a href="#" class="loading"><span>불러오기</span></a> -->
-								<button class="btn-get-started scrollto" id="clickEx">Click</button>
-						</div>
-					</div>
-
+				<!-- 버튼 -->
+				<div class="text-center">
+					<button type="button" id="cover_save" class="bmt">검색하기</button>
 				</div>
 
 			</div>
 		</section>
 
 		<!-- 결과 -->
-		<div class="footer-newsletter">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6">
-						<h4>예시 보기</h4>
-					</div>
+		<section id="contact" class="contact">
+			<div class="container" data-aos="fade-up">
+			
+				<div class="section-title">
+					<h2>예시 보기</h2>
 				</div>
 
-				<section id="portfolio-details" class="portfolio-details">
+				<div id="contact" class="contact">
+						<div id="analyze"
+							class="col-lg-9 mt-5 mt-lg-0 d-flex align-items-stretch mauto">
+							<form action="forms/contact.php" method="post" role="form"
+								class="php-email-form">
+								<ul id="sentence-ul">
+								</ul>
+								
+
+								<div class="form-group" id="result_hide">
+									<textarea class="form-control" name="message" rows="10" 
+									placeholder="생성 결과가 나타납니다." style="text-align: center;"
+										required></textarea>
+								</div>
+
+							</form>
+						</div>
+				</div>
+				
+<!-- 			<section id="portfolio-details" class="portfolio-details">
 					<div class="container">
 
 						<div class="col-lg-9 mauto">
@@ -76,9 +87,9 @@
 						</div>
 
 					</div>
-				</section>
+				</section> -->
 			</div>
-		</div>
+		</section>
 
 	</main>
 	<!-- End #main -->

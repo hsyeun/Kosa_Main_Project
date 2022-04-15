@@ -68,28 +68,28 @@ $(document).ready(function() {
 
 				<!-- partial -->
 				<!-- partial:partials/_sidebar.html -->
-				<nav class="sidebar sidebar-offcanvas" id="sidebar">
+				<nav class="sidebar sidebar-offcanvas box-line" id="sidebar">
 					<ul class="nav">
 						<li class="nav-item"><a class="nav-link" href="mypage.do">
 								<i class="typcn typcn-user-add-outline menu-icon"></i> <span
-								class="menu-title">Edit Profile</span>
+								class="menu-title">프로필 수정</span>
 						</a></li>
 						<li class="nav-item">
 							<a class="nav-link" href="mypage-resume.do"> 
 								<i class="typcn typcn-mortar-board menu-icon"></i> 
-								<span class="menu-title">Resume</span>
+								<span class="menu-title">이력서 관리</span>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="mypage-coverletter.do"> 
 								<i class="typcn typcn-document-text menu-icon"></i> 
-								<span class="menu-title">Cover Letter</span>
+								<span class="menu-title">자기소개서 관리</span>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="mypage-delete.do"> 
 								<i class="typcn typcn-device-desktop menu-icon"></i> 
-								<span class="menu-title">Delete Account</span>
+								<span class="menu-title">회원 탈퇴</span>
 							</a>
 						</li>
 					</ul>
@@ -113,7 +113,7 @@ $(document).ready(function() {
 						</div>
 						<!-- floatingText -->
 						<div class="form-floating mb-2 h60 clearfix">
-							<input type="id" class="form-control form-w fl"
+							<input type="id" class="form-control fl"
 								id="floatingInput" placeholder="abc123" value="${DATA.identification}" disabled> <label
 								for="floatingInput">ID</label>
 						</div>

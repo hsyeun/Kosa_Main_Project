@@ -21,7 +21,7 @@ value="${pageContext.request.contextPath}" />
 	<main id="main">
 
 		<!-- ======= Team Section ======= -->
-		<section id="breadcrumbs" class="breadcrumbs">
+<%-- 		<section id="breadcrumbs" class="breadcrumbs">
 			<div class="container">
 
 				<ol>
@@ -32,17 +32,22 @@ value="${pageContext.request.contextPath}" />
 				<h2>기업 정보</h2>
 
 			</div>
-		</section>
+		</section> --%>
 		<!-- End Breadcrumbs -->
-
+		
 		<!-- ======= Portfolio Details Section ======= -->
-		<section id="portfolio-details" class="portfolio-details">
+		<section id="portfolio-details" class="portfolio-details sec-pt">
 			<div class="container">
-
+				<div class="row justify-content-center">
+					<div class="col-lg-6">
+						<div class="section-title">
+							<h2>기업 세부 정보</h2>
+						</div>
+					</div>
+				</div>
+				
 				<div class="row gy-4">
-
-
-					<div class="col-lg-8">
+					<div class="col-lg-3 imgpos">
 						<div class="portfolio-details-slider swiper-container">
 
 							<div class="swiper-slide">
@@ -52,16 +57,18 @@ value="${pageContext.request.contextPath}" />
 						</div>
 					</div>
 
-					<div class="col-lg-4">
+					<div class="col-lg-9">
 						<div class="portfolio-info">
 							<h3>${items.name }</h3>
-							<ul>
+							<ul class="cinfo1">
 								<li><strong>산업번호</strong>: ${items.i_index }</li>
 								<li><strong>산업</strong>: ${items.industry.title }</li>
 								<li><strong>사원수</strong>: ${items.headcount } 명</li>
 								<li><strong>기업구분</strong>: ${items.division }</li>
 								<li><strong>홈페이지</strong>: <a href=${items.url}>${items.url}</a></li>
 								<li><strong>설립일</strong>: ${items.found_date }</li>
+							</ul>
+							<ul class="cinfo2">
 								<li><strong>자본금</strong>: ${items.capital }</li>
 								<li><strong>매출액</strong>: ${items.sales }</li>
 								<li><strong>대표자</strong>: ${items.ceo }</li>
@@ -82,7 +89,7 @@ value="${pageContext.request.contextPath}" />
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<button class="nav-link active" id="nav-home-tab"
 						data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
-						role="tab" aria-controls="nav-home" aria-selected="true">기업정보</button>
+						role="tab" aria-controls="nav-home" aria-selected="true">합격 스펙 정보</button>
 					<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
 						data-bs-target="#nav-profile" type="button" role="tab"
 						aria-controls="nav-profile" aria-selected="false">채용정보</button>
@@ -187,6 +194,11 @@ value="${pageContext.request.contextPath}" />
 					</div> 
 				</div>
 			<!-- end:채용정보 -->
+			
+				<div class="history">
+					<a href="javascript:history.go(-1)"><i class="bi bi-arrow-left-circle-fill"></i></a> <!-- 이전 목록페이지로 이동 -->
+				</div>
+			
 
 			</div>
 		</div>

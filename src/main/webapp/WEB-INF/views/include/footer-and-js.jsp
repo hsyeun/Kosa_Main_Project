@@ -5,16 +5,32 @@
 <footer id="footer">
 
 	<div class="container footer-bottom clearfix">
-		<div class="copyright">
-			&copy; Copyright <strong><span>IT's JOB</span></strong>. All Rights
-			Reserved
+		<div class="f_logo">
+			<h1 class="logo me-auto">
+				<a href="main.do">IT's JOB</a>
+			</h1>
+		</div>
+		<div class="f_info">
+			<div id="navbar" class="navbar nav1 f_nav">
+				<ul class="user_data navShow">
+					<li><a class="nav-link" href="#">개인정보처리방침</a></li>
+					<li><a class="nav-link">|</a></li>
+					<li><a class="nav-link" href="#">홈페이지 이용약관</a></li>
+					<li><a class="nav-link">|</a></li>
+					<li><a class="nav-link" href="#">비회원 이용약관</a></li>
+				</ul>
+			</div>
+			<div class="copyright">
+				&copy; Copyright <a href="main.do"><strong>IT's JOB</strong></a>. All Rights
+				Reserved
+			</div>		
 		</div>
 		<div class="credits">
-			<!-- All the links in the footer should remain intact. -->
-			<!-- You can delete the links only if you purchased the pro version. -->
-			<!-- Licensing information: https://bootstrapmade.com/license/ -->
-			<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
-			Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+			<p class="kr">관련 사이트 : </p>
+			<a href="https://github.com/hsyeun/Kosa_Main_Project.git" target='_blank' class="github"><i class="bi bi-github"></i></a>
+			<a href="https://www.moel.go.kr/index.do" target='_blank' class="goyong"><img src="${pageContext.request.contextPath}/assets/img/goyong2-2.png" alt="" /></a>
+<%-- 			<a href="https://career.sw.or.kr/" target='_blank' class="kosa"><img src="${pageContext.request.contextPath}/assets/img/kosa2.png" alt="" /></a>
+			<a href="https://www.wisenut.com/" target='_blank' class="wisenut"><img src="${pageContext.request.contextPath}/assets/img/wisenut.png" alt="" /></a> --%>
 		</div>
 
 	</div>
