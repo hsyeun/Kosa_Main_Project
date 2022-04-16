@@ -49,45 +49,19 @@ value="${pageContext.request.contextPath}" />
                             <input type="text" class="form-control box-line" name="keyword" id="keywordInput" value="${cri.keyword}" placeholder="검색어를 입력해주세요.">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-primary btn-flat" id="searchBtn">
-                                    <i class="fa fa-search"></i> 검색하기
+                                    검색하기
                                 </button>
                             </span>
                         </div>
                     </div>
-
-<%--                     <div class="footer-newsletter">
-                 	<div class="container" data-aos="fade-up">
-                    <div class="row justify-content-center">
-					<div class="col-lg-6">
-					<form action="" class="bradius">
-						<input type="text" id="keyword" name="keyword" value="${cri.keyword}" placeholder="검색어를 입력하세요."
-							style="width: calc(100% - 100px);">
-						<button id="search" type="button">검색하기</button>
-					</form>
-					</div>
-					</div>
-					</div>
-					</div> --%>
-					
-<%--                     <div class="form-group col-sm-10">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="keyword" id="keywordInput" value="${cri.keyword}" placeholder="검색어">
-
-                                <button type="button" class="btn btn-primary btn-flat" id="searchBtn">
-                                    검색하기
-                                </button>
-
-                        </div>
-                    </div> --%>
-					
-                    
+					                  
                 </div>
 
 				<div class="row">
 				 <c:if test="${pageMaker.cri.page == 1 and empty pageMaker.cri.searchType and empty pageMaker.cri.keyword and (!empty rec_company || !empty rec_company2)}">
 					<!-- 추천 기업 -->
 					<div class="col-lg-6 mt-4 pointer">
-						<div class="member d-flex align-items-start box-line" data-aos="zoom-in"
+						<div class="member d-flex align-items-start box-line info-size" data-aos="zoom-in"
 							data-aos-delay="100">
 							<div class="pic">
 								<!-- <img src="/demo/src/main/webapp/resources/img/team/team-1.jpg"
@@ -101,7 +75,7 @@ value="${pageContext.request.contextPath}" />
 								<%-- <p>${item.index}</p> --%>
 								<p>${rec_company.ind_detail }</p>
 								<div class="social">
-									<a href=""><i class="">추천기업</i></a> 
+									<div class="c-blue">추천기업</div>
 										
 								</div>
 			
@@ -109,8 +83,8 @@ value="${pageContext.request.contextPath}" />
 						</div>
 					</div>
 					<!-- 추천 기업2 -->
-					<div class="col-lg-6 mt-4 pointer">
-						<div class="member d-flex align-items-start box-line" data-aos="zoom-in"
+<%-- 					<div class="col-lg-6 mt-4 pointer">
+						<div class="member d-flex align-items-start box-line info-size" data-aos="zoom-in"
 							data-aos-delay="100">
 							<div class="pic">
 								<!-- <img src="/demo/src/main/webapp/resources/img/team/team-1.jpg"
@@ -121,22 +95,22 @@ value="${pageContext.request.contextPath}" />
 							<div class="member-info">
 								<h4><a class = "move" href="${path}/comDetail.do?index=${rec_company2.index}">${rec_company2.name }</a></h4>
 								<span>${rec_company2.division }</span>
-								<%-- <p>${item.index}</p> --%>
+								<p>${item.index}</p>
 								<p>${rec_company2.ind_detail }</p>
 								<div class="social">
-									<a href=""><i class="">추천기업</i></a> 
+									<div class="c-blue">추천기업</div>
 								
 
 								</div>
 			
 							</div>
 						</div>
-					</div>
+					</div> --%>
                   </c:if>
 				<!-- 기업 전체 리스트-->
 					<c:forEach var="item" items="${result_list}">
 					<div class="col-lg-6 mt-4 pointer">
-						<div class="member d-flex align-items-start box-line" data-aos="zoom-in"
+						<div class="member d-flex align-items-start box-line info-size" data-aos="zoom-in"
 							data-aos-delay="100">
 							<div class="pic">
 								<!-- <img src="/demo/src/main/webapp/resources/img/team/team-1.jpg"
@@ -176,39 +150,39 @@ value="${pageContext.request.contextPath}" />
 				</div>
 	
  				<%--페이징 처리 영역--%>
-						<div class="btn-position">
-							<div class="btn-group" role="group" aria-label="Basic example" style="margin: 0 auto;">
-                                <c:if test="${pageMaker.prev}">
-                                    <li>
-                                        <a href="${path}/company.do?page=${pageMaker.startPage - 1}">
-                                         	<button type="button" class="btn btn-primary p-btn">
-                                         		<i class="bi bi-caret-left-fill"></i>
-                                         	</button>
-                                        </a>
-                                    </li>
-                                </c:if>
-							
-                                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-                                    <li <c:out value="${pageMaker.cri.page == idx? 'class=active':''}"/>>
-                                         <a href="${path}/company.do${pageMaker.makeSearch(idx)}">
-                                         	<button type="button" class="btn btn-primary p-btn">${idx}</button>
-                                       	</a>
-                                    </li>
-                                </c:forEach>
-                                
-                                <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                                    <li>
-                                        <a href="${path}/company.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">
-                             	            <button type="button" class="btn btn-primary p-btn" >
-                                         		<i class="bi bi-caret-right-fill"></i>
-                                         	</button>
-                                        </a>
-                                    </li>
-                                </c:if>
-							</div>
-						</div>
+				<div class="btn-position">
+					<ul class="btn-group" role="group" aria-label="Basic example">
+	                    <%-- <c:if test="${pageMaker.prev}"> --%>
+                        <li>
+                            <a href="${path}/company.do?page=${pageMaker.startPage - 1}">
+                             	<button type="button" class="btn btn-primary p-btn paging-btn">
+                             		<i class="bi bi-caret-left-fill f13"></i>
+                             	</button>
+                            </a>
+                        </li>
+	                    <%-- </c:if> --%>
+	
+	                    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+	                        <li <c:out value="${pageMaker.cri.page == idx? 'class=active':''}"/>>
+	                             <a href="${path}/company.do${pageMaker.makeSearch(idx)}">
+	                             	<button type="button" class="btn btn-primary p-btn paging-btn">${idx}</button>
+	                           	</a>
+	                        </li>
+	                    </c:forEach>
+	                    
+                        <li>
+		                    <%-- <c:if test="${pageMaker.next && pageMaker.endPage > 0}"> --%>
+	                            <a href="${path}/company.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">
+	                 	            <button type="button" class="btn btn-primary p-btn paging-btn" >
+	                             		<i class="bi bi-caret-right-fill f13" ></i>
+	                             	</button>
+	                            </a>
+		                    <%-- </c:if> --%>
+                        </li>
+					</ul>
+				</div>
 
-                </div>
+            </div>
 		</section>
 		<!-- End Team Section -->
 

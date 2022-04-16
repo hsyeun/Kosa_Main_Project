@@ -64,7 +64,7 @@
 
 						<div class="row">
 							<div class="col-xl-6 grid-margin stretch-card flex-column">
-								<h5 class="mb-2 text-titlecase mb-4">자기소개서 관리</h5>
+								<h5 class="text-titlecase mb-1 kr-bold" style="margin-top:20px;">자기소개서 관리</h5>
 							</div>
 
 						</div>
@@ -92,7 +92,7 @@
 																	Edit <i class="typcn typcn-edit btn-icon-append"></i>
 																</button> -->
 																<button type="button"
-																	class="btn btn-danger btn-sm btn-icon-text" onclick="location.href='remove.do?uID=${user.identification}'">
+																	class="btn btn-danger btn-sm btn-icon-text kr-btn" onclick="location.href='remove.do?uID=${user.identification}'">
 																	Delete <i
 																		class="typcn typcn-delete-outline btn-icon-append"></i>
 																</button>

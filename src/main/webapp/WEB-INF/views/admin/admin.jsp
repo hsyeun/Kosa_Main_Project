@@ -64,7 +64,7 @@
 
 						<div class="row">
 							<div class="col-xl-6 grid-margin stretch-card flex-column">
-								<h5 class="mb-2 text-titlecase mb-4">Member management</h5>
+								<h5 class="text-titlecase mb-1 kr-bold" style="margin-top:20px;">회원 관리</h5>
 							</div>
 
 						</div>
@@ -113,13 +113,13 @@
 						</div>
 						<!-- end row -->
 
-						<div class="btn-position">
+<!-- 						<div class="btn-position">
 							<div class="btn-group" role="group" aria-label="Basic example" style="margin: 0 auto;">
 								<button type="button" class="btn btn-primary">1</button>
 								<button type="button" class="btn btn-primary">2</button>
 								<button type="button" class="btn btn-primary">3</button>
 							</div>
-						</div>
+						</div> -->
 
 					</div>
 				</div>

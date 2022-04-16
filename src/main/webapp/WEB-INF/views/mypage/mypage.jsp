@@ -97,14 +97,16 @@ $(document).ready(function() {
 				<!-- partial -->
 				<div class="main-panel">
 					<div class="content-wrapper">
+						<div class="row">
+							<div class="col-xl-6 grid-margin stretch-card flex-column">
+								<h5 class="text-titlecase mb-1 kr-bold" style="margin-top:20px;">회원 정보 수정</h5>
+							</div>
 
+						</div>
 						
 						<div class="row">
-					<div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
-						<div
-							class="d-flex align-items-center justify-content-between mb-3">
-							<h3>회원 정보 수정</h3>
-						</div>
+					    <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+						
 						
 						<form method="post" id="frm" name="frm" action="mypagePROC.do">
 						<div class="form-floating mb-2">
@@ -156,7 +158,7 @@ $(document).ready(function() {
 						</div>
 						</form>
 						
-						<button type="submit" class="btn btn-primary py-3 w-100 mb-4">수정완료</button>
+						<button type="submit" class="btn btn-primary py-3 w-100 mb-4 kr-btn">수정완료</button>
 					</div>
 				</div>
 						

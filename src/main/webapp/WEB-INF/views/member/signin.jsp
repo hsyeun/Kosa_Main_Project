@@ -31,13 +31,11 @@
 
 		<!-- Sign In Start -->
 		<div class="container-fluid">
-			<div class="row h-100 align-items-center justify-content-center"
-				style="min-height: 100vh;">
-				<div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-					<div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
-						<div
-							class="d-flex align-items-center justify-content-between mb-3">
-							<h3>로그인</h3>
+			<div class="row h-100 align-items-center justify-content-center">
+				<div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 sec-pt pb70">
+					<div class="bg-light rounded p-4 p-sm-5">
+						<div class="align-items-center justify-content-between mb40">
+							<h3 class="kr-bold m-center" style="color:#787878;">로그인</h3>
 						</div>
 
 						<form action="signinPROC.do" id="frm" name="frm" method="post">
@@ -45,25 +43,24 @@
 								<input type="text" name="identification" class="form-control" id="identification"
 									placeholder="Id"> <label for="identification">ID</label>
 							</div>
-							<div class="form-floating mb-4">
+							<div class="form-floating mb-3">
 								<input type="password" name="password" class="form-control" id="password"
 									placeholder="Password"> <label for="password">Password</label>
 							</div>
 
 							<div
-								class="d-flex align-items-center justify-content-between mb-4">
+								class="d-flex align-items-center justify-content-between mb-3">
 								<div class="form-check">
-									<input type="checkbox" class="form-check-input"
+									<input type="checkbox" class="form-check-input input-pos"
 										id="checkId" name="checkId"> 
-									<label class="form-check-label"
-										for="checkId">Check me out</label>
+									<label class="form-check-label kr"
+										for="checkId">아이디 저장</label>
 								</div>
-								<a href="forgotID.do">ID 찾기</a> <a href="forgotPW.do">PW 찾기</a>
 							</div>
-							<button type="submit" class="btn btn-primary py-3 w-100 mb-4"
-								id="sbtn">Sign In</button>
-							<p class="text-center mb-0">
-								아직 회원이 아니라면? <a href="signup.do">회원가입</a>
+							<button type="submit" class="btn btn-primary py-3 w-100 mb-4 kr-btn"
+								id="sbtn">접속하기</button>
+							<p class="text-center mb-0 kr">
+								아직 회원이 아니라면? &nbsp;<a href="signup.do" class="kr-500">회원가입</a>
 							</p>
 						</form>
 					</div>

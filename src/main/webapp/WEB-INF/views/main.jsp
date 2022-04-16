@@ -27,8 +27,9 @@
 				<div
 					class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
 					data-aos="fade-up" data-aos-delay="200">
-					<h1>For you who are busy</h1>
-					<h2>We provide AI services to help you find a job</h2>
+					<h1>Our greatest weakness lies in giving up.</h1>
+					<h2>The most certain way to succeed is always to try just one more time.</h2>
+					<h2>- Thomas Edison</h2>
 				</div>
 				<div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in"
 					data-aos-delay="200">
@@ -59,7 +60,7 @@
 				<div class="row">
 					<c:forEach var="item" items="${result_list}" begin="0" end="3">
 					<div class="col-lg-6 mt-4 pointer">
-						<div class="member d-flex align-items-start box-line" data-aos="zoom-in"
+						<div class="member d-flex align-items-start box-line info-size" data-aos="zoom-in"
 							data-aos-delay="100">
 							<div class="pic">
 								<img src="${item.logo_url }"

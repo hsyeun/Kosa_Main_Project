@@ -35,9 +35,15 @@ value="${pageContext.request.contextPath}" />
 		</section> --%>
 		<!-- End Breadcrumbs -->
 		
+		
 		<!-- ======= Portfolio Details Section ======= -->
 		<section id="portfolio-details" class="portfolio-details sec-pt">
 			<div class="container">
+			
+				<div class="history">
+					<a href="javascript:history.go(-1)"><i class="bi bi-arrow-left-circle-fill"></i></a> <!-- 이전 목록페이지로 이동 -->
+				</div>
+			
 				<div class="row justify-content-center">
 					<div class="col-lg-6">
 						<div class="section-title">
@@ -105,7 +111,7 @@ value="${pageContext.request.contextPath}" />
 					<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 						<div class="accordion-body">
 							<c:choose>
-								<c:when test="${empty spec}"><h6>[정보 없음] </h6> 
+								<c:when test="${empty spec}"><h6>&nbsp; </h6> 
 								</c:when> 
 								<c:otherwise>
 									<c:forEach var="specList" items="${spec}">
@@ -157,7 +163,7 @@ value="${pageContext.request.contextPath}" />
 					<c:choose>
 						<c:when test="${empty detail_list}"> 
 							<!-- 해당조건을 만족하는 경우 -->
-							<p>[공고없음]</p>
+							<p>&nbsp;</p>
 						</c:when> 
 						<c:otherwise>
 							<c:forEach var="jobList" items="${detail_list}">
@@ -168,11 +174,11 @@ value="${pageContext.request.contextPath}" />
 							
 								<c:set var = "progress" scope = "session" value = "${jobList.ongoing }"/>
 								<c:choose> 
-									<c:when test="${progress == 3}">[오늘마감]</c:when>
-									<c:when test="${progress == 2}">[채용중] </c:when>
-									<c:when test="${progress == 1}">[상시채용]</c:when>
-									<c:when test="${progress == 0}">[마감]</c:when>
-								</c:choose>채용공고 NO.${jobList.index }</button></h2>
+									<c:when test="${progress == 3}"><div class="c-red">[오늘마감]</div></c:when>
+									<c:when test="${progress == 2}"><div class="c-green">[채용중]</div></c:when>
+									<c:when test="${progress == 1}"><div class="c-blue">[상시채용]</div></c:when>
+									<c:when test="${progress == 0}"><div class="c-yellow">[채용마감]</div></c:when>
+								</c:choose>${jobList.title }</button></h2>
 								
 								<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 									<div class="accordion-body">
@@ -194,11 +200,7 @@ value="${pageContext.request.contextPath}" />
 					</div> 
 				</div>
 			<!-- end:채용정보 -->
-			
-				<div class="history">
-					<a href="javascript:history.go(-1)"><i class="bi bi-arrow-left-circle-fill"></i></a> <!-- 이전 목록페이지로 이동 -->
-				</div>
-			
+		
 
 			</div>
 		</div>

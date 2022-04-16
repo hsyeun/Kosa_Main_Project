@@ -28,21 +28,19 @@
 
 		<!-- Resume Start -->
 		<div class="container-fluid">
-			<div class="row h-100 align-items-center justify-content-center"
-				style="min-height: 100vh;">
-				<div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 pt80">
-					<div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
-						<div
-							class="d-flex align-items-center justify-content-between">
-							<h3 class="mb-5">이력서</h3>
+			<div class="row h-100 align-items-center justify-content-center">
+				<div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 sec-pt pb70">
+					<div class="bg-light rounded p-4 p-sm-5">					
+						<div class="align-items-center justify-content-between mb40">
+							<h3 class="kr-bold m-center" style="color:#787878;">이력서</h3>
 						</div>
 						
-						<form method="post" action="resumePROC.do"> 
+						<form method="post" id="frm" name="frm" action="resumePROC.do"> 
 						<div style="display:none;">
 							<% String s = (String) session.getAttribute("SID");%>
 							<input type="text" name="identification" value =<%= s %> readonly/>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="education"
 								aria-label="Floating label select example">
 								<option value="0">고졸</option>
@@ -52,7 +50,7 @@
 								<option value="4">박사</option>
 							</select> <label for="floatingSelect">학력</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="career"
 								aria-label="Floating label select example">
 								<option value="0">없음</option>
@@ -61,7 +59,7 @@
 								<option value="3">경력 2년 이상</option>
 							</select> <label for="floatingSelect">경력</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="grade"
 								aria-label="Floating label select example">
 								<option value="0">3.0 미만</option>
@@ -70,7 +68,7 @@
 								<option value="3">4.01 이상 4.5 미만</option>
 							</select> <label for="floatingSelect">학점</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="toeic"
 								aria-label="Floating label select example">
 								<option value="0">없음</option>
@@ -82,7 +80,7 @@
 								<option value="6">900 이상 </option>
 							</select> <label for="floatingSelect">토익</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="toeic_speak"
 								aria-label="Floating label select example">
 								<option value="0">없음</option>
@@ -94,7 +92,7 @@
 								<option value="6">Lv8</option>
 							</select> <label for="floatingSelect">토익스피킹</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="opic_grade"
 								aria-label="Floating label select example">
 								<option value="0">없음</option>
@@ -107,7 +105,7 @@
 								<option value="7">AL</option>
 							</select> <label for="floatingSelect">오픽</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="etc"
 								aria-label="Floating label select example">
 								<option value="0">없음</option>
@@ -116,7 +114,7 @@
 								<option value="3">3개 이상</option>
 							</select> <label for="floatingSelect">외국어(기타)</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="overseas_exp"
 								aria-label="Floating label select example">
 								<option value="0">없음</option>
@@ -124,7 +122,7 @@
 								<option value="2">2회 이상</option>
 							</select> <label for="floatingSelect">해외경험</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="intern"
 								aria-label="Floating label select example">
 								<option value="0">없음</option>
@@ -133,7 +131,7 @@
 								<option value="3">3회 이상</option>
 							</select> <label for="floatingSelect">인턴</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="prize"
 								aria-label="Floating label select example">
 								<option value="0">없음</option>
@@ -142,7 +140,7 @@
 								<option value="3">5회 이상</option>
 							</select> <label for="floatingSelect">수상내역</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<select class="form-select" id="floatingSelect" name="volunteer"
 								aria-label="Floating label select example">
 								<option value="0">없음</option>
@@ -151,7 +149,7 @@
 								<option value="3">5회 이상</option>
 							</select> <label for="floatingSelect">교내/사회/봉사</label>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-4">
 							<select class="form-select" id="floatingSelect" name="certificate"
 								aria-label="Floating label select example">
 								<option value="0">없음</option>
@@ -160,14 +158,17 @@
 								<option value="3">3개 이상</option>
 							</select> <label for="floatingSelect">자격증</label>
 						</div>
-							<button type="submit" class="btn btn-primary py-3 w-100 mb-4">가입완료</button>
+						
 						</form>
+						<button type="submit" class="btn btn-primary py-3 w-100 kr-btn">가입완료</button>
+						<p class="text-center mb-0 kr"> &nbsp; </p>
+
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- Resume End -->
-	</div>
+		</div>
 
 	<!-- Chatbot & Arrow UP -->
 	<jsp:include page="../include/chat-and-arrow.jsp">

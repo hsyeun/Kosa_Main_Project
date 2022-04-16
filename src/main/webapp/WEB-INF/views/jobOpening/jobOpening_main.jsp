@@ -52,7 +52,7 @@ value="${pageContext.request.contextPath}" />
                             <input type="text" class="form-control box-line" name="keyword" id="keywordInput" value="${cri.keyword}" placeholder="검색어를 입력해주세요.">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-primary btn-flat" id="searchBtn">
-                                    <i class="fa fa-search"></i> 검색하기
+                                    검색하기
                                 </button>
                             </span>
                         </div>
@@ -146,66 +146,41 @@ value="${pageContext.request.contextPath}" />
 						</div>
 					</c:forEach>
 				</div>
- 				<%--페이징 처리 영역--%>
-						<div class="btn-position">
-							<div class="btn-group" role="group" aria-label="Basic example" style="margin: 0 auto;">
-                                <c:if test="${pageMaker.prev}">
-                                    <li>
-                                        <a href="${path}/jobOpening.do?page=${pageMaker.startPage - 1}">
-                                         	<button type="button" class="btn btn-primary p-btn">
-                                         		<i class="bi bi-caret-left-fill"></i>
-                                         	</button>
-                                        </a>
-                                    </li>
-                                </c:if>
-							
-                                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-                                    <li <c:out value="${pageMaker.cri.page == idx? 'class=active':''}"/>>
-                                         <a href="${path}/jobOpening.do${pageMaker.makeSearch(idx)}">
-                                         	<button type="button" class="btn btn-primary p-btn">${idx}</button>
-                                       	</a>
-                                    </li>
-                                </c:forEach>
-                                
-                                <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                                    <li>
-                                        <a href="${path}/jobOpening.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">
-                             	            <button type="button" class="btn btn-primary p-btn" >
-                                         		<i class="bi bi-caret-right-fill"></i>
-                                         	</button>
-                                        </a>
-                                    </li>
-                                </c:if>
-							</div>
-						</div>
-						
-                        <!-- <div class="text-center"> -->
-<%--                         <div class="btn-group me-2 bpos" role="group" aria-label="First group">
-                            <ul class="pagination">
-                            <!-- 이전  -->
-                                <c:if test="${pageMaker.prev}">
-                                    <li>
-                                        <a href="${path}/jobOpening.do?page=${pageMaker.startPage - 1}">[이전]</a>
-                                    </li>
-                                </c:if>
-                                <!-- 페이지블럭 -->
-                                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-                                    <li <c:out value="${pageMaker.cri.page == idx? 'class=active':''}"/>>
-                                        <a href="${path}/jobOpening.do?page=${idx}">${idx}</a>
-                                   		<a href="${path}/jobOpening.do${pageMaker.makeSearch(idx)}">${idx}</a>
-                                    </li>
-                                    </li>
-                                </c:forEach>
-                                <!-- 다음 -->
-                                <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                                    <li>
-                                    <a href="${path}/jobOpening.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">[다음]</a>
-                                        <a href="${path}/jobOpening.do?page=${pageMaker.endPage + 1}">[다음]</a>
-                                    </li>
-                                </c:if>
-                            </ul>
-                        </div>     --%>                    
-                        
+ 				<%--페이징 처리 영역--%>						 						  
+  				<div class="btn-position">
+					<ul class="btn-group" role="group" aria-label="Basic example">
+	                    <%-- <c:if test="${pageMaker.prev}"> --%>
+                        <li>
+                            <a href="${path}/jobOpening.do?page=${pageMaker.startPage - 1}">
+                             	<button type="button" class="btn btn-primary p-btn paging-btn">
+                             		<i class="bi bi-caret-left-fill f13"></i>
+                             	</button>
+                            </a>
+                        </li>
+	                    <%-- </c:if> --%>
+	
+	                    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+	                        <li <c:out value="${pageMaker.cri.page == idx? 'class=active':''}"/>>
+	                             <a href="${path}/jobOpening.do${pageMaker.makeSearch(idx)}">
+	                             	<button type="button" class="btn btn-primary p-btn paging-btn">${idx}</button>
+	                           	</a>
+	                        </li>
+	                    </c:forEach>
+	                    
+                        <li>
+		                    <%-- <c:if test="${pageMaker.next && pageMaker.endPage > 0}"> --%>
+	                            <a href="${path}/jobOpening.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">
+	                 	            <button type="button" class="btn btn-primary p-btn paging-btn" >
+	                             		<i class="bi bi-caret-right-fill f13" ></i>
+	                             	</button>
+	                            </a>
+		                    <%-- </c:if> --%>
+                        </li>
+					</ul>
+				</div>
+						  
+						  
+						                                      
 			</div>
 		</section>
 		<!-- End Team Section -->

@@ -14,14 +14,17 @@
 			<ul class="user_data navShow">
 				<% if (s == null){%>
 				<li><a class="nav-link" href="signup.do">Join</a></li>
+				<li><a>|</a></li>
 				<li><a class="nav-link" href="signin.do">Login</a></li>
 				<%} else if (s.equals(s2)){ %>
-				<li class="welcome" style="color:white">관리자로 접속하였습니다.</li>
+				<li class="welcome" style="color:white"><strong>관리자</strong>로 접속하였습니다.</li>
 				<li><a class="nav-link" href="signout.do">Logout</a></li>
+				<li><a>|</a></li>
 				<li><a class="nav-link" href="admin.do">Admin</a></li>
 				<%} else{ %>
-				<li class="welcome" style="color:white"><%= s %> 님 환영합니다!</li>
+				<li class="welcome" style="color:white"><strong><%= s %></strong> 님 환영합니다!</li>
 				<li><a class="nav-link" href="signout.do">Logout</a></li>
+				<li><a>|</a></li>
 				<li><a class="nav-link" href="mypage.do">MyPage</a></li>
 				<%} %>
 			</ul>
@@ -30,9 +33,9 @@
 		<nav id="navbar" class="navbar nav2">
 			<ul class="main_nav">
 				<li><a class="nav-link scrollto active"
-					href="main.do">홈</a></li>
+					href="main.do">HOME</a></li>
 				<li class="dropdown">
-				<a href="company.do"><span>기업</span>
+				<a href="company.do"><span>COMPANY</span>
 						<i class="bi bi-caret-down-fill"></i></a>
 					<ul>
 						<li>
@@ -47,9 +50,9 @@
 					</ul>
 				</li>
 				<li class="dropdown"><a
-					href="coverAnalyze.do"><span>자기소개서</span>
+					href="coverAnalyze.do"><span>COVER LETTER</span>
 						<i class="bi bi-caret-down-fill"></i></a>
-					<ul>
+					<ul class="cl-drop">
 						<li>
 						<a href="coverAnalyze.do">
 								자기소개서 예시

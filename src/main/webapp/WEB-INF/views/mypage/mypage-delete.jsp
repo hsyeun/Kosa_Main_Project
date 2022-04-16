@@ -84,11 +84,14 @@ $(document).ready(function(){
 
 						
 						<div class="row">
-					<div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
-						<div
-							class="d-flex align-items-center justify-content-between mb-3">
-							<h3>회원 탈퇴</h3>
+							<div class="col-xl-6 grid-margin stretch-card flex-column">
+								<h5 class="text-titlecase mb-1 kr-bold" style="margin-top:20px;">회원 탈퇴</h5>
+							</div>
+
 						</div>
+						
+						<div class="row">
+					<div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
 						
 						<form method="post" id="frm" name="frm" action="mypage-deletePROC.do">
 								
@@ -108,7 +111,7 @@ $(document).ready(function(){
 						</div>
 						</form>
 						
-						<button type="submit" class="btn btn-primary py-3 w-100 mb-4">탈퇴하기</button>
+						<button type="submit" class="btn btn-primary py-3 w-100 mb-4 kr-btn">탈퇴하기</button>
 					</div>
 				</div>
 						

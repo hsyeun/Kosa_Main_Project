@@ -213,87 +213,66 @@
 
 		<!-- Sign Up Start -->
 		<div class="container-fluid">
-			<div class="row h-100 align-items-center justify-content-center"
-				style="min-height: 100vh;">
-				<div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 pt80">
-					<div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
-						<div
-							class="d-flex align-items-center justify-content-between mb-3">
-							<h3>회원 가입</h3>
+			<div class="row h-100 align-items-center justify-content-center">
+				<div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 sec-pt pb70">
+					<div class="bg-light rounded p-4 p-sm-5">
+						<div class="align-items-center justify-content-between mb40">
+							<h3 class="kr-bold m-center" style="color:#787878;">회원 가입</h3>
 						</div>
-						<h6 class="mb-4">필수정보를 입력해주세요.</h6>
 						
 						<form method="post" id="frm" name="frm" action="signupPROC.do">
 						<div class="form-floating mb-2">
 							<input type="text" class="form-control" id="name" name="name"
 								placeholder="jhondoe"> <label for="name">Username</label>
-							<p class="fs-p mt-p dn">이름을 입력해주세요.</p>
 						</div>
 
 						<div class="form-floating mb-2 h60 clearfix">
 							<input type="text" class="form-control form-w fl"
 								id="identification" name="identification" placeholder="abc123"> <label
 								for="identification">ID</label>
-							<button type="button" id="idck" class="btn btn-primary py-3 w-40 mb-4 fr">아이디
+							<button type="button" id="idck" class="btn btn-primary py-3 w-40 mb-4 fr idcheck kr-btn">아이디
 								확인</button>
 						</div>
-						<p class="fs-p mt-p dn">아이디를 확인해주세요.</p>
-						<p class="fs-p mt-p dn">사용할 수 없는 아이디입니다.</p>
 
 						<div class="form-floating mb-2 clearfix">
 							<input type="password" class="form-control" id="password" name="password"
 								placeholder="Password"> <label for="password">Password</label>
-							<p class="fs-p mt-p dn">패스워드를 입력해주세요.</p>
 						</div>
 						<div class="form-floating mb-2">
 							<input type="password" class="form-control" id="rePassword" name="rePassword"
 								placeholder="Password"> <label for="rePassword">Confirm
 								Password</label>
-							<p class="fs-p mt-p dn">패스워드가 일치하지 않습니다.</p>
-							<p class="fs-p mt-p dn">패스워드를 확인해주세요.</p>
 						</div>
 						<div class="form-floating mb-2">
 							<input type="email" class="form-control" id="email" name="email"
 								placeholder="name@example.com"> <label
 								for="email">Email address</label>
-							<p class="fs-p mt-p dn">이메일 주소를 입력해주세요.</p>
 						</div>
-						<div class="form-floating mb-3">
+						<div class="form-floating mb-2">
 							<input type="tel" class="form-control" id="phone" name="phone"
 								placeholder="010-0000-0000"> <label for="phone">Phone</label>
-							<p class="fs-p mt-p dn">연락처를 입력해주세요.</p>
 						</div>
-						<div class="form-floating mb-3">
-							<select class="form-select" id="sc_index" name="sc_index"
+						<div class="form-floating mb-2">
+							<select class="form-select kr" id="sc_index" name="sc_index"
 								aria-label="Floating label select example">
 							<c:forEach var="com" items="${COM}">
 								<option value="${com.index}">${com.category}</option>
 							</c:forEach>
-<!-- 								<option value="0">대기업</option>
-								<option value="1">대기업 계열·자회사</option>
-								<option value="2">중견기업</option>
-								<option value="3">중소기업</option>
-								<option value="4">벤처기업</option>
-								<option value="5">공공기관</option>
-								<option value="6">공공기관·공기업</option>
-								<option value="7">비영리단체</option>
-								<option value="8">외국계</option>
-								<option value="9">기타</option> -->
 							</select> <label for="sc_index">기업 분류</label>
 						</div>
-						<div class="form-floating mb-4">
-							<select class="form-select" id="i_index" name="i_index"
+						<div class="form-floating mb-2">
+							<select class="form-select kr" id="i_index" name="i_index"
 								aria-label="Floating label select example">
 							<c:forEach var="ind" items="${IND}">
-								<option value="${ind.index}">${ind.title}</option>
+								<option value="${ind.index}"  class="kr">${ind.title}</option>
 							</c:forEach>
 							
 							</select> 
 							<label for="i_index">산업 분류</label>
 						</div>
 
-							<div class="form-floating mb-1">
-							<select id="productSelect" class="form-select" aria-label="Floating label select example">
+							<div class="form-floating mb-2">
+							<select id="productSelect" class="form-select kr" aria-label="Floating label select example">
 	<!-- 						   <option value="100" selected="selected">관심키워드 선택</option> -->
 						<c:forEach var="bcate" items="${BIG}">
 							   <option value="${bcate.index}">${bcate.category}</option>
@@ -303,20 +282,19 @@
 							</div>
 												
 						
-							<div class="form-floating mb-5">
+							<div class="form-floating mb-4">
 							<!-- <select id="mallSelect" class="form-select" aria-label="Floating label select example">
 							</select> -->
-							<div id="mallSelect" style=" height: 120px;position:relative;overflow: auto;">
-							</div>
-							<div id="multiPrint">
-							</div>
+								<div id="mallSelect" class="kr" style=" height: 120px;position:relative;overflow: auto;">
+								</div>
+								<div id="multiPrint"></div>
 							</div>						
 						
 						</form>
 						
-						<button type="submit" class="btn btn-primary py-3 w-100 mb-4" id="jbtn">다음으로</button>
-						<p class="text-center mb-0">
-							이미 가입되어 있다면? <a href="signin.do">로그인</a>
+						<button type="submit" class="btn btn-primary py-3 w-100 mb-4 kr-btn" id="jbtn">다음으로</button>
+						<p class="text-center mb-0 kr">
+							이미 가입되어 있다면? &nbsp;<a href="signin.do" class="kr-500">로그인</a>
 						</p>
 					</div>
 				</div>
@@ -334,6 +312,6 @@
 	<jsp:include page="../include/footer-and-js.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-	<script src="${pageContext.request.contextPath}/assets//js/ajax.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/ajax.js"></script>
 </body>
 </html>
