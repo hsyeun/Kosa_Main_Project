@@ -34,6 +34,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import app.member.MemberDAO;
 import app.member.MemberVO;
+import app.member.ResumeVO;
 //import app.member.MemberService;
 //import app.member.MemberVO;
 import lombok.extern.slf4j.Slf4j;
@@ -119,9 +120,12 @@ public class MypageController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "mypage-resume.do")
-	public ModelAndView Resume() throws Exception {
-		
+	public ModelAndView Resume(HttpSession session) throws Exception {
+		String id = (String) session.getAttribute("SID");
+		ResumeVO rVO = mDAO.getMyResumeInfo(id);
+		System.out.println(rVO);
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("DATA",rVO);
 		
 		
 		mav.setViewName("mypage/mypage-resume");

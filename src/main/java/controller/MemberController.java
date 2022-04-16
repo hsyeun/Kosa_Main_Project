@@ -156,14 +156,18 @@ public class MemberController {
 		return mv;
 	}
 	@RequestMapping(value = "resumePROC.do")
-	public ModelAndView insertResume(@ModelAttribute ResumeVO rVO,ModelAndView mv,RedirectView rv) throws Exception {
-		
-		int cnt = mDAO.addResume(rVO);
-		System.out.println(cnt);
-		rv.setUrl("signin.do");
-		mv.setView(rv);
-		return mv;
-	}
+	   public ModelAndView insertResume(@ModelAttribute ResumeVO rVO,ModelAndView mv,RedirectView rv) throws Exception {
+	      
+	      int cnt = mDAO.addResume(rVO);
+	      Integer temp = mDAO.getRecCompany(rVO);
+	      rVO.setCompany_rec(temp);
+	      mDAO.addRecCompany(rVO);
+	      System.out.println(cnt);
+	      rv.setUrl("signin.do");
+	      mv.setView(rv);
+	      return mv;
+	   }
+
 
 	
 	/**

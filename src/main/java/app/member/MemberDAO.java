@@ -61,6 +61,11 @@ public class MemberDAO {
 		return sqlSession.selectOne("mSQL.getMyInfo", id);
 	}
 	
+	// 나의 이력서 정보 보기
+	public ResumeVO getMyResumeInfo(String id) {
+		return sqlSession.selectOne("mSQL.getMyResumeInfo",id);
+	}
+	
 	// 나의 정보수정처리
 	public int myInfoEdit(MemberVO mVO) {
 		return sqlSession.update("mSQL.myInfoEdit", mVO);
@@ -100,6 +105,15 @@ public class MemberDAO {
 	// 자소서 조회
 	public List<MemberVO> getCovers(MemberVO mVO) {
 		return sqlSession.selectList("mSQL.getCovers", mVO);
-}
+	}
+	// 
+	public Integer getRecCompany(ResumeVO rVO) {
+		return sqlSession.selectOne("mSQL.getRecCompany",rVO);
+	}
+
+	public int addRecCompany(ResumeVO rVO) {
+		return sqlSession.update("mSQL.addRecCompany", rVO);
+	}
+
 	
 }

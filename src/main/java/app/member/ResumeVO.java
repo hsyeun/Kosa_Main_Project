@@ -19,4 +19,6 @@ public class ResumeVO {
 	private double education;
 	private double career;
 	
+	private int company_rec;
+	
 }

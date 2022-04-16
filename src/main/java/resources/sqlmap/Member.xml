@@ -91,9 +91,19 @@
 	<!-- 내 정보 조회 -->
 	<select id="getMyInfo" resultType="app.member.MemberVO" parameterType="string">
 		SELECT
-			identification, password, name, email, phone, sc_index, i_index, company_rec,company_rec2, jobopening_rec, jobopening_rec2
+			identification, password, name, email, phone, sc_index, i_index, company_rec
 		FROM
 			user
+		WHERE
+			identification = #{identification}
+	</select>
+	
+	<!-- 내 이력 정보 조회 -->
+	<select id="getMyResumeInfo" resultType="app.member.ResumeVO" parameterType="string">
+		SELECT
+			*
+		FROM
+			user_spec
 		WHERE
 			identification = #{identification}
 	</select>
@@ -183,7 +193,27 @@
 		WHERE
 			identification = #{identification}
 	</delete>
-	
+	<!-- 유저의 추천 기업 -->
+   <select id="getRecCompany" parameterType="app.member.ResumeVO" resultType="Integer">
+      <![CDATA[
+      select
+         ct.index 
+      from
+         itjob.company ct
+      join itjob.company_spec cs
+         on ct.`index` =cs.com_index
+      ORDER by
+         ABS(cs.grade - #{grade }) , ABS(cs.toeic - #{toeic }),cs.toeic_speak = #{toeic_speak} ,cs.opic_grade = #{opic_grade} ,ABS( cs.etc - #{etc}),ABS( cs.overseas_exp - #{overseas_exp}),ABS( cs.intern - #{intern}) ,ABS(cs.prize - #{prize}) ,ABS( cs.volunteer - #{volunteer}) ,ABS( cs.certificate - #{certificate})
+      limit 1
+      ]]>
+   </select>
+      <!-- 회원계정에 추천기업 데이터 추가 -->
+   <update id="addRecCompany" parameterType="app.member.ResumeVO">
+      update user
+         set company_rec = #{company_rec}
+      where
+         identification = #{identification}
+   </update>
 	
 	
 </mapper>

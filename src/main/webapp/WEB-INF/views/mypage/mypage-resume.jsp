@@ -70,7 +70,6 @@
 							class="d-flex align-items-center justify-content-between">
 							<h3 class="mb-5">이력서</h3>
 						</div>
-						
 						<form method="post" action="resumePROC.do"> 
 						<div style="display:none;">
 							<% String s = (String) session.getAttribute("SID");%>
@@ -200,119 +199,6 @@
 				</div>
 			</div>
 		</div>
-<!-- 						<div class="row">
-							<div class="col-xl-6 grid-margin stretch-card flex-column">
-								<h5 class="mb-2 text-titlecase mb-4">이력서 관리</h5>
-							</div>
-
-						</div>
-
-						<div class="row">
-							<div class="col-md-12">
-								<div class="card">
-									<div class="table-responsive pt-3">
-										<table class="table table-striped project-orders-table">
-											<thead>
-												<tr>
-													<th class="ml-5">Number</th>
-													<th>Title</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>#D1</td>
-													<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D2</td>
-													<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D3</td>
-													<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D4</td>
-													<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>#D5</td>
-													<td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
-													<td>
-														<div class="d-flex align-items-center">
-															<button type="button"
-																class="btn btn-success btn-sm btn-icon-text mr-3">
-																Edit <i class="typcn typcn-edit btn-icon-append"></i>
-															</button>
-															<button type="button"
-																class="btn btn-danger btn-sm btn-icon-text">
-																Delete <i
-																	class="typcn typcn-delete-outline btn-icon-append"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div> -->
-						<!-- end row -->
-
-
 					</div>
 				</div>
 			</div>
@@ -333,6 +219,20 @@
 		<jsp:param name="" value="" />
 	</jsp:include>
 
+	<script>
+		document.getElementsByName("education")[0].selectedIndex = parseInt(${DATA.education});
+		document.getElementsByName("career")[0].selectedIndex = parseInt(${DATA.career});
+		document.getElementsByName("grade")[0].selectedIndex = parseInt(${DATA.grade});
+		document.getElementsByName("toeic")[0].selectedIndex = parseInt(${DATA.toeic});
+		document.getElementsByName("toeic_speak")[0].selectedIndex = parseInt(${DATA.toeic_speak});
+		document.getElementsByName("opic_grade")[0].selectedIndex = parseInt(${DATA.opic_grade});
+		document.getElementsByName("etc")[0].selectedIndex = parseInt(${DATA.etc});
+		document.getElementsByName("overseas_exp")[0].selectedIndex = parseInt(${DATA.overseas_exp});
+		document.getElementsByName("intern")[0].selectedIndex = parseInt(${DATA.intern});
+		document.getElementsByName("prize")[0].selectedIndex = parseInt(${DATA.prize});
+		document.getElementsByName("volunteer")[0].selectedIndex = parseInt(${DATA.volunteer});
+		document.getElementsByName("certificate")[0].selectedIndex = parseInt(${DATA.certificate});
+	</script>
 
 </body>
 </html>

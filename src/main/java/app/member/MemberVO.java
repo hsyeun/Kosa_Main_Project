@@ -13,8 +13,7 @@ public class MemberVO {
 	private String email;
 	private String phone;
 	private int is_show;
-	//수정
-	private int company_rec=-1;
+	
 	private int jobopening_rec=-1;
 	private int company_rec2=-1;
 	private int jobopening_rec2=-1;
@@ -24,13 +23,5 @@ public class MemberVO {
 	private int spec_index;
 	private int sub_cate_index;
 	
-	
-//	public MemberVO(String identification, String password, String email) {
-//		super();
-//		this.identification = identification;
-//		this.password = password;
-//		this.email = email;
-//	}
-	
-	
+	private int company_rec;
 }
