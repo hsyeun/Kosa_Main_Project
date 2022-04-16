@@ -16,6 +16,7 @@
 				<li><a class="nav-link" href="signup.do">Join</a></li>
 				<li><a class="nav-link" href="signin.do">Login</a></li>
 				<%} else if (s.equals(s2)){ %>
+				<li class="welcome" style="color:white">관리자로 접속하였습니다.</li>
 				<li><a class="nav-link" href="signout.do">Logout</a></li>
 				<li><a class="nav-link" href="admin.do">Admin</a></li>
 				<%} else{ %>
