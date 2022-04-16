@@ -70,7 +70,7 @@
 							class="d-flex align-items-center justify-content-between">
 							<h3 class="mb-5">이력서</h3>
 						</div>
-						<form method="post" action="resumePROC.do"> 
+						<form method="post" action="mypage_resume_update.do"> 
 						<div style="display:none;">
 							<% String s = (String) session.getAttribute("SID");%>
 							<input type="text" name="identification" value =<%= s %> readonly/>

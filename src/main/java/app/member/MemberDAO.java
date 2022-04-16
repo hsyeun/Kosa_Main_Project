@@ -66,6 +66,12 @@ public class MemberDAO {
 		return sqlSession.selectOne("mSQL.getMyResumeInfo",id);
 	}
 	
+	// 나의 이력서 정보 수정
+	public ResumeVO UpdateResumeInfo(ResumeVO rVO) {
+		return sqlSession.selectOne("mSQL.UpdateResumeInfo",rVO);
+	}
+		
+	
 	// 나의 정보수정처리
 	public int myInfoEdit(MemberVO mVO) {
 		return sqlSession.update("mSQL.myInfoEdit", mVO);

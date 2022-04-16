@@ -131,7 +131,16 @@ public class MypageController {
 		mav.setViewName("mypage/mypage-resume");
 		return mav;
 	}
-	
+
+	@RequestMapping(value = "mypage_resume_update.do")
+	public ModelAndView updateResume(@ModelAttribute ResumeVO rVO, HttpSession session) throws Exception {
+		System.out.println(rVO);
+		mDAO.UpdateResumeInfo(rVO);
+		System.out.println(rVO);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/mypage-resume");
+		return mav;
+	}
 	/**
 	 * 마이페이지-자소서
 	 * 

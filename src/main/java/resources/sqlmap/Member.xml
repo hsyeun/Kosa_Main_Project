@@ -108,6 +108,27 @@
 			identification = #{identification}
 	</select>
 	
+	<!-- 내 이력 정보 수정 -->
+	<update id="UpdateResumeInfo" parameterType="app.member.ResumeVO">
+		update
+			user_spec
+		set
+			grade = #{grade},
+			toeic = #{toeic},
+			toeic_speak = #{toeic_speak},
+			opic_grade =  #{opic_grade},
+			etc = #{etc},
+			overseas_exp = #{overseas_exp},
+			intern = #{intern}, 
+			prize = #{prize},
+			volunteer = #{volunteer},
+			certificate = #{certificate},
+			education = #{education},
+			career = #{career}
+		where
+			identification = #{identification}
+	</update>
+	
 	<!-- 내 정보 수정 -->
 	<update id="myInfoEdit" parameterType="app.member.MemberVO">
 		UPDATE
