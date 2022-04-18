@@ -159,9 +159,9 @@
 							</select> <label for="floatingSelect">자격증</label>
 						</div>
 						
-						</form>
 						<button type="submit" class="btn btn-primary py-3 w-100 kr-btn">가입완료</button>
 						<p class="text-center mb-0 kr"> &nbsp; </p>
+						</form>
 
 					</div>
 				</div>
