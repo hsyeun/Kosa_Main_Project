@@ -46,7 +46,7 @@ IT 직무 취업준비생들에게 도움이 되는 AI 서비스를 만들고자
   * 개발환경 : Eclipse, Jupyter lab, vscode, HeidiSQL
   * 언어 : Java, Python, Html, CSS, Javascript, MariaDB, ...
   * 서버 및 프레임워크 : Spring, Flask, Bootstrap, Tomcat 9.0
-  * 라이브러리 : KOGPT2, BERT, PORORO, Komoran, Numpy, Pandas, Sklearn, Tensorflow
+  * 라이브러리 : KOGPT2, BERT, PORORO, Komoran, Numpy, Pandas, Sklearn, Tensorflow, ajax
   * 크롤링 : BeautifulSoup, Selenium
   * 알고리즘 : GPT2, KoGPT2, 근사값 알고리즘, 콘텐츠 기반 필터링, 원-핫 인코딩, 코사인 유사도  
 
