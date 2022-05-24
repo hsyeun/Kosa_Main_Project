@@ -57,3 +57,13 @@ IT 직무 취업준비생들에게 도움이 되는 AI 서비스를 만들고자
 ![main_project](https://user-images.githubusercontent.com/82640704/170024357-0d113b9a-bdb2-4c44-a538-b892c0c49a48.gif)
 
 <br/>
+
+## 유저 맞춤 기업 추천 서비스
+
+![기업추천1](https://user-images.githubusercontent.com/82640704/170065058-f818aced-cda6-428f-ae6b-e51a9fb240e0.gif)
+
+회원가입시 선호하는 기업규모, 산업분류, 직업 키워드와 개인의 스펙을 입력하면  
+후에 로그인을 하고 기업페이지에 들어갔을 때 입력한 정보를 토대로 추천된 기업이 상단(파란색 박스)에 노출된다.    
+
+
+<br/>
