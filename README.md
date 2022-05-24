@@ -54,6 +54,6 @@ IT 직무 취업준비생들에게 도움이 되는 AI 서비스를 만들고자
 
 ## 메인 화면
 
-
+![main_project](https://user-images.githubusercontent.com/82640704/170024357-0d113b9a-bdb2-4c44-a538-b892c0c49a48.gif)
 
 <br/>
